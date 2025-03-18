@@ -1,0 +1,133 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<partial name="~/Views/Admin/Partials/_AdminSideNav.cshtml"></partial>
+
+<div class="min-h-screen flex flex-col bg-slate-300 ms-[260px]">
+    <partial name="~/Views/Admin/Partials/_AdminTopNav.cshtml"></partial>
+    <main class="ml-5 max-md:ml-0 max-md:w-full">
+        <div class="flex flex-col mt-8 w-full max-md:mt-10 max-md:max-w-full">
+            <header class="flex flex-wrap gap-10 items-end max-md:mr-0.5 max-md:max-w-full">
+                <div class="flex flex-col justify-center min-w-60">
+                    <h1 class="text-3xl font-bold text-teal-950">Driver List</h1>
+                    <p class="mt-1.5 text-base text-zinc-500">
+                        Your all drivers are listed below
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-2.5 items-start text-sm min-w-60 text-teal-950 max-md:max-w-full">
+                    <div class="flex gap-2.5 items-center px-5 bg-white rounded-lg min-h-10 min-w-60 w-[260px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000"
+                            viewBox="0 0 256 256">
+                            <path
+                                d="M32,64a8,8,0,0,1,8-8H216a8,8,0,0,1,0,16H40A8,8,0,0,1,32,64Zm8,72h72a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16Zm88,48H40a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16Zm109.66,13.66a8,8,0,0,1-11.32,0L206,177.36A40,40,0,1,1,217.36,166l20.3,20.3A8,8,0,0,1,237.66,197.66ZM184,168a24,24,0,1,0-24-24A24,24,0,0,0,184,168Z">
+                            </path>
+                        </svg>
+                        <span class="self-stretch my-auto">Type to search...</span>
+                    </div>
+                    <button class="flex gap-2 items-center px-4 py-2.5 whitespace-nowrap bg-white rounded-lg">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/08d0cdb1421e206853c2df39df1469860e9b4d64c7e775c4dad19afa85e8cab1?placeholderIfAbsent=true&apiKey=9171519205d6418989323d6f5fe10db6"
+                            alt="Filter icon" class="object-contain shrink-0 self-stretch my-auto w-5 aspect-square" />
+                        <span class="self-stretch my-auto">Filter</span>
+                    </button>
+                    <button class="flex gap-2 items-center px-4 py-2.5 whitespace-nowrap bg-white rounded-lg">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/5285e9f5c60a735f7d4e9f6d336816cc6bd47d149bfa9492497b5479df756364?placeholderIfAbsent=true&apiKey=9171519205d6418989323d6f5fe10db6"
+                            alt="Columns icon" class="object-contain shrink-0 self-stretch my-auto w-5 aspect-square" />
+                        <span class="self-stretch my-auto">Columns</span>
+                    </button>
+                    <button
+                        class="flex gap-2 justify-center items-center py-2.5 pr-6 pl-5 text-white bg-indigo-600 rounded-lg min-h-10 max-md:pr-5">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/cc9749fc4b362834fe466181a7c7da5b0d6410d8ff21722f8fec8455f4b83aad?placeholderIfAbsent=true&apiKey=9171519205d6418989323d6f5fe10db6"
+                            alt="Add Driver icon"
+                            class="object-contain shrink-0 self-stretch my-auto w-5 aspect-square" />
+                        <span class="self-stretch my-auto">Add Driver</span>
+                    </button>
+                </div>
+            </header>
+
+            <section
+                class="flex flex-col justify-center pb-5 mt-10 w-full text-sm bg-white rounded-lg text-teal-950 max-md:max-w-full">
+                <table class="w-full text-left">
+                    <thead class="font-semibold border-b border-slate-200">
+                        <tr>
+                            <th class="py-3 px-4">Driver ID</th>
+                            <th class="py-3 px-4">Name</th>
+                            <th class="py-3 px-4">Contact Number</th>
+                            <th class="py-3 px-4">Vehicle Type</th>
+                            <th class="py-3 px-4">Vehicle Number</th>
+                            <th class="py-3 px-4">Joining Date</th>
+                            <th class="py-3 px-4">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-slate-200">
+                            <td class="py-3 px-4">#ED-001</td>
+                            <td class="py-3 px-4">Ayman Abu Dayya</td>
+                            <td class="py-3 px-4">+966593948852</td>
+                            <td class="py-3 px-4">Car</td>
+                            <td class="py-3 px-4 text-teal-950">JV 480 RV</td>
+                            <td class="py-3 px-4">20 Aug 2023</td>
+                            <td class="py-3 px-4">
+                                <button
+                                    class="text-xs font-medium text-center text-white bg-indigo-600 rounded-sm py-1 px-2">View</button>
+                            </td>
+                        </tr>
+
+                        <tr class="border-b border-slate-200">
+                            <td class="py-3 px-4">#ED-002</td>
+                            <td class="py-3 px-4">Ibrahim Al-Yami</td>
+                            <td class="py-3 px-4">+966556182291</td>
+                            <td class="py-3 px-4">Microbus</td>
+                            <td class="py-3 px-4 text-teal-950">KI 712 PH</td>
+                            <td class="py-3 px-4">2 Feb 2023</td>
+                            <td class="py-3 px-4">
+                                <button
+                                    class="text-xs font-medium text-center text-white bg-indigo-600 rounded-sm py-1 px-2">View</button>
+                            </td>
+                        </tr>
+
+                        <tr class="border-b border-slate-200">
+                            <td class="py-3 px-4">#ED-003</td>
+                            <td class="py-3 px-4">Badr Al Karbi</td>
+                            <td class="py-3 px-4">+966598997780</td>
+                            <td class="py-3 px-4">Truck</td>
+                            <td class="py-3 px-4 text-teal-950">KB 280 VL</td>
+                            <td class="py-3 px-4">28 Jul 2023</td>
+                            <td class="py-3 px-4">
+                                <button
+                                    class="text-xs font-medium text-center text-white bg-indigo-600 rounded-sm py-1 px-2">View</button>
+                            </td>
+                        </tr>
+
+                        <tr class="border-b border-slate-200">
+                            <td class="py-3 px-4">#ED-004</td>
+                            <td class="py-3 px-4">Yasin Faqeehi</td>
+                            <td class="py-3 px-4">+966558441493</td>
+                            <td class="py-3 px-4">Car</td>
+                            <td class="py-3 px-4 text-teal-950">IV 453 QL</td>
+                            <td class="py-3 px-4">13 Oct 2023</td>
+                            <td class="py-3 px-4">
+                                <button
+                                    class="text-xs font-medium text-center text-white bg-indigo-600 rounded-sm py-1 px-2">View</button>
+                            </td>
+                        </tr>
+
+                        <tr class="border-b border-slate-200">
+                            <td class="py-3 px-4">#ED-005</td>
+                            <td class="py-3 px-4">Talal Al-Murawani</td>
+                            <td class="py-3 px-4">+966597014667</td>
+                            <td class="py-3 px-4">Truck</td>
+                            <td class="py-3 px-4 text-teal-950">PU 288 TQ</td>
+                            <td class="py-3 px-4">2 Oct 2023</td>
+                            <td class="py-3 px-4">
+                                <button
+                                    class="text-xs font-medium text-center text-white bg-indigo-600 rounded-sm py-1 px-2">View</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+</div>

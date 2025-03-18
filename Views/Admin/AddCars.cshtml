@@ -1,0 +1,89 @@
+
+<partial name="~/Views/Admin/Partials/_AdminSideNav.cshtml"></partial>
+
+<div class="min-h-screen flex flex-col bg-slate-300 ms-[260px]">
+    <partial name="~/Views/Admin/Partials/_AdminTopNav.cshtml"></partial>
+            <div class="container mx-auto px-6 py-10">
+                <form method="post" enctype="multipart/form-data" class="mt-8 space-y-8">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h1 class="text-3xl font-semibold text-teal-950">Add Car</h1>
+                            <p class="mt-2 text-sm text-gray-500">Enter vehicle details to register it in the system.</p>
+                        </div>
+                        <div>
+                            <button type="submit" class="px-6 py-3 text-white bg-teal-700 rounded-lg hover:bg-teal-600 transition duration-300">
+                                Save Vehicle
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="flex flex-col">
+                            <label for="brand" class="text-sm font-semibold text-gray-700">Brand</label>
+                            <input type="text" id="brand" name="Brand" class="mt-2 p-3 border border-gray-300 rounded-lg bg-white" required>
+                        </div>
+                        
+                        <div class="flex flex-col">
+                            <label for="model" class="text-sm font-semibold text-gray-700">Model</label>
+                            <input type="text" id="model" name="Model" class="mt-2 p-3 border border-gray-300 rounded-lg bg-white" required>
+                        </div>
+                        
+                        <div class="flex flex-col">
+                            <label for="category" class="text-sm font-semibold text-gray-700">Category</label>
+                            <select id="category" name="Category" class="mt-2 p-3 border border-gray-300 rounded-lg bg-white" required>
+                                <option value="SUV">SUV</option>
+                                <option value="Sedan">Sedan</option>
+                                <option value="Sport">Sport</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="flex flex-col">
+                            <label for="plate_number" class="text-sm font-semibold text-gray-700">Plate Number</label>
+                            <input type="text" id="plate_number" name="PlateNumber" class="mt-2 p-3 border border-gray-300 rounded-lg bg-white" required>
+                        </div>
+                        
+                        <div class="flex flex-col">
+                            <label for="mileage" class="text-sm font-semibold text-gray-700">Mileage</label>
+                            <input type="number" id="mileage" name="Mileage" class="mt-2 p-3 border border-gray-300 rounded-lg bg-white" required>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col mt-8 max-md:max-w-full">
+                        <h2 class="text-2xl font-semibold text-teal-950">Vehicle Image</h2>
+                        <div class="flex items-center gap-4 text-xs text-teal-950 mt-5">
+                            <div class="flex flex-col items-center p-6 bg-white rounded-lg border border-dashed border-slate-300 w-40 h-40">
+                                <input type="file" name="Image" id="vehicleImage" class="hidden" accept="image/*" onchange="previewImage(event)">
+                                <label for="vehicleImage" class="items-center cursor-pointer text-center">
+                                    <span>Upload Or Paste Image</span>
+                                    <span class="mt-1.5 font-semibold">jpg/jpeg/png</span>
+                                </label>
+                            </div>
+                            <div id="imagePreviewContainer" class="flex items-center justify-center w-full sm:w-1/3 h-40 border border-dashed rounded-lg overflow-hidden">
+                                <img id="imagePreview" class="w-full h-full object-cover" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function previewImage(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var preview = document.getElementById('imagePreview');
+            preview.src = e.target.result;
+            preview.classList.remove('hidden');
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+</script>

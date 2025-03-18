@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Settings";
+}
+<partial name="~/Views/Admin/Partials/_AdminSideNav.cshtml"></partial>
+
+<div class="min-h-screen flex flex-col bg-slate-300 ms-[260px]">
+    <partial name="~/Views/Admin/Partials/_AdminTopNav.cshtml"></partial>
+    <!-- Main Content -->
+    <div class="flex-1 p-6">
+        <div x-data="{ tab: 'profile' }">
+            <div class="flex border-b">
+                <button @("@click")="tab = 'profile'" :class="{ 'border-b-2 border-blue-500': tab === 'profile' }"
+                    class="px-4 py-2 focus:outline-none">Profile</button>
+
+                <button @("@click")="tab = 'location'" :class="{ 'border-b-2 border-blue-500': tab === 'location' }"
+                    class="px-4 py-2 focus:outline-none">Location</button>
+            </div>
+
+            <div class="p-4">
+                <div x-show="tab === 'profile'">
+                    <h2 class="text-lg font-semibold mb-2">Profile Settings</h2>
+                    <p>Update your profile information here.</p>
+                </div>
+
+                <div x-show="tab === 'location'">
+                    <h2 class="text-lg font-semibold mb-2">Location Settings</h2>
+                    <p>Manage your location preferences.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+}

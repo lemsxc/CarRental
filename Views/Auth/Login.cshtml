@@ -1,0 +1,80 @@
+@{
+    ViewData["Title"] = "Log in";
+    var returnUrl = ViewBag.ReturnUrl as string;
+}
+
+<div class="flex min-h-screen items-center justify-center bg-gradient-to-r from-green-200 to-blue-200">
+    <div class="w-full max-w-sm p-10 bg-white rounded-2xl shadow-lg">
+        <!-- Logo -->
+        <div class="flex justify-center mb-6">
+            <img src="~/Images/Logo.png" alt="Urban Drive PH Logo" class="h-auto w-48">
+        </div>
+
+        <!-- Login Form -->
+        <section>
+            <form id="account" asp-action="Login" asp-controller="Auth" method="post" class="space-y-5">
+                <h2 class="text-2xl text-center font-semibold text-gray-800">Login</h2>
+                <hr class="my-4 border-gray-300" />
+
+                <!-- Error Alert for Invalid Credentials -->
+                @if (ViewBag.Error != null)
+                {
+                    <div class="mb-4 text-sm text-red-600 bg-red-100 p-3 rounded-md">
+                        @ViewBag.Error
+                    </div>
+                }
+
+                <!-- Email Field -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input name="Email" type="email"
+                        class="block w-full mt-1 px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        required placeholder="name@example.com" />
+                </div>
+
+                <!-- Password Field -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input name="Password" type="password"
+                        class="block w-full mt-1 px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        required placeholder="********" />
+                </div>
+
+                <!-- Remember Me Checkbox -->
+                <div>
+                    <label>
+                        <input name="RememberMe" type="checkbox" />
+                        Remember Me
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="mt-5">
+                    <button type="submit"
+                        class="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500">Log
+                        in</button>
+                </div>
+            </form>
+        </section>
+        <!-- Additional Links -->
+        <div class="mt-4 text-center space-y-2">
+            <p><a href="@Url.Action("ForgotPassword", "Account")" class="text-blue-600 hover:underline">Forgot
+                    your password?</a></p>
+            <p><a href="@Url.Action("Register", "Account", new { returnUrl = returnUrl })"
+                    class="text-blue-600 hover:underline">Register as a new user</a></p>
+            <p><a href="@Url.Action("ResendEmailConfirmation", "Account")" class="text-blue-600 hover:underline">Resend
+                    email confirmation</a></p>
+        </div>
+        <!-- Register Prompt -->
+        <div class="text-center mt-6">
+            <p class="text-sm text-gray-700">
+                Don't have an account?
+                <a asp-controller="Auth" asp-action="Register" class="text-indigo-600 hover:underline">Register</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

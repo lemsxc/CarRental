@@ -1,0 +1,47 @@
+﻿<nav class="flex justify-between items-center px-8 py-4 w-full bg-white border-b border-slate-200">
+    <div class="flex justify-end items-center gap-5" x-data="{ open: false }">
+        <!-- Profile Image and Information -->
+        <div class="flex items-center cursor-pointer" x-on:click="open = !open">
+            <!-- Profile Image -->
+            <div class="flex">
+                <img loading="lazy"
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/9971c284e91f3c7d902ff02c10ef20bdd108e7cd568864565a296f9cebe27870?placeholderIfAbsent=true&apiKey=9171519205d6418989323d6f5fe10db6"
+                    class="object-contain w-10 h-10 rounded-full" alt="User profile picture" />
+            </div>
+
+            <!-- Profile Information -->
+            <div class="flex flex-col ml-2">
+                <div class="text-xs font-medium text-gray-600 uppercase">Owner</div>
+                <div class="text-sm font-semibold text-neutral-950">Anwar Basahi</div>
+            </div>
+        </div>
+
+        <!-- Dropdown Menu -->
+        <div x-show="open" x-on:click.away="open = false" x-cloak
+            class="absolute right-0 mt-2 w-56 bg-white shadow-lg rounded-lg z-20">
+            <div class="px-6 py-4 text-gray-600 border-b border-gray-200">
+                <!-- Optional role-based info, e.g. Verified -->
+                <p class="font-semibold text-lg">
+                    <i class="fas fa-check-circle text-green-500 mr-2"></i> Verified
+                </p>
+                <p class="font-semibold text-lg">
+                    <i class="fas fa-user-tag mr-2"></i> Owner
+                </p>
+            </div>
+            <ul class="py-4">
+                <!-- Settings Link -->
+                <li>
+                    <a href="#settings" class="block px-6 py-3 text-gray-700 hover:bg-gray-100">
+                        <i class="fas fa-cog mr-2"></i> Settings
+                    </a>
+                </li>
+                <!-- Logout Link -->
+                <li>
+                    <a href="#logout" class="block px-6 py-3 text-gray-700 hover:bg-gray-100">
+                        <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

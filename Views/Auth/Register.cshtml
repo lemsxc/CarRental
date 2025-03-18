@@ -1,0 +1,67 @@
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="w-full min-h-screen flex items-center justify-center bg-gradient-to-r from-green-200 to-blue-200">
+    <div class="w-full max-w-sm p-10 bg-white rounded-2xl shadow-lg">
+        <div class="flex justify-center mb-6">
+            <img src="~/Images/Logo.png" alt="Urban Drive PH Logo" class="h-1/2 w-60">
+        </div>
+        <section>
+            <form id="registerForm" asp-action="Register" asp-controller="Auth" method="post" class="space-y-6">
+                <h2 class="text-2xl text-center font-semibold">Create a new account</h2>
+                <hr class="my-4" />
+                <div asp-validation-summary="ModelOnly" class="text-red-600" role="alert"></div>
+
+                <div class="grid grid-cols-3 space-y-3">
+                    <div class="relative">
+                        <label for="FirstName" class="block text-sm font-medium text-gray-700">First Name</label>
+                        <input name="FirstName"
+                            class="block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="First Name" />
+                    </div>
+                    <div class="relative">
+                        <label for="LastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                        <input name="LastName"
+                            class="block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Last Name" />
+                    </div>
+                    <div class="relative">
+                        <label for="Email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input name="Email"
+                            class="block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="name@example.com" />
+                    </div>
+                    <div class="relative">
+                        <label for="Password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input name="Password" type="password"
+                            class="block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Password" />
+                    </div>
+                    <div class="relative">
+                        <label for="ConfirmPassword" class="block text-sm font-medium text-gray-700">Confirm
+                            Password</label>
+                        <input name="ConfirmPassword" type="password"
+                            class="block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Confirm Password" />
+                    </div>
+                </div>
+
+                <div>
+                    <button id="registerSubmit" type="submit"
+                        class="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Register</button>
+                </div>
+                <div class="mt-4 space-y-2 text-center">
+                    <p>
+                        Already have an account? <a class="text-blue-600 hover:underline" asp-controller="Auth"
+                            asp-action="Login">Log in</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
