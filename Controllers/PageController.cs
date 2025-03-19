@@ -29,6 +29,22 @@ namespace CarRental.Controllers
             return View("~/Views/Home/Home.cshtml", cars);
         }
 
+        public IActionResult Cars()
+        {
+            // ✅ Check if user is logged in
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            // Retrieve all cars from the database
+            var cars = _context.Cars.ToList(); // Assuming your DbSet<Car> is named 'Cars'
+
+            // Pass the cars to the view
+            return View("~/Views/Home/Cars.cshtml", cars);
+        }
+
         public IActionResult Index()
         {
             return View();

@@ -282,3 +282,4 @@ C:\Users\lemma\source\repos\CarRental\obj\Debug\net8.0\refint\CarRental.dll
 C:\Users\lemma\source\repos\CarRental\obj\Debug\net8.0\CarRental.pdb
 C:\Users\lemma\source\repos\CarRental\obj\Debug\net8.0\CarRental.genruntimeconfig.cache
 C:\Users\lemma\source\repos\CarRental\obj\Debug\net8.0\ref\CarRental.dll
+C:\Users\lemma\source\repos\CarRental\obj\Debug\net8.0\CarRental.sourcelink.json
