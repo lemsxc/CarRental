@@ -35,8 +35,7 @@
                                         placeholder="Type to search...">
                                 </div>
 
-                                <!-- Add Car Button -->
-                                <button onclick="window.location.href='{{ route('addcars') }}'"
+                                <a href="@Url.Action("AddCar", "Page")"
                                     class="flex gap-2 justify-center items-center py-2.5 pr-6 pl-5 text-white bg-indigo-600 rounded-lg min-h-10 max-md:pr-5">
                                     <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -45,7 +44,7 @@
                                         <line x1="5" y1="12" x2="19" y2="12"></line>
                                     </svg>
                                     <span>Add Car</span>
-                                </button>
+                                </a>
                             </div>
                         </header>
                     </div>

@@ -1,36 +1,105 @@
 @{
     ViewData["Title"] = "Settings";
 }
-<partial name="~/Views/Admin/Partials/_AdminSideNav.cshtml"></partial>
-
-<div class="min-h-screen flex flex-col bg-slate-300 ms-[260px]">
+<div class="flex overflow-hidden flex-col bg-[#D0CAEA]">
     <partial name="~/Views/Admin/Partials/_AdminTopNav.cshtml"></partial>
-    <!-- Main Content -->
-    <div class="flex-1 p-6">
-        <div x-data="{ tab: 'profile' }">
-            <div class="flex border-b">
-                <button @("@click")="tab = 'profile'" :class="{ 'border-b-2 border-blue-500': tab === 'profile' }"
-                    class="px-4 py-2 focus:outline-none">Profile</button>
 
-                <button @("@click")="tab = 'location'" :class="{ 'border-b-2 border-blue-500': tab === 'location' }"
-                    class="px-4 py-2 focus:outline-none">Location</button>
+    <div class="z-10 -mt-4 w-full max-w-[1400px] max-md:max-w-full">
+        <div class="flex gap-5 max-md:flex-col">
+            <div class="flex flex-col w-1/5 max-md:ml-0 max-md:w-full">
+                <partial name="~/Views/Admin/Partials/_AdminSideNav.cshtml"></partial>
             </div>
 
-            <div class="p-4">
-                <div x-show="tab === 'profile'">
-                    <h2 class="text-lg font-semibold mb-2">Profile Settings</h2>
-                    <p>Update your profile information here.</p>
-                </div>
+            <!-- Main Content -->
+            <div class="flex flex-col w-full">
+                <div class="mt-8 w-full">
+                    <div class="flex-1 p-6">
+                        <div x-data="{ tab: 'profile' }">
+                            <!-- Tabs Navigation -->
+                            <div class="flex border-b">
+                                <button x-on:click="tab = 'profile'"
+                                    :class="{ 'border-b-2 border-blue-500 text-blue-600': tab === 'profile' }"
+                                    class="px-4 py-2 text-gray-600 hover:text-blue-500 transition">
+                                    Profile
+                                </button>
 
-                <div x-show="tab === 'location'">
-                    <h2 class="text-lg font-semibold mb-2">Location Settings</h2>
-                    <p>Manage your location preferences.</p>
-                </div>
+                                <button x-on:click="tab = 'location'"
+                                    :class="{ 'border-b-2 border-blue-500 text-blue-600': tab === 'location' }"
+                                    class="px-4 py-2 text-gray-600 hover:text-blue-500 transition">
+                                    Location
+                                </button>
+                            </div>
+
+                            <!-- Tabs Content -->
+                            <div class="p-4">
+                                <!-- Profile Tab -->
+                                <div x-show="tab === 'profile'">
+                                    <h2 class="text-lg font-semibold mb-4">Profile Settings</h2>
+                                    <form asp-action="SaveProfile" method="POST" class="space-y-4">
+                                        <div>
+                                            <label for="name"
+                                                class="block text-sm font-medium text-gray-700">Name</label>
+                                            <input type="text" id="name" name="name" value="Anwar Basahi"
+                                                class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200">
+                                        </div>
+
+                                        <div>
+                                            <label for="email"
+                                                class="block text-sm font-medium text-gray-700">Email</label>
+                                            <input type="email" id="email" name="email" value="anwar@domain.com"
+                                                class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200">
+                                        </div>
+
+                                        <div>
+                                            <label for="password"
+                                                class="block text-sm font-medium text-gray-700">Password</label>
+                                            <input type="password" id="password" name="password" placeholder="********"
+                                                class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200">
+                                        </div>
+
+                                        <button type="submit"
+                                            class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">
+                                            Save Profile
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <!-- Location Tab -->
+                                <div x-show="tab === 'location'">
+                                    <h2 class="text-lg font-semibold mb-4">Location Settings</h2>
+                                    <form asp-action="SaveLocation" method="POST" class="space-y-4">
+                                        <div>
+                                            <label for="address"
+                                                class="block text-sm font-medium text-gray-700">Address</label>
+                                            <input type="text" id="address" name="address" value="123 Main St, City"
+                                                class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200">
+                                        </div>
+
+                                        <div>
+                                            <label for="city"
+                                                class="block text-sm font-medium text-gray-700">City</label>
+                                            <input type="text" id="city" name="city" value="New York"
+                                                class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200">
+                                        </div>
+
+                                        <div>
+                                            <label for="zip_code" class="block text-sm font-medium text-gray-700">Zip
+                                                Code</label>
+                                            <input type="text" id="zip_code" name="zip_code" value="10001"
+                                                class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200">
+                                        </div>
+
+                                        <button type="submit"
+                                            class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">
+                                            Save Location
+                                        </button>
+                                    </form>
+                                </div>
+                            </div> <!-- End Tabs Content -->
+                        </div>
+                    </div>
+                </div> <!-- End Main Content -->
             </div>
         </div>
     </div>
 </div>
-
-@section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-}

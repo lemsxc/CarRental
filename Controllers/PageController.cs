@@ -65,5 +65,43 @@ namespace CarRental.Controllers
         {
             return View();
         }
+
+        [Authorize(Policy = "Admin")]
+        public IActionResult Dashboard()
+        {
+            return View("~/Views/Admin/Dashboard.cshtml");
+        }
+
+        [Authorize(Policy = "Admin")]
+        public IActionResult Vehicles()
+        {
+            var cars = _context.Cars.ToList();
+            return View("~/Views/Admin/CarList.cshtml", cars);
+        }
+
+        [Authorize(Policy = "Admin")]
+        public IActionResult Rentals()
+        {
+            var reservations = _context.Reservations.ToList();
+            return View("~/Views/Admin/Rentals.cshtml", reservations);
+        }
+
+        [Authorize(Policy = "Admin")]
+        public IActionResult Driver()
+        {
+            return View("~/Views/Admin/Driverlist.cshtml");
+        }
+
+        [Authorize(Policy = "Admin")]
+        public IActionResult AddCar()
+        {
+            return View("~/Views/Admin/AddCars.cshtml");
+        }
+
+        [Authorize]
+        public IActionResult Settings()
+        {
+            return View("~/Views/Admin/Settings.cshtml");
+        }
     }
 }

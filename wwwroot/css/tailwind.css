@@ -8,3 +8,7 @@
 
 /* Import Tailwind's utility classes */
 @tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}

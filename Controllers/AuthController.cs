@@ -62,14 +62,7 @@ namespace CarRental.Controllers
             // ✅ Sign in the user
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
-            if (user.Role == "Admin")
-            {
-                return RedirectToAction("Dashboard", "Admin");
-            }
-            else 
-            {
-                return RedirectToAction("Home", "Page");
-            }
+            return RedirectToAction(user.Role == "Admin" ? "Dashboard" : "Home", "Page");
         }
 
         // GET: Register Page
