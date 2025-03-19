@@ -1,7 +1,11 @@
 using CarRental.Services;
-using CarRental.Models;  // Add this for the StripeSettings model
+using CarRental.Middleware;
+using CarRental.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;  // Add this for IOptions
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,16 +15,29 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
     options.UseSqlServer(connectionString);
+});
+
+// ✅ Add Authentication with Cookies
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+    });
+
+// ✅ Add Authorization Policy for Admin Role
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
 });
 
 // Add session services
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Set timeout
-    options.Cookie.HttpOnly = true; // Secure session
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
 
@@ -36,19 +53,21 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 
-app.UseSession();
-app.UseAuthentication();
-app.UseAuthorization();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseRouting();
 
+app.UseRouting(); // ✅ Must come before Authentication & Authorization
+
+app.UseSession();
+app.UseAuthentication();
+app.UseAuthorization(); // ✅ Ensure this comes after Authentication
+
+app.UseMiddleware<Roles>(); // ✅ Ensure middleware runs after authentication
 
 app.MapRazorPages();
 

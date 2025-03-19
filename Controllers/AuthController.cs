@@ -2,9 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CarRental.Models;
 using CarRental.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace CarRental.Controllers
 {
@@ -39,10 +43,22 @@ namespace CarRental.Controllers
                 return View();
             }
 
-            // Store user session details
-            HttpContext.Session.SetInt32("UserId", user.UsersId);
-            HttpContext.Session.SetString("Email", user.Email);
-            HttpContext.Session.SetString("Role", user.Role);
+            // ✅ Create User Claims
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.UsersId.ToString()),
+                new Claim(ClaimTypes.Name, user.Email),
+                new Claim(ClaimTypes.Role, user.Role) // ✅ Assign role for authorization
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = true
+            };
+
+            // ✅ Sign in the user
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
             return RedirectToAction(user.Role == "Admin" ? "Dashboard" : "Home", "Page");
         }
@@ -68,7 +84,7 @@ namespace CarRental.Controllers
                 LastName = lastName,
                 Email = email,
                 Password = HashPassword(password),
-                Role = "User"
+                Role = "User" // ✅ Default role for new users
             };
 
             _context.Users.Add(user);
@@ -77,14 +93,14 @@ namespace CarRental.Controllers
             return RedirectToAction("Login");
         }
 
-        // Logout User
-        public IActionResult Logout()
+        // ✅ Logout User (Clear Auth Cookie)
+        public async Task<IActionResult> Logout()
         {
-            HttpContext.Session.Clear();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login");
         }
 
-        // Hash Password using SHA-256
+        // ✅ Hash Password using SHA-256
         private string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -94,7 +110,7 @@ namespace CarRental.Controllers
             }
         }
 
-        // Verify Password
+        // ✅ Verify Password
         private bool VerifyPassword(string enteredPassword, string storedHash)
         {
             return HashPassword(enteredPassword) == storedHash;

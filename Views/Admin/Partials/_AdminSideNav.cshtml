@@ -4,7 +4,7 @@
     <div class="flex flex-col w-full space-y-2 whitespace-nowrap max-w-[210px]">
         <div class="text-xs font-medium text-black uppercase">Management</div>
 
-        <a href="{{ route('dashboard') }}" id="dashboardLinks"
+        <a href="@Url.Action("Dashboard", "Page")" id="dashboardLinks"
             class="nav-link flex gap-2.5 items-center px-5 mt-2.5 w-full rounded-lg min-h-[40px]">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256">
                 <path
@@ -14,7 +14,7 @@
             <span class="self-stretch my-auto">Dashboard</span>
         </a>
 
-        <a href="{{ route('rentals') }}" id="rentalLinks"
+        <a href="@Url.Action("Rentals", "Page")" id="rentalLinks"
             class="nav-link flex gap-2.5 items-center px-5 w-full rounded-lg min-h-[40px]">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256">
                 <path
