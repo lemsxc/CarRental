@@ -65,29 +65,5 @@ namespace CarRental.Controllers
         {
             return View();
         }
-
-        [Authorize(Policy = "Admin")] // Restrict only for Admins
-        public IActionResult Dashboard()
-        {
-            return View();
-        }
-
-        [Authorize(Policy = "Admin")] // Only Admins can manage car rentals
-        public IActionResult CarRental()
-        {
-            return View();
-        }
-
-        [Authorize(Policy = "Admin")] // Only Admins can manage drivers
-        public IActionResult Driver()
-        {
-            return View();
-        }
-
-        [Authorize] // All authenticated users can access settings
-        public IActionResult Settings()
-        {
-            return View();
-        }
     }
 }

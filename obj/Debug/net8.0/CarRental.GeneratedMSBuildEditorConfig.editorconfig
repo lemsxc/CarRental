@@ -32,20 +32,20 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkQ2Fycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lemma/source/repos/CarRental/Views/Admin/CarRental.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2FyUmVudGFsLmNzaHRtbA==
+[C:/Users/lemma/source/repos/CarRental/Views/Admin/CarList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2FyTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lemma/source/repos/CarRental/Views/Admin/Cars.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2Fycy5jc2h0bWw=
+[C:/Users/lemma/source/repos/CarRental/Views/Admin/CarRental.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2FyUmVudGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lemma/source/repos/CarRental/Views/Admin/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lemma/source/repos/CarRental/Views/Admin/Driver.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRHJpdmVyLmNzaHRtbA==
+[C:/Users/lemma/source/repos/CarRental/Views/Admin/Driverlist.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRHJpdmVybGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lemma/source/repos/CarRental/Views/Admin/Partials/_AdminSideNav.cshtml]

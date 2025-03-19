@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -22,6 +23,7 @@ namespace UrbanDrive.Controllers
             _context = context;
             _logger = logger;
         }
+
 
         // Login Page
         [HttpGet]

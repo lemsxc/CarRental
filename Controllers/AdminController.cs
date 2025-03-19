@@ -1,4 +1,5 @@
-﻿using CarRental.Models;
+﻿using Microsoft.AspNetCore.Authorization;
+using CarRental.Models;
 using CarRental.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,24 +16,30 @@ namespace CarRental.Controllers
         {
             _context = context;
         }
-        public IActionResult Cars()
-        {
-            return View();
-        }
-
+        [Authorize(Policy = "Admin")]
         public IActionResult Dashboard()
         {
-            return View();
+            return View("~/Views/Admin/Dashboard.cshtml");
         }
 
-        public IActionResult CarRental()
+        [Authorize(Policy = "Admin")]
+        public IActionResult Vehicles()
         {
-            return View();
+            var cars = _context.Cars.ToList();
+            return View("~/Views/Admin/CarList.cshtml", cars);
         }
 
+        [Authorize(Policy = "Admin")]
+        public IActionResult Rentals()
+        {
+            var reservations = _context.Reservations.ToList();
+            return View("~/Views/Admin/Rentals.cshtml", reservations);
+        }
+
+        [Authorize(Policy = "Admin")]
         public IActionResult Driver()
         {
-            return View();
+            return View("~/Views/Admin/Driverlist.cshtml");
         }
 
         public IActionResult Settings()

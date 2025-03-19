@@ -47,7 +47,9 @@ namespace CarRental.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.UsersId.ToString()),
-                new Claim(ClaimTypes.Name, user.Email),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.GivenName, user.FirstName),
+                new Claim(ClaimTypes.Surname, user.LastName),
                 new Claim(ClaimTypes.Role, user.Role) // ✅ Assign role for authorization
             };
 
@@ -60,7 +62,14 @@ namespace CarRental.Controllers
             // ✅ Sign in the user
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
-            return RedirectToAction(user.Role == "Admin" ? "Dashboard" : "Home", "Page");
+            if (user.Role == "Admin")
+            {
+                return RedirectToAction("Dashboard", "Admin");
+            }
+            else 
+            {
+                return RedirectToAction("Home", "Page");
+            }
         }
 
         // GET: Register Page
