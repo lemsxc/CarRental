@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using CarRental.Services;
 using CarRental.Models;
 
@@ -16,16 +17,17 @@ namespace CarRental.Controllers
         }
         public IActionResult Home()
         {
-            // ✅ Check if user is logged in
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null)
+            // ✅ Check if user is logged in using cookie authentication
+            if (!User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "Auth");
             }
 
-            // Retrieve the user's role from the database (assuming you have a User table with a Role field)
-            var user = _context.Users.FirstOrDefault(u => u.UsersId == userId);
-            if (user == null || user.Role != "User")
+            // Retrieve the user's role and ID from the claims (using cookie authentication)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // User ID
+            var role = User.FindFirstValue(ClaimTypes.Role); // User Role
+
+            if (userId == null || role != "User")
             {
                 // If the user doesn't exist or doesn't have the "User" role, redirect or show an error page
                 return RedirectToAction("AccessDenied", "Account");
@@ -40,16 +42,17 @@ namespace CarRental.Controllers
 
         public IActionResult Cars()
         {
-            // ✅ Check if user is logged in
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null)
+            // ✅ Check if user is logged in using cookie authentication
+            if (!User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "Auth");
             }
 
-            // Retrieve the user's role from the database (assuming you have a User table with a Role field)
-            var user = _context.Users.FirstOrDefault(u => u.UsersId == userId);
-            if (user == null || user.Role != "User")
+            // Retrieve the user's role and ID from the claims (using cookie authentication)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // User ID
+            var role = User.FindFirstValue(ClaimTypes.Role); // User Role
+
+            if (userId == null || role != "User")
             {
                 // If the user doesn't exist or doesn't have the "User" role, redirect or show an error page
                 return RedirectToAction("AccessDenied", "Account");
@@ -61,6 +64,7 @@ namespace CarRental.Controllers
             // Pass the cars to the view
             return View("~/Views/Home/Cars.cshtml", cars);
         }
+
         public IActionResult Index()
         {
             return View();

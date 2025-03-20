@@ -20,56 +20,64 @@ namespace CarRental.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public async Task<IActionResult> Index()
-        {
-            var cars = await _carService.GetAllCarsAsync();
-            return View(cars);
-        }
-
-        public IActionResult Create()
-        {
-            return View();
-        }
-
+        // POST: Add Car
         [HttpPost]
-        public async Task<IActionResult> Create(Car car, IFormFile ImageFile)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add(
+            string Brand, string Model, string Category, string Transmission, string FuelType,
+            string PlateNumber, int Mileage, float RentPrice, int FuelLevel,
+            string Condition, string Status, IFormFile Image)
         {
-            if (!ModelState.IsValid)
+            // ✅ Validate Required Fields
+            if (string.IsNullOrWhiteSpace(Brand) || string.IsNullOrWhiteSpace(Model) || string.IsNullOrWhiteSpace(PlateNumber))
             {
-                return View(car);
+                ViewBag.Error = "Brand, Model, and Plate Number are required.";
+                return View("~/Views/Admin/AddCar.cshtml");
             }
 
-            try
+            string imagePath = null;
+
+            // ✅ Handle Image Upload
+            if (Image != null && Image.Length > 0)
             {
-                if (ImageFile != null && ImageFile.Length > 0)
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
+                string uniqueFileName = $"{Guid.NewGuid()}{Path.GetExtension(Image.FileName)}";
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                Directory.CreateDirectory(uploadsFolder); // Ensure folder exists
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
-                    string uniqueFileName = $"{Guid.NewGuid()}{Path.GetExtension(ImageFile.FileName)}";
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    Directory.CreateDirectory(uploadsFolder); // Ensure folder exists
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await ImageFile.CopyToAsync(fileStream);
-                    }
-
-                    car.Image = $"Images/{uniqueFileName}";
+                    await Image.CopyToAsync(fileStream);
                 }
 
-                car.Status = "Available";
-                await _carService.AddCarAsync(car);
+                imagePath = $"Images/{uniqueFileName}";
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
+            // ✅ Create New Car Object
+            var car = new Car
             {
-                ModelState.AddModelError("", $"Error: {ex.Message}");
-                return View(car);
-            }
+                Brand = Brand,
+                Model = Model,
+                Category = Category,
+                Transmission = Transmission,
+                PlateNumber = PlateNumber,
+                Mileage = Mileage,
+                RentPrice = RentPrice,
+                FuelType = FuelType,
+                FuelLevel = FuelLevel,
+                Condition = Condition,
+                Status = Status,
+                Image = imagePath
+            };
+
+            // ✅ Insert into Database
+            await _carService.AddCarAsync(car);
+
+            // ✅ Redirect to Car List after successful insertion
+            return RedirectToAction("Vehicles", "Page");
         }
 
-        // GET: Car/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
             var car = await _carService.GetCarByIdAsync(id);
@@ -77,10 +85,9 @@ namespace CarRental.Controllers
             {
                 return NotFound();
             }
-            return View(car);
+            return View("EditCar", car);
         }
 
-        // POST: Car/Edit/5
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Car updatedCar, IFormFile ImageFile)
         {
@@ -91,7 +98,7 @@ namespace CarRental.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View(updatedCar);
+                return View("EditCar", updatedCar);
             }
 
             try
@@ -102,8 +109,7 @@ namespace CarRental.Controllers
                     return NotFound();
                 }
 
-                // If a new image is uploaded, save it
-                if (ImageFile != null && ImageFile.Length > 0)
+                if (ImageFile != null && ImageFile.Length > 0 && ImageFile.ContentType.Contains("image"))
                 {
                     string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
                     string uniqueFileName = $"{Guid.NewGuid()}{Path.GetExtension(ImageFile.FileName)}";
@@ -116,7 +122,6 @@ namespace CarRental.Controllers
                         await ImageFile.CopyToAsync(fileStream);
                     }
 
-                    // Delete old image file if exists
                     if (!string.IsNullOrEmpty(existingCar.Image))
                     {
                         string oldFilePath = Path.Combine(_webHostEnvironment.WebRootPath, existingCar.Image);
@@ -130,7 +135,7 @@ namespace CarRental.Controllers
                 }
                 else
                 {
-                    updatedCar.Image = existingCar.Image; // Retain existing image if no new file is uploaded
+                    updatedCar.Image = existingCar.Image;
                 }
 
                 await _carService.UpdateCarAsync(updatedCar);
@@ -140,7 +145,7 @@ namespace CarRental.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError("", $"Error: {ex.Message}");
-                return View(updatedCar);
+                return View("EditCar", updatedCar);
             }
         }
     }

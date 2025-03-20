@@ -1,0 +1,87 @@
+<div x-show="addCarModal" x-cloak class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full relative z-50" x-on:click.away="addCarModal = false">
+        <button x-on:click="addCarModal = false" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+            &times;
+        </button>
+        <h1 class="text-2xl font-semibold text-teal-950 mb-4">Add Car</h1>
+        <form method="post" asp-action="Add" asp-controller="Car" enctype="multipart/form-data" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="text-sm font-semibold">Brand</label>
+                    <input type="text" name="Brand" class="w-full p-2 border rounded-lg" required>
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">Model</label>
+                    <input type="text" name="Model" class="w-full p-2 border rounded-lg" required>
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">Category</label>
+                    <select name="Category" class="w-full p-2 border rounded-lg" required>
+                        <option>SUV</option>
+                        <option>Sedan</option>
+                        <option>Sport</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">Transmission</label>
+                    <select name="Transmission" class="w-full p-2 border rounded-lg" required>
+                        <option>Manual</option>
+                        <option>Automatic</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">Fuel Type</label>
+                    <select name="FuelType" class="w-full p-2 border rounded-lg" required>
+                        <option>Gasoline</option>
+                        <option>Diesel</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">Plate Number</label>
+                    <input type="text" name="PlateNumber" class="w-full p-2 border rounded-lg" required>
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">Mileage</label>
+                    <input type="number" name="Mileage" class="w-full p-2 border rounded-lg" required>
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">Rent Price</label>
+                    <input type="number" step="0.01" name="RentPrice" class="w-full p-2 border rounded-lg" required>
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">Fuel Level</label>
+                    <input type="number" name="FuelLevel" class="w-full p-2 border rounded-lg" required>
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">Condition</label>
+                    <select name="Condition" class="w-full p-2 border rounded-lg">
+                        <option>New</option>
+                        <option>Used</option>
+                        <option>Refurbished</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">Status</label>
+                    <select name="Status" class="w-full p-2 border rounded-lg">
+                        <option>Available</option>
+                        <option>Unavailable</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex flex-col mt-4">
+                <label class="text-sm font-semibold">Vehicle Image</label>
+                <input type="file" name="Image" class="w-full p-2 border rounded-lg" accept="image/*"
+                    x-on:change="let file = $event.target.files[0]; if (file) { let reader = new FileReader(); reader.onload = (e) => imagePreview = e.target.result; reader.readAsDataURL(file); }">
+            </div>
+            <template x-if="imagePreview">
+                <div class="mt-4 flex justify-center">
+                    <img :src="imagePreview" class="w-40 h-40 object-cover border rounded-lg">
+                </div>
+            </template>
+            <div class="flex justify-end mt-4">
+                <button type="submit" class="px-6 py-2 bg-teal-700 text-white rounded-lg hover:bg-teal-600">Save
+                    Vehicle</button>
+            </div>
+        </form>
+    </div>
+</div>

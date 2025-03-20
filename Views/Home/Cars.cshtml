@@ -45,7 +45,7 @@
 
                             <!-- Car Image -->
                             <div class="bg-gray-200 rounded-lg flex justify-center items-center">
-                                <img src="@Url.Content(cars.Image)" class="rounded-lg object-contain" alt="Car Image">
+                                <img src="@Url.Content("~/" + cars.Image)" class="rounded-lg object-contain" alt="Car Image">s
                             </div>
 
                             <!-- Title & Price -->
@@ -79,19 +79,19 @@
                                 <!-- View Details Button -->
                                 <button class="mt-4 w-full bg-purple-600 text-white py-2 rounded-lg text-sm font-medium"
                                     x-on:click="carModal = true; selectedCar = {
-                                            image: '@cars.Image',
-                                            brand: '@cars.Brand',
-                                            model: '@cars.Model',
-                                            transmission: '@cars.Transmission',
-                                            fuel_type: '@cars.FuelType',
-                                            fuel_level: '@cars.FuelLevel',
-                                            price: '@cars.RentPrice',
-                                            category: '@cars.Category',
-                                            platenum: '@cars.PlateNumber',
-                                            mileage: '@cars.Mileage',
-                                            condition: '@cars.Condition'
-                                        }">
-                                View Details
+                                        image: '@cars.Image',
+                                        brand: '@cars.Brand',
+                                        model: '@cars.Model',
+                                        transmission: '@cars.Transmission',
+                                        fuel_type: '@cars.FuelType',
+                                        fuel_level: '@cars.FuelLevel',
+                                        price: '@cars.RentPrice',
+                                        category: '@cars.Category',
+                                        platenum: '@cars.PlateNumber',
+                                        mileage: '@cars.Mileage',
+                                        condition: '@cars.Condition'
+                                    }">
+                                    View Details
                                 </button>
 
                                 <!-- Rent Car Button -->
@@ -108,7 +108,7 @@
         </div>
     </div>
 
-    <partial name="~/Views/Modals/carModal.cshtml"></partial>
+    @await Html.PartialAsync("~/Views/Modals/carModal.cshtml")
     <partial name="~/Views/Modals/paymentModal.cshtml"></partial>
 
     <!-- Footer Section -->

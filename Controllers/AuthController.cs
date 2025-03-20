@@ -21,9 +21,9 @@ namespace CarRental.Controllers
             _context = context;
         }
 
-        // GET: Login Page
         [HttpGet]
         public IActionResult Login() => View();
+
 
         // POST: Login User
         [HttpPost]

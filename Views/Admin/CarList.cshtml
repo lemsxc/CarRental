@@ -3,13 +3,14 @@
 
 }
 
-<div class="flex overflow-hidden flex-col bg-[#D0CAEA]">
+<div x-data="{ addCarModal: false, imagePreview: null  }" class="flex overflow-hidden flex-col bg-[#D0CAEA]">
     <partial name="~/Views/Admin/Partials/_AdminTopNav.cshtml"></partial>
     <div class="z-10 -mt-4 w-full max-w-[1400px] max-md:max-w-full">
         <div class="flex gap-5 max-md:flex-col">
             <div class="flex flex-col w-1/5 max-md:ml-0 max-md:w-full">
                 <partial name="~/Views/Admin/Partials/_AdminSideNav.cshtml"></partial>
             </div>
+
             <div class="mt-8 w-full">
                 <div class="flex flex-col ml-5 w-4/5 max-md:ml-0 max-md:w-full">
                     <div class="flex flex-col mt-8 w-full max-md:mt-10 max-md:max-w-full">
@@ -35,7 +36,7 @@
                                         placeholder="Type to search...">
                                 </div>
 
-                                <a href="@Url.Action("AddCar", "Page")"
+                                <button x-on:click="addCarModal = true"
                                     class="flex gap-2 justify-center items-center py-2.5 pr-6 pl-5 text-white bg-indigo-600 rounded-lg min-h-10 max-md:pr-5">
                                     <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -44,7 +45,7 @@
                                         <line x1="5" y1="12" x2="19" y2="12"></line>
                                     </svg>
                                     <span>Add Car</span>
-                                </a>
+                                </button>
                             </div>
                         </header>
                     </div>
@@ -93,9 +94,11 @@
                         </table>
                     </div>
                 </section>
+
             </div>
         </div>
     </div>
+    @await Html.PartialAsync("~/Views/Modals/addCarModal.cshtml")
 </div>
 
 <script>
