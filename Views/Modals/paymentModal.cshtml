@@ -1,10 +1,10 @@
 <div x-cloak x-show="paymentModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-    on:keydown.escape.window="paymentModal = false">
+    x-on:keydown.escape.window="paymentModal = false">
     <div class="bg-white p-6 rounded-lg w-96">
         <h2 class="text-xl font-bold mb-2">Car Details</h2>
 
         <!-- Car Image -->
-        <img id="car_image" :src="carDetails . image" alt="Car Image" class="w-full h-40 object-cover rounded-md mb-3">
+        <img id="car_image" x-bind:src="carDetails.image" alt="Car Image" class="w-full h-40 object-cover rounded-md mb-3">
 
         <!-- Car Details -->
         <p class="font-semibold hidden">Id <span id="car_id" x-text="carDetails.id"></span></p>
@@ -33,58 +33,38 @@
         </button>
 
         <!-- Cancel Button -->
-        <button on:click="paymentModal = false" class="bg-gray-400 text-white px-4 py-2 rounded-lg mt-3 w-full">
+        <button x-on:click="paymentModal = false" class="bg-gray-400 text-white px-4 py-2 rounded-lg mt-3 w-full">
             Cancel
         </button>
     </div>
 </div>
 
+
 <script>
-    const stripe = Stripe("{{ env('STRIPE_KEY') }}");
-    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    async function checkout() {
+        const carId = document.getElementById("carId").textContent;
+        const carName = document.getElementById("carName").textContent;
+        const carPrice = document.getElementById("carPrice").textContent;
+        const carImage = document.getElementById("carImage").src;
+        const startDate = document.getElementById("startDate").value;
+        const endDate = document.getElementById("endDate").value;
 
-    document.getElementById("checkout-button").addEventListener("click", async () => {
-        const carId = document.getElementById("car_id").textContent; // Assuming `id` is stored as a dataset
-        const carName = document.getElementById("car_name").textContent;
-        const carPrice = document.getElementById("car_price").textContent;
-        const carImage = document.getElementById("car_image").src;
-
-        // Get selected reservation details
-        const startDate = document.getElementById("start_date").value;
-        const endDate = document.getElementById("end_date").value;
-
-        // Validate inputs
         if (!startDate || !endDate) {
             alert("Please select both start and end dates.");
             return;
         }
 
-        // Store reservation details in localStorage
-        localStorage.setItem("reservation_data", JSON.stringify({
-            car_id: carId,
-            start_date: startDate,
-            end_date: endDate,
-            amount: carPrice
-        }));
-
-        // Send request to create checkout session
-        const response = await fetch("{{ route('stripe.checkout') }}", {
+        const response = await fetch("/Payment/CreateCheckoutSession", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": token
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                car_id: carId,
-                car_name: carName,
-                car_image: carImage,
-                amount: carPrice,
-                start_date: startDate,
-                end_date: endDate
-            }),
+                carId, carName, carImage, carPrice, startDate, endDate
+            })
         });
-
         const session = await response.json();
-        stripe.redirectToCheckout({ sessionId: session.id });
-    });
+        window.location.href = session.url;
+    }
+
+    document.getElementById("checkoutButton").addEventListener("click", checkout);
+    function closeModal() { document.getElementById("paymentModal").classList.add("hidden"); }
 </script>

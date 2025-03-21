@@ -331,6 +331,88 @@
       ]
     },
     {
+      "Route": "Images/b4186292-7203-400a-beaa-c1278ea5ccdd.jpg",
+      "AssetFile": "Images/b4186292-7203-400a-beaa-c1278ea5ccdd.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "430405"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pQ5mWmUQJfiAmqaTIO1OPck1LgClQdhnEVkgT0MoYBs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 21 Mar 2025 05:38:39 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pQ5mWmUQJfiAmqaTIO1OPck1LgClQdhnEVkgT0MoYBs="
+        }
+      ]
+    },
+    {
+      "Route": "Images/b4186292-7203-400a-beaa-c1278ea5ccdd.r4r0wa2zya.jpg",
+      "AssetFile": "Images/b4186292-7203-400a-beaa-c1278ea5ccdd.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "430405"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pQ5mWmUQJfiAmqaTIO1OPck1LgClQdhnEVkgT0MoYBs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 21 Mar 2025 05:38:39 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "r4r0wa2zya"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-pQ5mWmUQJfiAmqaTIO1OPck1LgClQdhnEVkgT0MoYBs="
+        },
+        {
+          "Name": "label",
+          "Value": "Images/b4186292-7203-400a-beaa-c1278ea5ccdd.jpg"
+        }
+      ]
+    },
+    {
       "Route": "Images/bmw.i4fh95bb88.jpg",
       "AssetFile": "Images/bmw.jpg",
       "Selectors": [],

@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\Images\\UrbanDriveLogo.png"
     },
     {
+      "Id": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\Images\\b4186292-7203-400a-beaa-c1278ea5ccdd.jpg",
+      "PackagePath": "staticwebassets\\Images\\b4186292-7203-400a-beaa-c1278ea5ccdd.jpg"
+    },
+    {
       "Id": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\Images\\bmw.jpg",
       "PackagePath": "staticwebassets\\Images\\bmw.jpg"
     },
