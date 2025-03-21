@@ -1,6 +1,6 @@
 @model List<CarRental.Models.Car>
 @{
-
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div x-data="{ addCarModal: false, imagePreview: null  }" class="flex overflow-hidden flex-col bg-[#D0CAEA]">
@@ -112,5 +112,21 @@
             let text = row.textContent.toLowerCase();
             row.style.display = text.includes(input) ? "" : "none";
         });
+    }
+
+    // Preview image when file is selected
+    function previewImage(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var preview = document.getElementById('imagePreview');
+            preview.src = e.target.result;
+            preview.classList.remove('hidden'); // Show the preview
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
     }
 </script>

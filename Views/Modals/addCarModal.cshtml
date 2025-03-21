@@ -3,9 +3,15 @@
         <button x-on:click="addCarModal = false" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
             &times;
         </button>
-        <h1 class="text-2xl font-semibold text-teal-950 mb-4">Add Car</h1>
         <form method="post" asp-action="Add" asp-controller="Car" enctype="multipart/form-data" class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Header Section -->
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-semibold text-teal-950">Add Car</h1>
+                </div>
+
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                     <label class="text-sm font-semibold">Brand</label>
                     <input type="text" name="Brand" class="w-full p-2 border rounded-lg" required>
@@ -37,6 +43,10 @@
                     </select>
                 </div>
                 <div>
+                    <label class="text-sm font-semibold">Fuel Level</label>
+                    <input type="number" name="FuelLevel" class="w-full p-2 border rounded-lg" required>
+                </div>
+                <div>
                     <label class="text-sm font-semibold">Plate Number</label>
                     <input type="text" name="PlateNumber" class="w-full p-2 border rounded-lg" required>
                 </div>
@@ -47,10 +57,6 @@
                 <div>
                     <label class="text-sm font-semibold">Rent Price</label>
                     <input type="number" step="0.01" name="RentPrice" class="w-full p-2 border rounded-lg" required>
-                </div>
-                <div>
-                    <label class="text-sm font-semibold">Fuel Level</label>
-                    <input type="number" name="FuelLevel" class="w-full p-2 border rounded-lg" required>
                 </div>
                 <div>
                     <label class="text-sm font-semibold">Condition</label>
@@ -68,19 +74,41 @@
                     </select>
                 </div>
             </div>
-            <div class="flex flex-col mt-4">
-                <label class="text-sm font-semibold">Vehicle Image</label>
-                <input type="file" name="Image" class="w-full p-2 border rounded-lg" accept="image/*"
-                    x-on:change="let file = $event.target.files[0]; if (file) { let reader = new FileReader(); reader.onload = (e) => imagePreview = e.target.result; reader.readAsDataURL(file); }">
-            </div>
-            <template x-if="imagePreview">
-                <div class="mt-4 flex justify-center">
-                    <img :src="imagePreview" class="w-40 h-40 object-cover border rounded-lg">
+            <div class="flex flex-col mt-8 max-md:max-w-full">
+                <h2 class="text-2xl font-semibold text-teal-950">Vehicle Image</h2>
+                <div class="flex items-center gap-4 text-xs text-teal-950 mt-5">
+                    <!-- Upload Section -->
+                    <div
+                        class="flex flex-col items-center p-6 bg-white rounded-lg border border-dashed border-slate-300 w-56 h-40">
+                        <input type="file" name="Image" id="Image" class="hidden" accept="image/*" multiple
+                            onchange="previewImage(event)">
+                        <label for="Image" class="items-center cursor-pointer text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="32" height="32"
+                                fill="#000000" viewBox="0 0 256 256">
+                                <path
+                                    d="M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.71,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.66-3.56L100.28,48h55.43l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z">
+                                </path>
+                            </svg>
+                            <div class="flex flex-col items-center mt-4">
+                                <span>Upload Or Paste Image</span>
+                                <span class="mt-1.5 font-semibold">jpg/jpeg/png</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Image Preview -->
+                    <div id="imagePreviewContainer"
+                        class="flex items-center justify-center w-full sm:w-1/3 h-40 border border-dashed rounded-lg overflow-hidden">
+                        <img id="imagePreview" class="w-full h-full object-cover" />
+                    </div>
                 </div>
-            </template>
-            <div class="flex justify-end mt-4">
-                <button type="submit" class="px-6 py-2 bg-teal-700 text-white rounded-lg hover:bg-teal-600">Save
-                    Vehicle</button>
+            </div>
+            <!-- Submit Button -->
+            <div>
+                <button type="submit"
+                    class="px-6 py-3 text-white bg-teal-700 rounded-lg hover:bg-teal-600 transition duration-300">
+                    Save Vehicle
+                </button>
             </div>
         </form>
     </div>
