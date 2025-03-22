@@ -42,12 +42,12 @@
 
 <script>
     async function checkout() {
-        const carId = document.getElementById("carId").textContent;
-        const carName = document.getElementById("carName").textContent;
-        const carPrice = document.getElementById("carPrice").textContent;
-        const carImage = document.getElementById("carImage").src;
-        const startDate = document.getElementById("startDate").value;
-        const endDate = document.getElementById("endDate").value;
+        const carId = document.getElementById("car_id").textContent;
+        const carName = document.getElementById("car_name").textContent;
+        const carPrice = document.getElementById("car_price").textContent;
+        const carImage = document.getElementById("car_image").src;
+        const startDate = document.getElementById("start_date").value;
+        const endDate = document.getElementById("end_date").value;
 
         if (!startDate || !endDate) {
             alert("Please select both start and end dates.");
