@@ -64,7 +64,7 @@ namespace CarRental.Controllers
                     {
                         PriceData = new SessionLineItemPriceDataOptions
                         {
-                            Currency = "usd",
+                            Currency = "php",
                             UnitAmount = (long)(payment.Amount * 100),
                             ProductData = new SessionLineItemPriceDataProductDataOptions
                             {

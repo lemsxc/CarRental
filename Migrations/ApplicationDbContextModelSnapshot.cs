@@ -112,14 +112,11 @@ namespace CarRental.Migrations
                     b.Property<int>("UsersId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsersId1")
-                        .HasColumnType("int");
-
                     b.HasKey("FeedbackId");
 
                     b.HasIndex("CarId");
 
-                    b.HasIndex("UsersId1");
+                    b.HasIndex("UsersId");
 
                     b.ToTable("Feedbacks");
                 });
@@ -187,14 +184,11 @@ namespace CarRental.Migrations
                     b.Property<int>("UsersId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsersId1")
-                        .HasColumnType("int");
-
                     b.HasKey("ReservationId");
 
                     b.HasIndex("CarId");
 
-                    b.HasIndex("UsersId1");
+                    b.HasIndex("UsersId");
 
                     b.ToTable("Reservations");
                 });
@@ -251,7 +245,7 @@ namespace CarRental.Migrations
 
                     b.HasOne("CarRental.Models.User", "User")
                         .WithMany("Feedbacks")
-                        .HasForeignKey("UsersId1")
+                        .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -281,7 +275,7 @@ namespace CarRental.Migrations
 
                     b.HasOne("CarRental.Models.User", "User")
                         .WithMany("Reservations")
-                        .HasForeignKey("UsersId1")
+                        .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

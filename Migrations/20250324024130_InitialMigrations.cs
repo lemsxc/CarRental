@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CarRental.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialMigrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -65,8 +65,7 @@ namespace CarRental.Migrations
                     CarId = table.Column<int>(type: "int", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: false),
                     Review = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateReview = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UsersId1 = table.Column<int>(type: "int", nullable: false)
+                    DateReview = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,8 +77,8 @@ namespace CarRental.Migrations
                         principalColumn: "CarId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Feedbacks_Users_UsersId1",
-                        column: x => x.UsersId1,
+                        name: "FK_Feedbacks_Users_UsersId",
+                        column: x => x.UsersId,
                         principalTable: "Users",
                         principalColumn: "UsersId",
                         onDelete: ReferentialAction.Cascade);
@@ -97,8 +96,7 @@ namespace CarRental.Migrations
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UsersId1 = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -110,8 +108,8 @@ namespace CarRental.Migrations
                         principalColumn: "CarId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Reservations_Users_UsersId1",
-                        column: x => x.UsersId1,
+                        name: "FK_Reservations_Users_UsersId",
+                        column: x => x.UsersId,
                         principalTable: "Users",
                         principalColumn: "UsersId",
                         onDelete: ReferentialAction.Cascade);
@@ -146,9 +144,9 @@ namespace CarRental.Migrations
                 column: "CarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Feedbacks_UsersId1",
+                name: "IX_Feedbacks_UsersId",
                 table: "Feedbacks",
-                column: "UsersId1");
+                column: "UsersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Payments_ReservationId",
@@ -162,9 +160,9 @@ namespace CarRental.Migrations
                 column: "CarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservations_UsersId1",
+                name: "IX_Reservations_UsersId",
                 table: "Reservations",
-                column: "UsersId1");
+                column: "UsersId");
         }
 
         /// <inheritdoc />

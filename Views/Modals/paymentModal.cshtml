@@ -8,13 +8,11 @@
 
         <!-- Car Details -->
         <p class="font-semibold hidden">Id <span id="car_id" x-text="carDetails.id"></span></p>
-        <p class="font-semibold">Car Name: <span id="car_name"
-                x-text="carDetails.brand + ' ' + carDetails.model"></span></p>
+        <p class="font-semibold">Car Name: <span id="car_name" x-text="carDetails.brand + ' ' + carDetails.model"></span></p>
         <p class="text-gray-600">Transmission: <span id="car_transmission" x-text="carDetails.transmission"></span></p>
         <p class="text-gray-600">Fuel Type: <span id="car_fuel" x-text="carDetails.fuel_type"></span></p>
         <p class="text-gray-600">Mileage: <span id="car_mileage" x-text="carDetails.mileage"></span></p>
-        <p class="text-green-600 font-bold">Price: $<span id="car_price" x-text="carDetails.rent_price"></span> / day
-        </p>
+        <p class="text-green-600 font-bold">Price: $<span id="car_price" x-text="carDetails.rent_price"></span> / day </p>
 
         <!-- Reservation Inputs -->
         <div class="mt-4">
@@ -28,7 +26,7 @@
         </div>
 
         <!-- Pay with Stripe Button -->
-        <button id="checkout-button" class="bg-green-500 text-white px-4 py-2 rounded-lg mt-4 w-full">
+        <button id="checkoutButton" class="bg-green-500 text-white px-4 py-2 rounded-lg mt-4 w-full">
             Pay with Stripe
         </button>
 

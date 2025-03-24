@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YC+kwMruU/7jhDSLEOzG5FYMiL+cLaUgM9HluPx4yS4=",
+  "Hash": "duBuO7B79Gtad2ByqrLZiu+Jtgc0VubXEu2f/38795E=",
   "Source": "CarRental",
   "BasePath": "_content/CarRental",
   "Mode": "Default",
@@ -115,8 +115,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "7ewmeeploh",
-      "Integrity": "gRzEtxuZp7HaxqOAFxORBoKszVqmhwhsSIW9mYXezJQ=",
+      "Fingerprint": "ut8puurs0s",
+      "Integrity": "8r73uYPZbWNQMMu5W07gJ3PPwWU/L2deM//M0c92mBo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\tailwind.css"
@@ -1901,51 +1901,6 @@
       ]
     },
     {
-      "Route": "css/tailwind.7ewmeeploh.css",
-      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\tailwind.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "258"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"gRzEtxuZp7HaxqOAFxORBoKszVqmhwhsSIW9mYXezJQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 11:21:04 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "7ewmeeploh"
-        },
-        {
-          "Name": "label",
-          "Value": "css/tailwind.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-gRzEtxuZp7HaxqOAFxORBoKszVqmhwhsSIW9mYXezJQ="
-        }
-      ]
-    },
-    {
       "Route": "css/tailwind.css",
       "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\tailwind.css",
       "Selectors": [],
@@ -1956,7 +1911,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "258"
+          "Value": "100"
         },
         {
           "Name": "Content-Type",
@@ -1964,11 +1919,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"gRzEtxuZp7HaxqOAFxORBoKszVqmhwhsSIW9mYXezJQ=\""
+          "Value": "\"8r73uYPZbWNQMMu5W07gJ3PPwWU/L2deM//M0c92mBo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 11:21:04 GMT"
+          "Value": "Mon, 24 Mar 2025 01:18:06 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1978,7 +1933,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-gRzEtxuZp7HaxqOAFxORBoKszVqmhwhsSIW9mYXezJQ="
+          "Value": "sha256-8r73uYPZbWNQMMu5W07gJ3PPwWU/L2deM//M0c92mBo="
+        }
+      ]
+    },
+    {
+      "Route": "css/tailwind.ut8puurs0s.css",
+      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\tailwind.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "100"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8r73uYPZbWNQMMu5W07gJ3PPwWU/L2deM//M0c92mBo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Mar 2025 01:18:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ut8puurs0s"
+        },
+        {
+          "Name": "label",
+          "Value": "css/tailwind.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-8r73uYPZbWNQMMu5W07gJ3PPwWU/L2deM//M0c92mBo="
         }
       ]
     },

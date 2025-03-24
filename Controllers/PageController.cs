@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Microsoft.EntityFrameworkCore; // Ensure this is included at the top
 using CarRental.Services;
 using CarRental.Models;
 
@@ -86,7 +87,10 @@ namespace CarRental.Controllers
         [Authorize(Policy = "Admin")]
         public IActionResult Rentals()
         {
-            var reservations = _context.Reservations.ToList();
+            var reservations = _context.Reservations
+                .Include(r => r.Car) // Ensure Car data is loaded
+                .ToList();
+
             return View("~/Views/Admin/Rentals.cshtml", reservations);
         }
 
