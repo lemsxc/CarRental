@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using CarRental.Models;
 using CarRental.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -43,7 +45,43 @@ namespace CarRental.Controllers
                     labels = revenueTrends.Select(x => x.Date.ToString("yyyy-MM-dd")).ToArray(),
                     values = revenueTrends.Select(x => x.Total).ToArray()
                 }
-            });
+            }
+            );
+        }
+
+        [Authorize(Policy = "Admin")]
+        public IActionResult Dashboard()
+        {
+            return View("~/Views/Admin/Dashboard.cshtml");
+        }
+
+        [Authorize(Policy = "Admin")]
+        public IActionResult Vehicles()
+        {
+            var cars = _context.Cars.ToList();
+            return View("~/Views/Admin/CarList.cshtml", cars);
+        }
+
+        [Authorize(Policy = "Admin")]
+        public IActionResult Rentals()
+        {
+            var reservations = _context.Reservations
+                .Include(r => r.Car) // Ensure Car data is loaded
+                .ToList();
+
+            return View("~/Views/Admin/Rentals.cshtml", reservations);
+        }
+
+        [Authorize(Policy = "Admin")]
+        public IActionResult Driver()
+        {
+            return View("~/Views/Admin/Driverlist.cshtml");
+        }
+
+        [Authorize(Policy = "Admin")]
+        public IActionResult AddCar()
+        {
+            return View("~/Views/Admin/AddCars.cshtml");
         }
     }
 }

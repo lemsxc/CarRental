@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "duBuO7B79Gtad2ByqrLZiu+Jtgc0VubXEu2f/38795E=",
+  "Hash": "6zwGrFnC7UejIPODAlgTfn+pkMPdOgFVKfoB4YPLEPI=",
   "Source": "CarRental",
   "BasePath": "_content/CarRental",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "lu8r0s3jxc",
-      "Integrity": "jUUq5L44ZxwWOOd2+6a5xyqwVPWROP16aYWSRCHENGg=",
+      "Fingerprint": "6ntiuco7d8",
+      "Integrity": "kjSIuOiQaFN36AI/ZVYUnafzKrCCInleyMZoRZF5W2s=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\output.css"
@@ -162,6 +162,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\39aab52f-3fbe-4901-be6b-ea76e65a598d.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\Images\\57fbc9a3-d8f8-4522-9f15-5d19db18f1a0.jpg",
+      "SourceId": "CarRental",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\",
+      "BasePath": "_content/CarRental",
+      "RelativePath": "Images/57fbc9a3-d8f8-4522-9f15-5d19db18f1a0#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "i4fh95bb88",
+      "Integrity": "LkwtnA73ns+ZuE08NUrITkcrrcCzOCtlfwwoLpdR1To=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\57fbc9a3-d8f8-4522-9f15-5d19db18f1a0.jpg"
     },
     {
       "Identity": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\Images\\b4186292-7203-400a-beaa-c1278ea5ccdd.jpg",
@@ -1737,6 +1758,51 @@
       ]
     },
     {
+      "Route": "css/output.6ntiuco7d8.css",
+      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\output.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "45584"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kjSIuOiQaFN36AI/ZVYUnafzKrCCInleyMZoRZF5W2s=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Mar 2025 07:47:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6ntiuco7d8"
+        },
+        {
+          "Name": "label",
+          "Value": "css/output.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-kjSIuOiQaFN36AI/ZVYUnafzKrCCInleyMZoRZF5W2s="
+        }
+      ]
+    },
+    {
       "Route": "css/output.css",
       "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\output.css",
       "Selectors": [],
@@ -1747,7 +1813,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "44846"
+          "Value": "45584"
         },
         {
           "Name": "Content-Type",
@@ -1755,11 +1821,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"jUUq5L44ZxwWOOd2+6a5xyqwVPWROP16aYWSRCHENGg=\""
+          "Value": "\"kjSIuOiQaFN36AI/ZVYUnafzKrCCInleyMZoRZF5W2s=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 21 Mar 2025 04:40:05 GMT"
+          "Value": "Mon, 24 Mar 2025 07:47:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1769,52 +1835,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-jUUq5L44ZxwWOOd2+6a5xyqwVPWROP16aYWSRCHENGg="
-        }
-      ]
-    },
-    {
-      "Route": "css/output.lu8r0s3jxc.css",
-      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\output.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "44846"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"jUUq5L44ZxwWOOd2+6a5xyqwVPWROP16aYWSRCHENGg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 21 Mar 2025 04:40:05 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "lu8r0s3jxc"
-        },
-        {
-          "Name": "label",
-          "Value": "css/output.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-jUUq5L44ZxwWOOd2+6a5xyqwVPWROP16aYWSRCHENGg="
+          "Value": "sha256-kjSIuOiQaFN36AI/ZVYUnafzKrCCInleyMZoRZF5W2s="
         }
       ]
     },
@@ -2133,6 +2154,88 @@
         {
           "Name": "Last-Modified",
           "Value": "Thu, 20 Mar 2025 07:01:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LkwtnA73ns+ZuE08NUrITkcrrcCzOCtlfwwoLpdR1To="
+        }
+      ]
+    },
+    {
+      "Route": "Images/57fbc9a3-d8f8-4522-9f15-5d19db18f1a0.i4fh95bb88.jpg",
+      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\Images\\57fbc9a3-d8f8-4522-9f15-5d19db18f1a0.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "136823"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LkwtnA73ns+ZuE08NUrITkcrrcCzOCtlfwwoLpdR1To=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Mar 2025 02:50:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "i4fh95bb88"
+        },
+        {
+          "Name": "label",
+          "Value": "Images/57fbc9a3-d8f8-4522-9f15-5d19db18f1a0.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LkwtnA73ns+ZuE08NUrITkcrrcCzOCtlfwwoLpdR1To="
+        }
+      ]
+    },
+    {
+      "Route": "Images/57fbc9a3-d8f8-4522-9f15-5d19db18f1a0.jpg",
+      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\Images\\57fbc9a3-d8f8-4522-9f15-5d19db18f1a0.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "136823"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LkwtnA73ns+ZuE08NUrITkcrrcCzOCtlfwwoLpdR1To=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Mar 2025 02:50:19 GMT"
         },
         {
           "Name": "Cache-Control",

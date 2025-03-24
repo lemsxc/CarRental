@@ -32,14 +32,16 @@ namespace CarRental.Controllers
         {
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
-                ViewBag.Error = "Email and password are required.";
+                TempData["ToastMessage"] = "Invalid email or password.";
+                TempData["ToastType"] = "error";
                 return View();
             }
 
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (user == null || !VerifyPassword(password, user.Password))
             {
-                ViewBag.Error = "Invalid email or password.";
+                TempData["ToastMessage"] = "Invalid email or password.";
+                TempData["ToastType"] = "error";
                 return View();
             }
 
@@ -62,7 +64,18 @@ namespace CarRental.Controllers
             // ✅ Sign in the user
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
-            return RedirectToAction(user.Role == "Admin" ? "Dashboard" : "Home", "Page");
+            // ✅ Success Toast Message
+            TempData["ToastMessage"] = "Login successful! Welcome back.";
+            TempData["ToastType"] = "success";
+            
+            if (user.Role == "Admin")
+            {
+                return RedirectToAction("Dashboard", "Admin");
+            }
+            else
+            {
+                return RedirectToAction("Home", "Home");
+            }
         }
 
         // GET: Register Page

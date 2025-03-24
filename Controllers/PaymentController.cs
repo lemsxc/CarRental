@@ -75,8 +75,8 @@ namespace CarRental.Controllers
                     }
                 },
                 Mode = "payment",
-                SuccessUrl = $"http://localhost:5000/Payment/Success?reservationId={reservation.ReservationId}",
-                CancelUrl = "http://localhost:5000/Reservation/List"
+                SuccessUrl = $"http://localhost:5124/Payment/Success?reservationId={reservation.ReservationId}",
+                CancelUrl = "http://localhost:5124/Reservation/List"
             };
 
             var service = new SessionService();
@@ -98,7 +98,7 @@ namespace CarRental.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("UserReservations", "Reservation");
+            return View(reservation);
         }
     }
 }

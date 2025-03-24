@@ -1,0 +1,29 @@
+@model CarRental.Models.Reservation
+
+@{
+    ViewData["Title"] = "Payment Success";
+}
+
+<div class="flex flex-col items-center justify-center min-h-screen bg-green-100">
+    <div class="bg-white shadow-lg rounded-lg p-8 text-center">
+        <svg class="w-16 h-16 text-green-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <h1 class="text-2xl font-bold text-green-600 mt-4">Payment Successful!</h1>
+        <p class="text-gray-700 mt-2">Your reservation (ID: <strong>@Model.ReservationId</strong>) has been confirmed.
+        </p>
+        <p class="text-gray-700">Payment Status: <strong class="text-green-500">@Model.Payment.Status</strong></p>
+        <p class="text-gray-700">Car: <strong>@Model.Car.Brand @Model.Car.Model</strong></p>
+        <p class="text-gray-700">Start Date: <strong>@Model.StartDate.ToString("dd-MM-yyyy")</strong></p>
+        <p class="text-gray-700">End Date: <strong>@Model.EndDate.ToString("dd-MM-yyyy")</strong></p>
+
+        <a href="/Reservation/UserReservations"
+            class="mt-4 inline-block px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
+            View My Reservations
+        </a>
+        <a href="/Home/Index" class="mt-2 inline-block px-6 py-2 text-gray-600 bg-gray-200 rounded hover:bg-gray-300">
+            Return to Home
+        </a>
+    </div>
+</div>

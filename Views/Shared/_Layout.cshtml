@@ -17,6 +17,17 @@
 </head>
 
 <body class="">
+    <!-- Toast Notification -->
+    <div x-data="{ show: false, message: '', type: 'success' }" x-show="show" x-transition x-cloak
+        class="fixed top-5 right-5 px-4 py-3 rounded-lg shadow-lg text-white text-sm" :class="{
+             'bg-green-500': type === 'success',
+             'bg-red-500': type === 'error',
+             'bg-yellow-500': type === 'warning',
+             'bg-blue-500': type === 'info'
+         }">
+        <span x-text="message"></span>
+    </div>
+
     <div class="min-h-screen bg-white">
         <header>
 
@@ -34,6 +45,25 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/phosphor-icons@1.4.2/src/index.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Toast Script -->
+    <script>
+        function showToast(message, type = 'success', duration = 3000) {
+            let toast = document.querySelector('[x-data]');
+            toast.__x.$data.message = message;
+            toast.__x.$data.type = type;
+            toast.__x.$data.show = true;
+            setTimeout(() => toast.__x.$data.show = false, duration);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            @if (TempData["ToastMessage"] != null)
+                {
+                    <text> showToast("@TempData["ToastMessage"]", "@TempData["ToastType"]"); </text>
+            }
+        });
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 
