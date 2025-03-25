@@ -1,6 +1,6 @@
 @model List<CarRental.Models.Reservation>
 @{
-    ViewData["Title"] = "My Reservations";
+    ViewData["Title"] = "Reservations";
 }
 <div x-data="{ reservationModal: false, selectedReservation: {} }" class="flex flex-col items-center bg-white">
     <div class="flex overflow-hidden flex-col w-full bg-white max-w-[1440px] max-md:p-5">
@@ -21,13 +21,17 @@
                     @foreach (var reservation in Model)
                     {
                         <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-200">
+                            <!-- Car Image -->
+                            <div class="bg-gray-200 rounded-lg flex justify-center items-center">
+                                <img src="@Url.Content("~/" + reservation.Car.Image)" class="rounded-lg object-contain" alt="Car Image">
+                            </div>
                             <div class="flex justify-between items-center">
-                                <h2 class="text-lg font-bold text-gray-900">@reservation.Car.Brand</h2>
+                                <h2 class="text-lg font-bold text-gray-900">@reservation.Car.Brand @reservation.Car.Model</h2>
                                 <p class="text-purple-600 font-bold text-lg">
                                     $@reservation.TotalAmount
                                 </p>
                             </div>
-                            <p class="text-gray-500 text-sm">@reservation.Car.Model</p>
+                            <p class="text-gray-500 text-sm">@reservation.Car.Brand @reservation.Car.Model</p>
                             <p class="text-gray-500 text-sm">Pickup: @reservation.StartDate.ToShortDateString()</p>
                             <p class="text-gray-500 text-sm">Return: @reservation.EndDate.ToShortDateString()</p>
                             <p class="text-gray-500 text-sm">Status: <span class="font-bold">@reservation.Status</span></p>
@@ -48,4 +52,3 @@
         </div>
     </div>
 </div>
-

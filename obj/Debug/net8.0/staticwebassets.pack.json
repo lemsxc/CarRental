@@ -45,6 +45,10 @@
       "PackagePath": "staticwebassets\\Images\\default-suv-car.png"
     },
     {
+      "Id": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\Images\\eb532107-f526-41c5-a20c-cba2e5e53d8f.jpg",
+      "PackagePath": "staticwebassets\\Images\\eb532107-f526-41c5-a20c-cba2e5e53d8f.jpg"
+    },
+    {
       "Id": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\Images\\gallardo.jpg",
       "PackagePath": "staticwebassets\\Images\\gallardo.jpg"
     },

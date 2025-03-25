@@ -156,6 +156,18 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"sy5snlxiu1"},{"Name":"integrity","Value":"sha256-zHe7dFE09y70VileoX1TB7rVyu/2T3fbidEEjmn7LWE="},{"Name":"label","Value":"_content/CarRental/Images/default-suv-car.png"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"50224"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022zHe7dFE09y70VileoX1TB7rVyu/2T3fbidEEjmn7LWE=\u0022"},{"Name":"Last-Modified","Value":"Mon, 10 Mar 2025 00:20:19 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/CarRental/Images/eb532107-f526-41c5-a20c-cba2e5e53d8f.i4fh95bb88.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Images\eb532107-f526-41c5-a20c-cba2e5e53d8f.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"i4fh95bb88"},{"Name":"integrity","Value":"sha256-LkwtnA73ns\u002BZuE08NUrITkcrrcCzOCtlfwwoLpdR1To="},{"Name":"label","Value":"_content/CarRental/Images/eb532107-f526-41c5-a20c-cba2e5e53d8f.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"136823"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022LkwtnA73ns\u002BZuE08NUrITkcrrcCzOCtlfwwoLpdR1To=\u0022"},{"Name":"Last-Modified","Value":"Tue, 25 Mar 2025 04:39:16 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/CarRental/Images/eb532107-f526-41c5-a20c-cba2e5e53d8f.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Images\eb532107-f526-41c5-a20c-cba2e5e53d8f.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-LkwtnA73ns\u002BZuE08NUrITkcrrcCzOCtlfwwoLpdR1To="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"136823"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022LkwtnA73ns\u002BZuE08NUrITkcrrcCzOCtlfwwoLpdR1To=\u0022"},{"Name":"Last-Modified","Value":"Tue, 25 Mar 2025 04:39:16 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/CarRental/Images/gallardo.jpg">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Images\gallardo.jpg'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
