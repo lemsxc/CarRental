@@ -50,6 +50,7 @@
                                 <th class="py-3 px-4 text-center">Brand</th>
                                 <th class="py-3 px-4 text-center">Model</th>
                                 <th class="py-3 px-4 text-center">Plate Number</th>
+                                <th class="py-3 px-4 text-center">Total amount</th>
                                 <th class="py-3 px-4 text-center">Start Date</th>
                                 <th class="py-3 px-4 text-center">End Date</th>
                                 <th class="py-3 px-4 text-center">Status</th>
@@ -67,6 +68,7 @@
                                     <td class="py-3 px-4 text-center">@reservation.Car.Brand</td>
                                     <td class="py-3 px-4 text-center">@reservation.Car.Model</td>
                                     <td class="py-3 px-4 text-center">@reservation.Car.PlateNumber</td>
+                                    <td class="py-3 px-4 text-center">@reservation.TotalAmount</td>
                                     <td class="py-3 px-4 text-center">@reservation.StartDate.ToString("dd-MM-yyyy")</td>
                                     <td class="py-3 px-4 text-center">@reservation.EndDate.ToString("dd-MM-yyyy")</td>
                                     <td class="py-3 px-4 text-center">@reservation.Status?.ToUpper()</td>

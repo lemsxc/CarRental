@@ -168,6 +168,9 @@ namespace CarRental.Migrations
                     b.Property<int>("CarId")
                         .HasColumnType("int");
 
+                    b.Property<float>("TotalAmount")
+                        .HasColumnType("real");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 

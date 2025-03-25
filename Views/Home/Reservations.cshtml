@@ -1,0 +1,51 @@
+@model List<CarRental.Models.Reservation>
+@{
+    ViewData["Title"] = "My Reservations";
+}
+<div x-data="{ reservationModal: false, selectedReservation: {} }" class="flex flex-col items-center bg-white">
+    <div class="flex overflow-hidden flex-col w-full bg-white max-w-[1440px] max-md:p-5">
+        <partial name="~/Views/Home/_User-nav.cshtml"></partial>
+        <div class="p-10 mx-20 my-5 bg-indigo-600 rounded-[40px] max-md:px-5 max-md:py-10 max-md:m-0">
+            <h1 class="text-4xl font-bold text-white">My Reservations</h1>
+            <p class="text-white mt-2">Manage your booked vehicles easily.</p>
+        </div>
+
+        <div class="px-20 py-10 max-md:px-5 max-md:py-5">
+            @if (!Model.Any())
+            {
+                <p class="text-center text-gray-500">You have no reservations yet.</p>
+            }
+            else
+            {
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    @foreach (var reservation in Model)
+                    {
+                        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-200">
+                            <div class="flex justify-between items-center">
+                                <h2 class="text-lg font-bold text-gray-900">@reservation.Car.Brand</h2>
+                                <p class="text-purple-600 font-bold text-lg">
+                                    $@reservation.TotalAmount
+                                </p>
+                            </div>
+                            <p class="text-gray-500 text-sm">@reservation.Car.Model</p>
+                            <p class="text-gray-500 text-sm">Pickup: @reservation.StartDate.ToShortDateString()</p>
+                            <p class="text-gray-500 text-sm">Return: @reservation.EndDate.ToShortDateString()</p>
+                            <p class="text-gray-500 text-sm">Status: <span class="font-bold">@reservation.Status</span></p>
+                            <button class="mt-4 w-full bg-indigo-600 text-white py-2 rounded-lg text-sm font-medium" x-on:click="reservationModal = true; selectedReservation = {
+                                    brand: '@reservation.Car.Brand',
+                                    model: '@reservation.Car.Model',
+                                    start: '@reservation.StartDate.ToShortDateString()',
+                                    end: '@reservation.EndDate.ToShortDateString()',
+                                    amount: '@reservation.TotalAmount',
+                                    status: '@reservation.Status'
+                                }">
+                                View Details
+                            </button>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

@@ -16,10 +16,12 @@ namespace CarRental.Models
         public int CarId { get; set; }
         public Car Car { get; set; }
 
+        public float TotalAmount{ get; set; }
+
         public DateTime ReservedDate { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
         public string Status { get; set; }
 
         public Payment Payment { get; set; }
