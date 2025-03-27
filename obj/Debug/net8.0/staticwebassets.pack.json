@@ -69,6 +69,14 @@
       "PackagePath": "staticwebassets\\css\\tailwind.css"
     },
     {
+      "Id": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\dist\\app.bundle.js",
+      "PackagePath": "staticwebassets\\dist\\app.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\dist\\styles.bundle.js",
+      "PackagePath": "staticwebassets\\dist\\styles.bundle.js"
+    },
+    {
       "Id": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },

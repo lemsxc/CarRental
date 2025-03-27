@@ -10,7 +10,6 @@ using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
@@ -18,7 +17,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
     options.UseSqlServer(connectionString);
 });
 
-// ✅ Add Authentication with Cookies
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
@@ -26,13 +24,11 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.AccessDeniedPath = "/Account/AccessDenied";
     });
 
-// ✅ Add Authorization Policy for Admin Role
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
 });
 
-// Add session services
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -60,15 +56,11 @@ StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey"
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
-app.UseRouting(); // ✅ Must come before Authentication & Authorization
-
+app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
-app.UseAuthorization(); // ✅ Ensure this comes after Authentication
-
-app.UseMiddleware<Roles>(); // ✅ Ensure middleware runs after authentication
-
+app.UseAuthorization();
+app.UseMiddleware<Roles>();
 app.MapRazorPages();
 
 app.MapControllerRoute(

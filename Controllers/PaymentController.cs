@@ -118,5 +118,35 @@ namespace CarRental.Controllers
             // Pass reservation details to the Success view
             return View("Success", reservation);
         }
+
+        public IActionResult Cancel(int reservationId)
+        {
+            var reservation = _context.Reservations
+                .Include(r => r.Car)
+                .Include(r => r.Payment)
+                .FirstOrDefault(r => r.ReservationId == reservationId);
+
+            if (reservation == null)
+            {
+                return NotFound("Reservation not found.");
+            }
+
+            if (reservation.Status == "Confirmed")
+            {
+                return BadRequest("Cannot cancel a confirmed reservation.");
+            }
+
+            // Update status to cancelled
+            reservation.Status = "Cancelled";
+            if (reservation.Payment != null)
+            {
+                reservation.Payment.Status = "Refund Pending"; // Or adjust based on policy
+            }
+
+            _context.SaveChanges();
+
+            return View("Cancellation", reservation);
+        }
+
     }
 }
