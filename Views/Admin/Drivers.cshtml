@@ -1,3 +1,4 @@
+@model List<CarRental.Models.Driver>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -33,7 +34,8 @@
                                         placeholder="Type to search...">
                                 </div>
 
-                                <button onclick="window.location.href='{{ route('addDrivers') }}'"
+                                <!-- Add Driver Button -->
+                                <button x-on:click="addDriverModal = true"
                                     class="flex gap-2 justify-center items-center py-2.5 pr-6 pl-5 text-white bg-indigo-600 rounded-lg min-h-10 max-md:pr-5">
                                     <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -48,35 +50,54 @@
                     </div>
                 </div>
 
-
+                <!-- Driver Table -->
                 <section
                     class="flex flex-col justify-center pb-5 mt-10 w-full text-sm bg-white rounded-lg text-teal-950 max-md:max-w-full">
                     <table class="w-full text-left">
                         <thead class="font-semibold border-b border-slate-200">
                             <tr>
                                 <th class="py-3 px-4">Driver ID</th>
-                                <th class="py-3 px-4">Name</th>
+                                <th class="py-3 px-4">First Name</th>
+                                <th class="py-3 px-4">Last Name</th>
                                 <th class="py-3 px-4">Contact Number</th>
-                                <th class="py-3 px-4">Vehicle Type</th>
-                                <th class="py-3 px-4">Vehicle Number</th>
-                                <th class="py-3 px-4">Joining Date</th>
-                                <th class="py-3 px-4">Action</th>
+                                <th class="py-3 px-4">License Number</th>
+                                <th class="py-3 px-4">License Expiry</th>
+                                <th class="py-3 px-4">Status</th>
+                                <th class="py-3 px-4">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <!-- Driver rows can be generated dynamically here using Laravel Blade syntax -->
-                            <tr class="border-b border-slate-200">
-                                <td class="py-3 px-4">1</td>
-                                <td class="py-3 px-4">Boss</td>
-                                <td class="py-3 px-4">09123456789</td>
-                                <td class="py-3 px-4">Sport</td>
-                                <td class="py-3 px-4 text-teal-950">45648</td>
-                                <td class="py-3 px-4">Karon</td>
-                                <td class="py-3 px-4">
-                                    <button
-                                        class="text-xs font-medium text-center text-white bg-indigo-600 rounded-sm py-1 px-2">View</button>
-                                </td>
-                            </tr>
+                        <tbody id="driverTableBody">
+                            @foreach (var driver in Model)
+                            {
+                                <tr class="border-b border-slate-200 driver-item">
+                                    <td class="py-3 px-4">@driver.DriverId</td>
+                                    <td class="py-3 px-4">@driver.FirstName</td>
+                                    <td class="py-3 px-4">@driver.LastName</td>
+                                    <td class="py-3 px-4">@driver.ContactNumber</td>
+                                    <td class="py-3 px-4">@driver.LicenseNumber</td>
+                                    <td class="py-3 px-4">@driver.LicenseExpiry.ToString("yyyy-MM-dd")</td>
+                                    <td
+                                        class="py-3 px-4 text-center text-@(driver.Status == "Hired" ? "red-600" : "green-600")">
+                                        @driver.Status</td>
+                                    <td class="py-3 px-4 flex space-x-2">
+                                        <!-- Edit Button -->
+                                        <a href="/Driver/Edit/@driver.DriverId"
+                                            class="text-xs font-medium text-white bg-blue-600 rounded-sm py-1 px-2">
+                                            Edit
+                                        </a>
+
+                                        <!-- Delete Button -->
+                                        <form method="post" action="/Driver/Delete"
+                                            onsubmit="return confirm('Are you sure?');">
+                                            <input type="hidden" name="id" value="@driver.DriverId" />
+                                            <button type="submit"
+                                                class="text-xs font-medium text-white bg-red-600 rounded-sm py-1 px-2">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </section>
@@ -84,17 +105,18 @@
         </div>
     </div>
 </div>
+
+<!-- Driver Insert Modal -->
+@await Html.PartialAsync("~/Views/Modals/addDriverModal.cshtml")
+
 <script>
     function filterDrivers() {
         let input = document.getElementById('searchInput').value.toLowerCase();
-        let cars = document.querySelectorAll('.car-item'); // Add this class to car elements
-        cars.forEach(car => {
-            let text = car.textContent.toLowerCase();
-            car.style.display = text.includes(input) ? "" : "none";
-        });
-    }
+        let rows = document.querySelectorAll('.driver-item');
 
-    function toggleFilter() {
-        alert('Filter function coming soon!'); // Replace this with a modal or dropdown logic
+        rows.forEach(row => {
+            let text = row.textContent.toLowerCase();
+            row.style.display = text.includes(input) ? "" : "none";
+        });
     }
 </script>

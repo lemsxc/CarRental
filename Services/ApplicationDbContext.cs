@@ -15,5 +15,6 @@ namespace CarRental.Services
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<Driver> Drivers { get; set; }
     }
 }

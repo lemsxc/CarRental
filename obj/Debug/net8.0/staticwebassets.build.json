@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gVELRTif0d30hpRvTbSfHrYdhR7OA0O5kMTzRESzcIQ=",
+  "Hash": "4N0ZlCGOyzgsvV2ndaXrdUd7ZGEfhBA76xjlxcOZduU=",
   "Source": "CarRental",
   "BasePath": "_content/CarRental",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "7xlffv0h1e",
-      "Integrity": "RVhPCCCrvtKSZG7eemIoeM4ELafeDgewRWv6Lb5sASM=",
+      "Fingerprint": "la19mcjz9o",
+      "Integrity": "MxsMClsjjN6IfEYU52hHFUYwmow8CUlaBqLzUkx4bPw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\output.css"
@@ -1800,51 +1800,6 @@
       ]
     },
     {
-      "Route": "css/output.7xlffv0h1e.css",
-      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\output.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "45934"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"RVhPCCCrvtKSZG7eemIoeM4ELafeDgewRWv6Lb5sASM=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 25 Mar 2025 01:25:27 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "7xlffv0h1e"
-        },
-        {
-          "Name": "label",
-          "Value": "css/output.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-RVhPCCCrvtKSZG7eemIoeM4ELafeDgewRWv6Lb5sASM="
-        }
-      ]
-    },
-    {
       "Route": "css/output.css",
       "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\output.css",
       "Selectors": [],
@@ -1855,7 +1810,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "45934"
+          "Value": "46062"
         },
         {
           "Name": "Content-Type",
@@ -1863,11 +1818,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"RVhPCCCrvtKSZG7eemIoeM4ELafeDgewRWv6Lb5sASM=\""
+          "Value": "\"MxsMClsjjN6IfEYU52hHFUYwmow8CUlaBqLzUkx4bPw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Mar 2025 01:25:27 GMT"
+          "Value": "Thu, 27 Mar 2025 02:43:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1877,7 +1832,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-RVhPCCCrvtKSZG7eemIoeM4ELafeDgewRWv6Lb5sASM="
+          "Value": "sha256-MxsMClsjjN6IfEYU52hHFUYwmow8CUlaBqLzUkx4bPw="
+        }
+      ]
+    },
+    {
+      "Route": "css/output.la19mcjz9o.css",
+      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\output.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "46062"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MxsMClsjjN6IfEYU52hHFUYwmow8CUlaBqLzUkx4bPw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 27 Mar 2025 02:43:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "la19mcjz9o"
+        },
+        {
+          "Name": "label",
+          "Value": "css/output.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MxsMClsjjN6IfEYU52hHFUYwmow8CUlaBqLzUkx4bPw="
         }
       ]
     },

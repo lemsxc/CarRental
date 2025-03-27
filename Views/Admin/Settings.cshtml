@@ -1,21 +1,27 @@
+@model CarRental.Models.User
+
 @{
     ViewData["Title"] = "Settings";
 }
+
 <div class="flex overflow-hidden flex-col bg-[#D0CAEA]">
     <partial name="~/Views/Admin/Partials/_AdminTopNav.cshtml"></partial>
-
     <div class="z-10 -mt-4 w-full max-w-[1400px] max-md:max-w-full">
         <div class="flex gap-5 max-md:flex-col">
             <div class="flex flex-col w-1/5 max-md:ml-0 max-md:w-full">
                 <partial name="~/Views/Admin/Partials/_AdminSideNav.cshtml"></partial>
             </div>
-
             <!-- Main Content -->
             <div class="flex flex-col w-full">
                 <div class="mt-8 w-full">
                     <div class="flex-1 p-6">
-                        <div x-data="{ tab: 'profile' }">
-                            <!-- Tabs Navigation -->
+                        <!-- Title -->
+                        <div class="flex flex-col justify-center">
+                            <h1 class="text-3xl font-bold text-neutral-950">User Settings</h1>
+                        </div>
+
+                        <div x-data="{ tab: 'profile' }" class="mt-5">
+                            <!-- Tabs -->
                             <div class="flex border-b">
                                 <button x-on:click="tab = 'profile'"
                                     :class="{ 'border-b-2 border-blue-500 text-blue-600': tab === 'profile' }"
@@ -37,23 +43,26 @@
                                     <h2 class="text-lg font-semibold mb-4">Profile Settings</h2>
                                     <form asp-action="SaveProfile" method="POST" class="space-y-4">
                                         <div>
-                                            <label for="name"
-                                                class="block text-sm font-medium text-gray-700">Name</label>
-                                            <input type="text" id="name" name="name" value="Anwar Basahi"
+                                            <label for="FirstName" class="block text-sm font-medium text-gray-700">First Name</label>
+                                            <input type="text" id="FirstName" name="FirstName" value="@Model.FirstName"
                                                 class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200">
                                         </div>
 
                                         <div>
-                                            <label for="email"
-                                                class="block text-sm font-medium text-gray-700">Email</label>
-                                            <input type="email" id="email" name="email" value="anwar@domain.com"
+                                            <label for="LastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                                            <input type="text" id="LastName" name="LastName" value="@Model.LastName"
                                                 class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200">
                                         </div>
 
                                         <div>
-                                            <label for="password"
-                                                class="block text-sm font-medium text-gray-700">Password</label>
-                                            <input type="password" id="password" name="password" placeholder="********"
+                                            <label for="Email" class="block text-sm font-medium text-gray-700">Email</label>
+                                            <input type="email" id="Email" name="Email" value="@Model.Email"
+                                                class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200" readonly>
+                                        </div>
+
+                                        <div>
+                                            <label for="Password" class="block text-sm font-medium text-gray-700">New Password</label>
+                                            <input type="password" id="Password" name="Password"
                                                 class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200">
                                         </div>
 
@@ -69,23 +78,14 @@
                                     <h2 class="text-lg font-semibold mb-4">Location Settings</h2>
                                     <form asp-action="SaveLocation" method="POST" class="space-y-4">
                                         <div>
-                                            <label for="address"
-                                                class="block text-sm font-medium text-gray-700">Address</label>
-                                            <input type="text" id="address" name="address" value="123 Main St, City"
+                                            <label for="Address" class="block text-sm font-medium text-gray-700">Address</label>
+                                            <input type="text" id="Address" name="Address" value="@Model.Address"
                                                 class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200">
                                         </div>
 
                                         <div>
-                                            <label for="city"
-                                                class="block text-sm font-medium text-gray-700">City</label>
-                                            <input type="text" id="city" name="city" value="New York"
-                                                class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200">
-                                        </div>
-
-                                        <div>
-                                            <label for="zip_code" class="block text-sm font-medium text-gray-700">Zip
-                                                Code</label>
-                                            <input type="text" id="zip_code" name="zip_code" value="10001"
+                                            <label for="ContactNumber" class="block text-sm font-medium text-gray-700">Contact Number</label>
+                                            <input type="text" id="ContactNumber" name="ContactNumber" value="@Model.ContactNumber"
                                                 class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-200">
                                         </div>
 

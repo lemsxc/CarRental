@@ -32,10 +32,6 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkQ2Fycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lemma/source/repos/CarRental/Views/Admin/CarList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2FyTGlzdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/lemma/source/repos/CarRental/Views/Admin/CarRental.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2FyUmVudGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -44,8 +40,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lemma/source/repos/CarRental/Views/Admin/Driverlist.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRHJpdmVybGlzdC5jc2h0bWw=
+[C:/Users/lemma/source/repos/CarRental/Views/Admin/Drivers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRHJpdmVycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lemma/source/repos/CarRental/Views/Admin/Partials/_AdminSideNav.cshtml]
@@ -62,6 +58,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/lemma/source/repos/CarRental/Views/Admin/Settings.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cU2V0dGluZ3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lemma/source/repos/CarRental/Views/Admin/Vehicles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmVoaWNsZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lemma/source/repos/CarRental/Views/Auth/Login.cshtml]
@@ -98,6 +98,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/lemma/source/repos/CarRental/Views/Modals/addCarModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxzXGFkZENhck1vZGFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lemma/source/repos/CarRental/Views/Modals/addDriverModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxzXGFkZERyaXZlck1vZGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lemma/source/repos/CarRental/Views/Modals/carModal.cshtml]

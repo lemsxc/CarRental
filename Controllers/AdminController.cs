@@ -70,21 +70,30 @@ namespace CarRental.Controllers
         }
 
         [Authorize(Policy = "Admin")]
-        public IActionResult Driver()
+        public IActionResult Drivers()
         {
-            return View();
-        }
-
-        [Authorize(Policy = "Admin")]
-        public IActionResult AddCar()
-        {
-            return View();
+            var drivers = _context.Drivers.ToList();
+            return View(drivers);
         }
 
         [Authorize(Policy = "Admin")]
         public IActionResult Settings()
         {
-            return View();
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!int.TryParse(userIdString, out int userId))
+            {
+                return NotFound("Invalid user ID.");
+            }
+
+            var user = _context.Users.FirstOrDefault(u => u.UsersId == userId);
+
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+
+            return View(user);
         }
     }
 }

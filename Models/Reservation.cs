@@ -16,7 +16,7 @@ namespace CarRental.Models
         public int CarId { get; set; }
         public Car Car { get; set; }
 
-        public float TotalAmount{ get; set; }
+        public float TotalAmount { get; set; }
 
         public DateTime ReservedDate { get; set; }
         public DateTime StartDate { get; set; }
@@ -25,5 +25,10 @@ namespace CarRental.Models
         public string Status { get; set; }
 
         public Payment Payment { get; set; }
+
+        // Optional Driver Assignment
+        [ForeignKey("Driver")]
+        public int? DriverId { get; set; } // Nullable: Optional driver
+        public Driver Driver { get; set; }
     }
 }

@@ -11,40 +11,43 @@
             </div>
             <div class="mt-8 w-full">
                 <div class="flex flex-col ml-5 w-4/5 max-md:ml-0 max-md:w-full">
-                    <!-- Header Section -->
-                    <header class="flex flex-wrap items-end mr-7 max-md:mr-2.5 max-md:max-w-full">
-                        <!-- Title and Subtitle -->
-                        <div class="flex flex-col justify-center">
-                            <h1 class="text-3xl font-bold text-neutral-950">CAR RENTALS</h1>
-                        </div>
-
-                        <!-- Action Buttons -->
-                        <div
-                            class="flex flex-wrap gap-2.5 items-start text-sm min-w-60 text-neutral-950 max-md:max-w-full ml-auto">
-                            <div
-                                class="relative flex items-center px-5 bg-white rounded-lg min-h-10 min-w-60 w-[260px]">
-                                <svg class="absolute left-3 w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="11" cy="11" r="8"></circle>
-                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                </svg>
-                                <input type="text" id="searchInput" onkeyup="filterTransactions()"
-                                    class="pl-10 w-full h-full border-none bg-transparent text-gray-700 outline-none focus:ring-0 focus:outline-none"
-                                    placeholder="Search transactions...">
+                    <div class="flex flex-col mt-8 w-full max-md:mt-10 max-md:max-w-full">
+                        <!-- Header Section -->
+                        <header class="flex flex-wrap items-end mr-7 max-md:mr-2.5 max-md:max-w-full">
+                            <!-- Title and Subtitle -->
+                            <div class="flex flex-col justify-center">
+                                <h1 class="text-3xl font-bold text-neutral-950">CAR RENTALS</h1>
                             </div>
-                        </div>
-                    </header>
+
+                            <!-- Action Buttons -->
+                            <div
+                                class="flex flex-wrap gap-2.5 items-start text-sm min-w-60 text-neutral-950 max-md:max-w-full ml-auto">
+                                <div
+                                    class="relative flex items-center px-5 bg-white rounded-lg min-h-10 min-w-60 w-[260px]">
+                                    <svg class="absolute left-3 w-5 h-5 text-gray-500"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    </svg>
+                                    <input type="text" id="searchInput" onkeyup="filterTransactions()"
+                                        class="pl-10 w-full h-full border-none bg-transparent text-gray-700 outline-none focus:ring-0 focus:outline-none"
+                                        placeholder="Search transactions...">
+                                </div>
+                            </div>
+                        </header>
+                    </div>
                 </div>
 
 
                 <!-- Transactions Table -->
                 <section
-                    class="flex flex-col justify-center pb-5 mt-10 w-full text-sm bg-white rounded-lg text-neutral-950 max-md:max-w-full">
+                    class="flex flex-col justify-center pb-5 mt-10 w-full text-sm bg-white rounded-lg text-teal-950 max-md:max-w-full">
                     <table class="min-w-full divide-y divide-gray-200">
                         <!-- Table Header -->
-                        <thead>
-                            <tr class="bg-slate-200 border-b border-slate-300">
+                        <thead class="font-semibold border-b border-slate-200">
+                            <tr>
                                 <th class="py-3 px-4 text-center">Trip ID</th>
                                 <th class="py-3 px-4 text-center">Vehicle Type</th>
                                 <th class="py-3 px-4 text-center">Brand</th>
