@@ -42,6 +42,7 @@ builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IDriverService, DriverService>();
 
 var app = builder.Build();
 

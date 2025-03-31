@@ -92,6 +92,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXNlcnZhdGlvbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/lemma/source/repos/CarRental/Views/Home/Settings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXR0aW5ncy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/lemma/source/repos/CarRental/Views/Home/_User-nav.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfVXNlci1uYXYuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -108,8 +112,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxzXGNhck1vZGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lemma/source/repos/CarRental/Views/Modals/paymentModal.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxzXHBheW1lbnRNb2RhbC5jc2h0bWw=
+[C:/Users/lemma/source/repos/CarRental/Views/Modals/CarsModals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxzXENhcnNNb2RhbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lemma/source/repos/CarRental/Views/Modals/rentModal.cshtml]

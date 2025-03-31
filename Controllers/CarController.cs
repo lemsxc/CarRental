@@ -75,7 +75,7 @@ namespace CarRental.Controllers
             await _carService.AddCarAsync(car);
 
             // ✅ Redirect to Car List after successful insertion
-            return RedirectToAction("Vehicles", "Page");
+            return RedirectToAction("Vehicles", "Admin");
         }
 
         public async Task<IActionResult> Edit(int id)

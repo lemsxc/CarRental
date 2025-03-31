@@ -3,7 +3,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div x-data="{ addCarModal: false, imagePreview: null  }" class="flex overflow-hidden flex-col bg-[#D0CAEA]">
+<div x-data="{ addCarModal: false, CarsModals: false, imagePreview: null  }"
+    class="flex overflow-hidden flex-col bg-[#D0CAEA]">
     <partial name="~/Views/Admin/Partials/_AdminTopNav.cshtml"></partial>
     <div class="z-10 -mt-4 w-full max-w-[1400px] max-md:max-w-full">
         <div class="flex gap-5 max-md:flex-col">
@@ -15,7 +16,7 @@
                     <div class="flex flex-col mt-8 w-full max-md:mt-10 max-md:max-w-full">
                         <header class="flex flex-wrap gap-10 items-end justify-between w-full max-md:max-w-full">
                             <div class="flex flex-col justify-center min-w-60">
-                                <h1 class="text-3xl font-bold text-teal-950">Car List</h1>
+                                <h1 class="text-3xl font-bold text-teal-950">Vehicles</h1>
                             </div>
                             <!-- Align search bar and button to the right -->
                             <div class="flex gap-2.5 items-start text-sm text-teal-950 ml-auto">
@@ -67,22 +68,36 @@
                                 </tr>
                             </thead>
                             <tbody id="carTableBody">
-                                @foreach (var cars in Model)
+                                @foreach (var car in Model)
                                 {
                                     <tr class="border-b border-slate-200 car-item">
-                                        <td class="py-3 px-4">@cars.CarId</td>
-                                        <td class="py-3 px-4">@cars.Brand</td>
-                                        <td class="py-3 px-4">@cars.Model</td>
-                                        <td class="py-3 px-4">@cars.Category</td>
-                                        <td class="py-3 px-4">@cars.PlateNumber</td>
-                                        <td class="py-3 px-4">@cars.Mileage</td>
-                                        <td class="py-3 px-4">@cars.RentPrice</td>
-                                        <td class="py-3 px-4">@cars.FuelLevel</td>
-                                        <td class="py-3 px-4">@cars.Condition</td>
-                                        <td class="py-3 px-4">@cars.Status</td>
+                                        <td class="py-3 px-4">@car.CarId</td>
+                                        <td class="py-3 px-4">@car.Brand</td>
+                                        <td class="py-3 px-4">@car.Model</td>
+                                        <td class="py-3 px-4">@car.Category</td>
+                                        <td class="py-3 px-4">@car.PlateNumber</td>
+                                        <td class="py-3 px-4">@car.Mileage</td>
+                                        <td class="py-3 px-4">@car.RentPrice</td>
+                                        <td class="py-3 px-4">@car.FuelLevel</td>
+                                        <td class="py-3 px-4">@car.Condition</td>
+                                        <td class="py-3 px-4">@car.Status</td>
                                         <td class="py-3 px-4">
                                             <button
-                                                class="text-xs font-medium text-center text-white bg-indigo-600 rounded-sm py-1 px-2">View</button>
+                                                class="text-xs font-medium text-center text-white bg-indigo-600 rounded-sm py-1 px-2"
+                                                x-on:click="CarsModals = true; selectedCars = {
+                                                    image: '@Url.Content("~/" + car.Image)',
+                                                    brand: '@car.Brand',
+                                                    model: '@car.Model',
+                                                    transmission: '@car.Transmission',
+                                                    fuel_type: '@car.FuelType',
+                                                    fuel_level: '@car.FuelLevel',
+                                                    price: '@car.RentPrice',
+                                                    category: '@car.Category',
+                                                    plateNum: '@car.PlateNumber',
+                                                    mileage: '@car.Mileage',
+                                                    condition: '@car.Condition'
+                                                }">
+                                            View</button>
                                         </td>
                                     </tr>
                                 }
@@ -94,6 +109,7 @@
         </div>
     </div>
     @await Html.PartialAsync("~/Views/Modals/addCarModal.cshtml")
+    @await Html.PartialAsync("~/Views/Modals/CarsModals.cshtml")
 </div>
 
 <script>

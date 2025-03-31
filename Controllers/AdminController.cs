@@ -50,8 +50,29 @@ namespace CarRental.Controllers
         }
 
         [Authorize(Policy = "Admin")]
-        public IActionResult Dashboard()
+        public async Task<IActionResult> Dashboard()
         {
+            DateTime startDate = DateTime.Now.AddDays(-30);
+            DateTime endDate = DateTime.Now;
+
+            var payments = await _context.Payments
+                .Where(p => p.PaymentDate >= startDate && p.PaymentDate <= endDate)
+                .ToListAsync();
+
+            var totalRevenue = payments.Sum(p => p.Amount);
+            var totalBookings = await _context.Reservations.CountAsync(r => r.Payment.PaymentDate >= startDate && r.Payment.PaymentDate <= endDate);
+            var activeRentals = await _context.Reservations.CountAsync(r => r.Status == "Active");
+
+            var revenueTrends = payments.GroupBy(p => p.PaymentDate.Date)
+                .Select(g => new { Date = g.Key, Total = g.Sum(p => p.Amount) })
+                .OrderBy(x => x.Date)
+                .ToList();
+
+            ViewBag.TotalRevenue = totalRevenue;
+            ViewBag.TotalBookings = totalBookings;
+            ViewBag.ActiveRentals = activeRentals;
+            ViewBag.RevenueTrends = revenueTrends.Select(x => new { x.Date, x.Total }).ToList();
+
             return View();
         }
 

@@ -40,11 +40,6 @@
         </div>
     </div>
 
-    <link rel="stylesheet" href="~/dist/styles.bundle.js" asp-append-version="true" />
-    <script src="~/dist/app.bundle.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/phosphor-icons@1.4.2/src/index.min.js"></script>
-
     <!-- Toast Script -->
     <script>
         function showToast(message, type = 'success', duration = 3000) {
@@ -63,6 +58,10 @@
         });
     </script>
 
+    <link rel="stylesheet" href="~/dist/styles.bundle.js" asp-append-version="true" />
+    <script src="~/dist/app.bundle.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phosphor-icons@1.4.2/src/index.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>r9abwi3008</Fingerprint>
-      <Integrity>QR/HS+oCbJ/ZqLDrpk5sWKLrjpN8z9VqlkaRwhfPCDc=</Integrity>
+      <Fingerprint>4ns7xgkl3s</Fingerprint>
+      <Integrity>QPIGYEwwrC6iMUicfymAUTucFQ5h8VK7HqoxR9eu6H4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\output.css'))</OriginalItemSpec>
@@ -143,6 +143,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Images\39aab52f-3fbe-4901-be6b-ea76e65a598d.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Images\3af08cfd-c408-47b7-aefa-9ec18463795c.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>CarRental</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/CarRental</BasePath>
+      <RelativePath>Images/3af08cfd-c408-47b7-aefa-9ec18463795c.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>i4fh95bb88</Fingerprint>
+      <Integrity>LkwtnA73ns+ZuE08NUrITkcrrcCzOCtlfwwoLpdR1To=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Images\3af08cfd-c408-47b7-aefa-9ec18463795c.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Images\57fbc9a3-d8f8-4522-9f15-5d19db18f1a0.jpg'))">
       <SourceType>Package</SourceType>

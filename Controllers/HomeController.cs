@@ -71,9 +71,29 @@ public class HomeController : Controller
         return View(reservations);
     }
 
+    public IActionResult Settings()
+    {
+        var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (!int.TryParse(userIdString, out int userId))
+        {
+            return NotFound("Invalid user ID.");
+        }
+
+        var user = _context.Users.FirstOrDefault(u => u.UsersId == userId);
+
+        if (user == null)
+        {
+            return NotFound("User not found.");
+        }
+
+        return View(user);
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+
 }

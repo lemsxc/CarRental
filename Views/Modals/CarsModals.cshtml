@@ -1,12 +1,15 @@
-<div x-cloak x-show="carModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 p-4"
-    x-on:keydown.escape.window="carModal = false">
-    <div class="bg-white rounded-lg p-6 max-w-2xl w-full">
+<div x-show="CarsModals" x-cloak class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full relative z-50"
+        x-on:click.away="CarsModals = false">
+        <button x-on:click="CarsModals = false" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+            &times;
+        </button>
         <div class="flex justify-between items-center border-b pb-3">
-            <h2 class="text-xl font-bold" x-text="selectedCar.brand + ' ' + selectedCar.model"></h2>
-            <button x-on:click="carModal = false" class="text-gray-500 hover:text-gray-800">&times;</button>
+            <h2 class="text-xl font-bold" x-text="selectedCars.brand + ' ' + selectedCars.model"></h2>
+            <button x-on:click="CarsModals = false" class="text-gray-500 hover:text-gray-800">&times;</button>
         </div>
 
-       <img x-bind:src="selectedCar.image" class="rounded-lg mx-auto w-11/12 h-72" alt="Car Image">
+        <img x-bind:src="selectedCars.image" class="rounded-lg mx-auto w-11/12 h-72" alt="Car Image">
 
         <!-- Technical Specifications -->
         <div class="mt-6">
@@ -14,35 +17,35 @@
             <div class="grid grid-cols-4 gap-4 mt-2">
                 <div class="bg-gray-100 p-3 rounded-lg">
                     <p class="font-semibold">Category</p>
-                    <p class="text-gray-600" x-text="selectedCar.category"></p>
+                    <p class="text-gray-600" x-text="selectedCars.category"></p>
                 </div>
                 <div class="bg-gray-100 p-3 rounded-lg">
                     <p class="font-semibold">Transmission</p>
-                    <p class="text-gray-600" x-text="selectedCar.transmission"></p>
+                    <p class="text-gray-600" x-text="selectedCars.transmission"></p>
                 </div>
                 <div class="bg-gray-100 p-3 rounded-lg">
                     <p class="font-semibold">Fuel</p>
-                    <p class="text-gray-600" x-text="selectedCar.fuel_type"></p>
+                    <p class="text-gray-600" x-text="selectedCars.fuel_type"></p>
                 </div>
                 <div class="bg-gray-100 p-3 rounded-lg">
                     <p class="font-semibold">Fuel Level</p>
-                    <p class="text-gray-600" x-text="selectedCar.fuel_level"></p>
+                    <p class="text-gray-600" x-text="selectedCars.fuel_level"></p>
                 </div>
                 <div class="bg-gray-100 p-3 rounded-lg">
                     <p class="font-semibold">Rent Price</p>
-                    <p class="text-gray-600" x-text="selectedCar.price"></p>
+                    <p class="text-gray-600" x-text="selectedCars.price"></p>
                 </div>
                 <div class="bg-gray-100 p-3 rounded-lg">
                     <p class="font-semibold">Plate Number</p>
-                    <p class="text-gray-600" x-text="selectedCar.plateNum"></p>
+                    <p class="text-gray-600" x-text="selectedCars.plateNum"></p>
                 </div>
                 <div class="bg-gray-100 p-3 rounded-lg">
                     <p class="font-semibold">Mileage</p>
-                    <p class="text-gray-600" x-text="selectedCar.mileage">km</p>
+                    <p class="text-gray-600" x-text="selectedCars.mileage">km</p>
                 </div>
                 <div class="bg-gray-100 p-3 rounded-lg">
                     <p class="font-semibold">Condition</p>
-                    <p class="text-gray-600" x-text="selectedCar.condition"></p>
+                    <p class="text-gray-600" x-text="selectedCars.condition"></p>
                 </div>
             </div>
         </div>
@@ -50,9 +53,8 @@
         <div class="flex justify-center items-center space-x-4 row-span-1">
             <!-- Close Button -->
             <div class="mt-6 text-center">
-                <button x-on:click="carModal = false" class="bg-gray-600 text-white px-6 py-2 rounded-lg">Close</button>
+                <button x-on:click="CarsModals = false" class="bg-gray-600 text-white px-6 py-2 rounded-lg">Close</button>
             </div>
         </div>
-
     </div>
 </div>

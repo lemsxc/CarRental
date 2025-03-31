@@ -48,10 +48,9 @@ namespace CarRental.Controllers
             _context.Reservations.Add(reservation);
             _context.SaveChanges();  // Save to get ReservationId
 
-            // Now create Payment after ensuring ReservationId exists
             var payment = new Payment
             {
-                ReservationId = reservation.ReservationId, // Ensure this links correctly
+                ReservationId = reservation.ReservationId,
                 Amount = car.RentPrice * (request.EndDate - request.StartDate).Days,
                 PaymentMethod = "Stripe",
                 PaymentDate = DateTime.Now,
