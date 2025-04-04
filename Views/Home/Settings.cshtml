@@ -48,7 +48,8 @@
 
                             <div>
                                 <label class="block text-lg font-medium">Phone Number</label>
-                                <input type="text" asp-for="ContactNumber" class="w-full p-2 border rounded-lg mb-4" required>
+                                <input type="text" asp-for="ContactNumber" class="w-full p-2 border rounded-lg mb-4"
+                                    required>
                             </div>
 
                             <div>
@@ -66,11 +67,34 @@
                 <div id="verifyAccount" class="tab-content p-4 hidden">
                     <h3 class="text-xl font-semibold mb-4">Upload Verification Documents</h3>
 
-                    <form asp-action="UploadVerification" method="post" enctype="multipart/form-data">
+                    <form asp-action="SubmitVerification" asp-controller="Verification" method="post"
+                        enctype="multipart/form-data">
                         <input type="hidden" asp-for="UsersId" />
 
-                        <label class="block text-lg font-medium">Driver's License</label>
-                        <input type="file" name="DriversLicenseFile" class="w-full border p-2 rounded-lg mb-4">
+                        <p class="text-gray-600 mb-2">Provide a clear picture of the front and back of your driver's
+                            license. Ensure the details are legible.</p>
+
+                        <div class="grid grid-cols-2 gap-5">
+                            <div>
+                                <!-- Front License Upload -->
+                                <label class="block text-lg font-medium">Driver's License (Front)</label>
+                                <input type="file" name="DriversLicenseFrontFile" id="frontFile"
+                                    class="w-full border p-2 rounded-lg mb-2" accept="image/*"
+                                    onchange="previewImage(event, 'frontPreview')">
+                                <img id="frontPreview" class="w-96 h-96 object-cover border rounded-lg hidden mb-4"
+                                    alt="Front Preview">
+                            </div>
+
+                            <div>
+                                <!-- Back License Upload -->
+                                <label class="block text-lg font-medium">Driver's License (Back)</label>
+                                <input type="file" name="DriversLicenseBackFile" id="backFile"
+                                    class="w-full border p-2 rounded-lg mb-2" accept="image/*"
+                                    onchange="previewImage(event, 'backPreview')">
+                                <img id="backPreview" class="w-96 h-96 object-cover border rounded-lg hidden mb-4"
+                                    alt="Back Preview">
+                            </div>
+                        </div>
 
                         <button type="submit" class="bg-amber-500 text-white px-6 py-2 rounded-lg">Submit for
                             Verification</button>
@@ -95,4 +119,21 @@
             this.classList.add("border-amber-500");
         });
     });
+
+    function previewImage(event, previewId) {
+        const input = event.target;
+        const preview = document.getElementById(previewId);
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.classList.remove('hidden');
+            };
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            preview.src = "";
+            preview.classList.add('hidden');
+        }
+    }
 </script>

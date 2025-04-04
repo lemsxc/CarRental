@@ -1,0 +1,109 @@
+@model List<CarRental.Models.Verification>
+
+<div class="flex overflow-hidden flex-col bg-[#D0CAEA]">
+    <partial name="~/Views/Admin/Partials/_AdminTopNav.cshtml" />
+    <div class="z-10 -mt-4 w-full max-w-[1400px] max-md:max-w-full">
+        <div class="flex gap-5 max-md:flex-col">
+            <div class="flex flex-col w-1/5 max-md:ml-0 max-md:w-full">
+                <partial name="~/Views/Admin/Partials/_AdminSideNav.cshtml" />
+            </div>
+
+            <div class="mt-8 w-full">
+                <div class="flex flex-col ml-5 w-4/5 max-md:ml-0 max-md:w-full">
+                    <div class="flex flex-col mt-8 w-full max-md:mt-10 max-md:max-w-full">
+                        <header class="flex flex-wrap gap-10 items-end justify-between w-full max-md:max-w-full">
+                            <div class="flex flex-col justify-center min-w-60">
+                                <h1 class="text-3xl font-bold text-teal-950">License Verification</h1>
+                            </div>
+
+                            <div class="flex gap-2.5 items-start text-sm text-teal-950 ml-auto">
+                                <div class="relative flex items-center px-5 bg-white rounded-lg min-h-10 min-w-60 w-[260px]">
+                                    <svg class="absolute left-3 w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    </svg>
+                                    <input type="text" id="searchInput" onkeyup="filterTransactions()"
+                                        class="pl-10 w-full h-full border-none bg-transparent text-gray-700 outline-none"
+                                        placeholder="Type to search..." />
+                                </div>
+                            </div>
+                        </header>
+                    </div>
+                </div>
+
+                <section class="flex flex-col justify-center pb-5 mt-10 w-full text-sm bg-white rounded-lg text-teal-950 max-md:max-w-full">
+                    <table class="w-full text-left">
+                        <thead class="font-semibold border-b border-slate-200">
+                            <tr>
+                                <th class="py-3 px-4">User ID</th>
+                                <th class="py-3 px-4">Name</th>
+                                <th class="py-3 px-4">Email</th>
+                                <th class="py-3 px-4">License Front</th>
+                                <th class="py-3 px-4">License Back</th>
+                                <th class="py-3 px-4">Status</th>
+                                <th class="py-3 px-4">Admin Remarks</th>
+                                <th class="py-3 px-4">Submitted At</th>
+                                <th class="py-3 px-4">Last Updated</th>
+                                <th class="py-3 px-4">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionTableBody">
+                            @foreach (var verification in Model)
+                            {
+                                <tr class="border-b border-gray-300 verification-item">
+                                    <td class="py-3 px-4">@verification.User.UsersId</td>
+                                    <td class="py-3 px-4">@verification.User.FirstName @verification.User.LastName</td>
+                                    <td class="py-3 px-4">@verification.User.Email</td>
+
+                                    <td class="py-3 px-4">
+                                        <a href="@verification.LicenseFrontPath" target="_blank" class="text-blue-500">View Front</a>
+                                    </td>
+
+                                    <td class="py-3 px-4">
+                                        <a href="@verification.LicenseBackPath" target="_blank" class="text-blue-500">View Back</a>
+                                    </td>
+
+                                    <td class="py-3 px-4 font-medium">@verification.Status</td>
+
+                                    <td class="py-3 px-4">@verification.AdminRemarks ?? "-" </td>
+
+                                    <td class="py-3 px-4">@verification.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+
+                                    <td class="py-3 px-4">@verification.UpdatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+
+                                    <td class="py-3 px-4 space-y-1">
+                                        <form asp-action="UpdateVerification" method="post">
+                                            <input type="hidden" name="id" value="@verification.Id" />
+                                            <input type="hidden" name="status" value="Approved" />
+                                            <button type="submit" class="bg-green-500 text-white px-3 py-1 rounded">Approve</button>
+                                        </form>
+                                        <form asp-action="UpdateVerification" method="post" class="mt-1">
+                                            <input type="hidden" name="id" value="@verification.Id" />
+                                            <input type="hidden" name="status" value="Rejected" />
+                                            <input type="text" name="adminRemarks" placeholder="Remarks (optional)"
+                                                class="text-xs mt-1 px-2 py-1 border rounded w-full" />
+                                            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded mt-1">Reject</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function filterTransactions() {
+        let input = document.getElementById('searchInput').value.toLowerCase();
+        let rows = document.querySelectorAll('.verification-item');
+        rows.forEach(row => {
+            let text = row.textContent.toLowerCase();
+            row.style.display = text.includes(input) ? "" : "none";
+        });
+    }
+</script>

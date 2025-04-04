@@ -24,7 +24,6 @@ namespace CarRental.Controllers
         [HttpGet]
         public IActionResult Login() => View();
 
-
         // POST: Login User
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -67,7 +66,7 @@ namespace CarRental.Controllers
             // ✅ Success Toast Message
             TempData["ToastMessage"] = "Login successful! Welcome back.";
             TempData["ToastType"] = "success";
-            
+
             if (user.Role == "Admin")
             {
                 return RedirectToAction("Dashboard", "Admin");

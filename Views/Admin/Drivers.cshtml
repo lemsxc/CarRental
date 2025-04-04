@@ -105,18 +105,15 @@
         </div>
     </div>
     @await Html.PartialAsync("~/Views/Modals/addDriverModal.cshtml")
+    <script>
+        function filterDrivers() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let rows = document.querySelectorAll('.driver-item');
+
+            rows.forEach(row => {
+                let text = row.textContent.toLowerCase();
+                row.style.display = text.includes(input) ? "" : "none";
+            });
+        }
+    </script>
 </div>
-
-<!-- Driver Insert Modal -->
-
-<script>
-    function filterDrivers() {
-        let input = document.getElementById('searchInput').value.toLowerCase();
-        let rows = document.querySelectorAll('.driver-item');
-
-        rows.forEach(row => {
-            let text = row.textContent.toLowerCase();
-            row.style.display = text.includes(input) ? "" : "none";
-        });
-    }
-</script>

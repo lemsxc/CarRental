@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YSW1ZrK25v16h8jO0c3gTlI5oQzdruX/lDD8KN3DCVQ=",
+  "Hash": "g8Jk7p3LpEAbc5uM4IRXg92+eKX11Vfa1eF5UY7nPoE=",
   "Source": "CarRental",
   "BasePath": "_content/CarRental",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "4ns7xgkl3s",
-      "Integrity": "QPIGYEwwrC6iMUicfymAUTucFQ5h8VK7HqoxR9eu6H4=",
+      "Fingerprint": "9t92dhxj1b",
+      "Integrity": "04CvNp5HRMmKhtyfT2Yq8bej8l9MIWiWiVCZeahgBs8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\output.css"
@@ -1863,7 +1863,7 @@
       ]
     },
     {
-      "Route": "css/output.4ns7xgkl3s.css",
+      "Route": "css/output.9t92dhxj1b.css",
       "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\output.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1873,7 +1873,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "48500"
+          "Value": "48490"
         },
         {
           "Name": "Content-Type",
@@ -1881,11 +1881,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"QPIGYEwwrC6iMUicfymAUTucFQ5h8VK7HqoxR9eu6H4=\""
+          "Value": "\"04CvNp5HRMmKhtyfT2Yq8bej8l9MIWiWiVCZeahgBs8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 31 Mar 2025 10:42:38 GMT"
+          "Value": "Fri, 04 Apr 2025 05:17:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1895,7 +1895,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "4ns7xgkl3s"
+          "Value": "9t92dhxj1b"
         },
         {
           "Name": "label",
@@ -1903,7 +1903,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-QPIGYEwwrC6iMUicfymAUTucFQ5h8VK7HqoxR9eu6H4="
+          "Value": "sha256-04CvNp5HRMmKhtyfT2Yq8bej8l9MIWiWiVCZeahgBs8="
         }
       ]
     },
@@ -1918,7 +1918,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "48500"
+          "Value": "48490"
         },
         {
           "Name": "Content-Type",
@@ -1926,11 +1926,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"QPIGYEwwrC6iMUicfymAUTucFQ5h8VK7HqoxR9eu6H4=\""
+          "Value": "\"04CvNp5HRMmKhtyfT2Yq8bej8l9MIWiWiVCZeahgBs8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 31 Mar 2025 10:42:38 GMT"
+          "Value": "Fri, 04 Apr 2025 05:17:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1940,7 +1940,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-QPIGYEwwrC6iMUicfymAUTucFQ5h8VK7HqoxR9eu6H4="
+          "Value": "sha256-04CvNp5HRMmKhtyfT2Yq8bej8l9MIWiWiVCZeahgBs8="
         }
       ]
     },

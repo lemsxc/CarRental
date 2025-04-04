@@ -116,5 +116,16 @@ namespace CarRental.Controllers
 
             return View(user);
         }
+
+        [Authorize(Policy = "Admin")]
+        public IActionResult Verifications()
+        {
+            var verifications = _context.Verifications
+                .Include(v => v.User) // Load user details
+                .Where(v => v.Status == "Pending") // Show only pending verifications
+                .ToList();
+
+            return View(verifications);
+        }
     }
 }

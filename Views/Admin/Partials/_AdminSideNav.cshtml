@@ -14,16 +14,6 @@
             <span class="self-stretch my-auto">Dashboard</span>
         </a>
 
-        <a href="@Url.Action("Rentals", "Admin")" id="rentalLinks"
-            class="nav-link flex gap-2.5 items-center px-5 w-full rounded-lg min-h-[40px]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256">
-                <path
-                    d="M235.92,199A8,8,0,0,1,225,195.92L155.32,72H136v8a8,8,0,0,1-16,0V72H100.68L31,195.92A8,8,0,0,1,17,188.08L82.32,72H24a8,8,0,0,1,0-16H232a8,8,0,0,1,0,16H173.68L239,188.08A8,8,0,0,1,235.92,199ZM128,112a8,8,0,0,0-8,8v16a8,8,0,0,0,16,0V120A8,8,0,0,0,128,112Zm0,56a8,8,0,0,0-8,8v16a8,8,0,0,0,16,0V176A8,8,0,0,0,128,168Z">
-                </path>
-            </svg>
-            <span class="self-stretch my-auto">Rentals</span>
-        </a>
-
         <a href="@Url.Action("Vehicles", "Admin")" id="vehicleLinks"
             class="nav-link flex gap-2.5 items-center px-5 w-full whitespace-nowrap rounded-lg min-h-[40px]">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256">
@@ -44,34 +34,34 @@
             <span class="self-stretch my-auto">Drivers</span>
         </a>
 
-        <a href="@Url.Action("Settings", "Admin")" id="settingsLinks"
-            class="nav-link flex gap-2.5 items-center px-5 w-full whitespace-nowrap rounded-lg min-h-[40px]">
+        <a href="@Url.Action("Rentals", "Admin")" id="rentalLinks"
+            class="nav-link flex gap-2.5 items-center px-5 w-full whitespace-nowrap rounded-lg min-h-[40px] text-neutral-950">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256">
                 <path
-                    d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm109.94-52.79a8,8,0,0,0-3.89-5.4l-29.83-17-.12-33.62a8,8,0,0,0-2.83-6.08,111.91,111.91,0,0,0-36.72-20.67,8,8,0,0,0-6.46.59L128,41.85,97.88,25a8,8,0,0,0-6.47-.6A112.1,112.1,0,0,0,54.73,45.15a8,8,0,0,0-2.83,6.07l-.15,33.65-29.83,17a8,8,0,0,0-3.89,5.4,106.47,106.47,0,0,0,0,41.56,8,8,0,0,0,3.89,5.4l29.83,17,.12,33.62a8,8,0,0,0,2.83,6.08,111.91,111.91,0,0,0,36.72,20.67,8,8,0,0,0,6.46-.59L128,214.15,158.12,231a7.91,7.91,0,0,0,3.9,1,8.09,8.09,0,0,0,2.57-.42,112.1,112.1,0,0,0,36.68-20.73,8,8,0,0,0,2.83-6.07l.15-33.65,29.83-17a8,8,0,0,0,3.89-5.4A106.47,106.47,0,0,0,237.94,107.21Zm-15,34.91-28.57,16.25a8,8,0,0,0-3,3c-.58,1-1.19,2.06-1.81,3.06a7.94,7.94,0,0,0-1.22,4.21l-.15,32.25a95.89,95.89,0,0,1-25.37,14.3L134,199.13a8,8,0,0,0-3.91-1h-.19c-1.21,0-2.43,0-3.64,0a8.08,8.08,0,0,0-4.1,1l-28.84,16.1A96,96,0,0,1,67.88,201l-.11-32.2a8,8,0,0,0-1.22-4.22c-.62-1-1.23-2-1.8-3.06a8.09,8.09,0,0,0-3-3.06l-28.6-16.29a90.49,90.49,0,0,1,0-28.26L61.67,97.63a8,8,0,0,0,3-3c.58-1,1.19-2.06,1.81-3.06a7.94,7.94,0,0,0,1.22-4.21l.15-32.25a95.89,95.89,0,0,1,25.37-14.3L122,56.87a8,8,0,0,0,4.1,1c1.21,0,2.43,0,3.64,0a8.08,8.08,0,0,0,4.1-1l28.84-16.1A96,96,0,0,1,188.12,55l.11,32.2a8,8,0,0,0,1.22,4.22c.62,1,1.23,2,1.8,3.06a8.09,8.09,0,0,0,3,3.06l28.6,16.29A90.49,90.49,0,0,1,222.9,142.12Z">
+                    d="M235.92,199A8,8,0,0,1,225,195.92L155.32,72H136v8a8,8,0,0,1-16,0V72H100.68L31,195.92A8,8,0,0,1,17,188.08L82.32,72H24a8,8,0,0,1,0-16H232a8,8,0,0,1,0,16H173.68L239,188.08A8,8,0,0,1,235.92,199ZM128,112a8,8,0,0,0-8,8v16a8,8,0,0,0,16,0V120A8,8,0,0,0,128,112Zm0,56a8,8,0,0,0-8,8v16a8,8,0,0,0,16,0V176A8,8,0,0,0,128,168Z">
                 </path>
             </svg>
-            <span class="self-stretch my-auto">Settings</span>
+            <span class="self-stretch my-auto">Rentals</span>
+        </a>
+
+        <a href="@Url.Action("Verifications", "Admin")" id="verificationLinks"
+           class="nav-link flex gap-2.5 items-center px-5 w-full whitespace-nowrap rounded-lg min-h-[40px] text-neutral-950">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256">
+                <path
+                    d="M216,48H40A16,16,0,0,0,24,64V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V64A16,16,0,0,0,216,48ZM128,168a8,8,0,1,1,8-8A8,8,0,0,1,128,168Zm8-40H120V88h16Z">
+                </path>
+            </svg>
+            <span class="self-stretch my-auto">Verification</span>
         </a>
 
         <a href="#" id="logsLinks"
-            class="nav-link flex gap-2.5 items-center px-5 w-full whitespace-nowrap rounded-lg min-h-[40px]">
+           class="nav-link flex gap-2.5 items-center px-5 w-full whitespace-nowrap rounded-lg min-h-[40px] text-neutral-950">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256">
                 <path
                     d="M168,128a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,128Zm-8,24H96a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16ZM216,40V200a32,32,0,0,1-32,32H72a32,32,0,0,1-32-32V40a8,8,0,0,1,8-8H72V24a8,8,0,0,1,16,0v8h32V24a8,8,0,0,1,16,0v8h32V24a8,8,0,0,1,16,0v8h24A8,8,0,0,1,216,40Zm-16,8H184v8a8,8,0,0,1-16,0V48H136v8a8,8,0,0,1-16,0V48H88v8a8,8,0,0,1-16,0V48H56V200a16,16,0,0,0,16,16H184a16,16,0,0,0,16-16Z">
                 </path>
             </svg>
             <span class="self-stretch my-auto">Logs</span>
-        </a>
-
-        <a href="@Url.Action("Logout", "Auth")" id="logoutLinks"
-            class="nav-link flex gap-2.5 items-center px-5 w-full whitespace-nowrap rounded-lg min-h-[40px]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256">
-                <path
-                    d="M120,128V48a8,8,0,0,1,16,0v80a8,8,0,0,1-16,0Zm60.37-78.7a8,8,0,0,0-8.74,13.4C194.74,77.77,208,101.57,208,128a80,80,0,0,1-160,0c0-26.43,13.26-50.23,36.37-65.3a8,8,0,0,0-8.74-13.4C47.9,67.38,32,96.06,32,128a96,96,0,0,0,192,0C224,96.06,208.1,67.38,180.37,49.3Z">
-                </path>
-            </svg>
-            <span class="self-stretch my-auto">Logout</span>
         </a>
     </div>
 </nav>

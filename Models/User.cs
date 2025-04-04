@@ -23,9 +23,9 @@ namespace CarRental.Models
 
         public string? Address { get; set; }
 
-        public string? DriversLicense { get; set; }
-
         public string Role { get; set; }
+        
+        public bool IsVerified { get; set; }
 
         public ICollection<Reservation> Reservations { get; set; }
         public ICollection<Feedback> Feedbacks { get; set; }

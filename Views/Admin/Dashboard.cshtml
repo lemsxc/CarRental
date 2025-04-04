@@ -1,40 +1,48 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="flex overflow-hidden flex-col bg-[#D0CAEA]">
-    <partial name="~/Views/Admin/Partials/_AdminTopNav.cshtml"></partial>
+
+<div class="flex overflow-hidden flex-col bg-[#D0CAEA] min-h-screen">
+    <partial name="~/Views/Admin/Partials/_AdminTopNav.cshtml" />
+
     <div class="z-10 -mt-4 w-full max-w-[1400px] max-md:max-w-full">
         <div class="flex gap-5 max-md:flex-col">
+            <!-- Sidebar -->
             <div class="flex flex-col w-1/5 max-md:ml-0 max-md:w-full">
-                <partial name="~/Views/Admin/Partials/_AdminSideNav.cshtml"></partial>
+                <partial name="~/Views/Admin/Partials/_AdminSideNav.cshtml" />
             </div>
+
+            <!-- Main Content -->
             <div class="mt-8 w-full">
                 <div class="flex flex-col ml-5 w-4/5 max-md:ml-0 max-md:w-full">
                     <div class="flex flex-col mt-8 w-full max-md:mt-10 max-md:max-w-full">
                         <div class="container mx-auto p-6">
-                            <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
+                            <h1 class="text-3xl font-bold">Dashboard</h1>
 
                             <!-- Summary Cards -->
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
-                                <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                                <div
+                                    class="bg-white bg-opacity-90 text-blue-700 p-6 rounded-2xl shadow-md hover:shadow-lg transition">
                                     <h2 class="text-lg font-semibold">Total Revenue</h2>
-                                    <p class="text-2xl font-bold">$@ViewBag.TotalRevenue</p>
+                                    <p class="text-3xl font-bold">$@ViewBag.TotalRevenue</p>
                                 </div>
 
-                                <div class="bg-green-500 text-white p-6 rounded-lg shadow-md">
+                                <div
+                                    class="bg-white bg-opacity-90 text-green-700 p-6 rounded-2xl shadow-md hover:shadow-lg transition">
                                     <h2 class="text-lg font-semibold">Total Bookings</h2>
-                                    <p class="text-2xl font-bold">@ViewBag.TotalBookings</p>
+                                    <p class="text-3xl font-bold">@ViewBag.TotalBookings</p>
                                 </div>
 
-                                <div class="bg-yellow-500 text-white p-6 rounded-lg shadow-md">
+                                <div
+                                    class="bg-white bg-opacity-90 text-yellow-600 p-6 rounded-2xl shadow-md hover:shadow-lg transition">
                                     <h2 class="text-lg font-semibold">Active Rentals</h2>
-                                    <p class="text-2xl font-bold">@ViewBag.ActiveRentals</p>
+                                    <p class="text-3xl font-bold">@ViewBag.ActiveRentals</p>
                                 </div>
                             </div>
 
                             <!-- Revenue Chart -->
-                            <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
-                                <h2 class="text-xl font-semibold text-gray-800">Revenue Trends (Last 30 Days)</h2>
+                            <div class="mt-10 bg-white bg-opacity-95 p-6 rounded-2xl shadow-md">
+                                <h2 class="text-xl font-semibold text-gray-800 mb-4">Revenue Trends (Last 30 Days)</h2>
                                 <canvas id="revenueChart"></canvas>
                             </div>
                         </div>
@@ -44,3 +52,41 @@
         </div>
     </div>
 </div>
+<script>
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    const revenueChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: @Html.Raw(Json.Serialize(ViewBag.Dates)), // Example: ["Mar 1", "Mar 2", ...]
+            datasets: [{
+                label: 'Revenue',
+                data: @Html.Raw(Json.Serialize(ViewBag.RevenueData)), // Example: [100, 200, 150, ...]
+                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                borderColor: 'rgba(59, 130, 246, 1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.3,
+                pointBackgroundColor: 'rgba(59, 130, 246, 1)'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function (value) {
+                            return '$' + value;
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+</script>
