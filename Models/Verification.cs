@@ -20,12 +20,8 @@ namespace CarRental.Models
         [StringLength(20)]
         public string Status { get; set; } = "Pending";
 
-        public string? AdminRemarks { get; set; }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreatedAt { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedAt { get; set; }
 
         // Navigation property

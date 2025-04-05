@@ -92,6 +92,7 @@ namespace CarRental.Controllers
 
         public IActionResult Success(int reservationId)
         {
+            // Fetch the reservation along with the associated car and payment details
             var reservation = _context.Reservations
                 .Include(r => r.Car)       // Load Car details
                 .Include(r => r.Payment)   // Load Payment details
@@ -103,6 +104,7 @@ namespace CarRental.Controllers
             }
 
             reservation.Status = "Confirmed";
+
             if (reservation.Payment != null)
             {
                 reservation.Payment.Status = "Paid";
@@ -112,11 +114,20 @@ namespace CarRental.Controllers
                 Console.WriteLine($"Warning: No Payment record found for ReservationId {reservationId}");
             }
 
+            if (reservation.Car != null)
+            {
+                reservation.Car.Status = "Unavailable";
+            }
+            else
+            {
+                Console.WriteLine($"Warning: No Car record found for ReservationId {reservationId}");
+            }
+
             _context.SaveChanges();
 
-            // Pass reservation details to the Success view
             return View("Success", reservation);
         }
+
 
         public IActionResult Cancel(int reservationId)
         {

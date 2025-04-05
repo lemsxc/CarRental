@@ -2,15 +2,24 @@ using CarRental.Services;
 using CarRental.Middleware;
 using CarRental.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Stripe;
+
+// ✅ Add this:
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
+// ✅ Notyf Setup
+builder.Services.AddNotyf(config => {
+    config.DurationInSeconds = 4;
+    config.IsDismissable = true;
+    config.Position = NotyfPosition.TopRight;
+});
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -46,7 +55,6 @@ builder.Services.AddScoped<IDriverService, DriverService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -59,6 +67,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseSession();
+app.UseNotyf();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<Roles>();

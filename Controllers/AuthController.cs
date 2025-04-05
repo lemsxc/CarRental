@@ -63,12 +63,11 @@ namespace CarRental.Controllers
             // ✅ Sign in the user
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
-            // ✅ Success Toast Message
-            TempData["ToastMessage"] = "Login successful! Welcome back.";
-            TempData["ToastType"] = "success";
-
             if (user.Role == "Admin")
             {
+                // ✅ Success Toast Message
+                TempData["ToastMessage"] = "Login successful! Welcome back.";
+                TempData["ToastType"] = "success";
                 return RedirectToAction("Dashboard", "Admin");
             }
             else

@@ -90,10 +90,9 @@ public class VerificationController : Controller
             return NotFound();
 
         verification.Status = status;
-        verification.AdminRemarks = adminRemarks;
         verification.UpdatedAt = DateTime.Now;
 
         _context.SaveChanges();
-        return RedirectToAction("ReviewVerifications");
+        return RedirectToAction("Verifications", "Admin");
     }
 }

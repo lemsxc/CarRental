@@ -1,68 +1,82 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" x-data>
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] Car Rental</title>
-    <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/UrbanDrive.styles.css" asp-append-version="true" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <title>@ViewData["Title"] - Car Rental</title>
 
+    <!-- Tailwind CSS -->
+    <link href="~/css/output.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/UrbanDrive.styles.css" rel="stylesheet" asp-append-version="true" />
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Alpine.js -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 </head>
 
-<body class="">
-    <!-- Toast Notification -->
+<body class="font-inter bg-white text-gray-800">
+    <!-- 🔔 Toast Notification -->
     <div x-data="{ show: false, message: '', type: 'success' }" x-show="show" x-transition x-cloak
-        class="fixed top-5 right-5 px-4 py-3 rounded-lg shadow-lg text-white text-sm" :class="{
-             'bg-green-500': type === 'success',
-             'bg-red-500': type === 'error',
-             'bg-yellow-500': type === 'warning',
-             'bg-blue-500': type === 'info'
-         }">
-        <span x-text="message"></span>
+        class="fixed top-5 right-5 z-50 px-5 py-3 rounded-xl text-white shadow-lg flex items-center space-x-2" :class="{
+            'bg-green-500': type === 'success',
+            'bg-red-500': type === 'error',
+            'bg-yellow-500': type === 'warning',
+            'bg-blue-500': type === 'info'
+        }">
+        <template x-if="type === 'success'"><span>✅</span></template>
+        <template x-if="type === 'error'"><span>❌</span></template>
+        <template x-if="type === 'warning'"><span>⚠️</span></template>
+        <template x-if="type === 'info'"><span>ℹ️</span></template>
+        <span x-text="message" class="whitespace-pre-line"></span>
+        <button x-on:click="show = false" class="ml-3 text-white font-bold">×</button>
     </div>
 
-    <div class="min-h-screen bg-white">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header (optional slot) -->
         <header>
-
+            @* Add header or navbar here if needed *@
         </header>
 
-        <div class="">
-            <main role="main" class="">
-                @RenderBody()
+        <!-- Main content -->
+        <main role="main" class="flex-grow">
+            @RenderBody()
+        </main>
 
-                <!-- Toast Script -->
-                <script>
-                    function showToast(message, type = 'success', duration = 3000) {
-                        let toast = document.querySelector('[x-data]');
-                        toast.__x.$data.message = message;
-                        toast.__x.$data.type = type;
-                        toast.__x.$data.show = true;
-                        setTimeout(() => toast.__x.$data.show = false, duration);
-                    }
-
-                    document.addEventListener('DOMContentLoaded', () => {
-                        @if (TempData["ToastMessage"] != null)
-                            {
-                                <text> showToast("@TempData["ToastMessage"]", "@TempData["ToastType"]"); </text>
-                        }
-                    });
-                </script>
-
-                <link rel="stylesheet" href="~/dist/styles.bundle.js" asp-append-version="true" />
-                <script src="~/dist/app.bundle.js" defer></script>
-                <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/phosphor-icons@1.4.2/src/index.min.js"></script>
-                @await RenderSectionAsync("Scripts", required: false)
-            </main>
-        </div>
+        <!-- Footer (optional slot) -->
+        <footer class="bg-gray-100 text-center py-4 text-sm text-gray-500">
+            &copy; @DateTime.Now.Year UrbanDrive Car Rental. All rights reserved.
+        </footer>
     </div>
+
+    <script>
+        function showToast(message, type = 'success', duration = 3000) {
+            let toast = document.querySelector('[x-data]');
+            if (toast && toast.__x) {
+                toast.__x.$data.message = message;
+                toast.__x.$data.type = type;
+                toast.__x.$data.show = true;
+                setTimeout(() => toast.__x.$data.show = false, duration);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            @if (TempData["ToastMessage"] != null)
+            {
+                <text> 
+                    showToast("@Html.Raw(TempData["ToastMessage"])", "@TempData["ToastType"]");
+                </text>
+            }
+        });
+    </script>
+
+    <script src="~/dist/app.bundle.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phosphor-icons@1.4.2/src/index.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

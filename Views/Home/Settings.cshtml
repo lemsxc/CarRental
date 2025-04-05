@@ -70,6 +70,8 @@
                     <form asp-action="SubmitVerification" asp-controller="Verification" method="post"
                         enctype="multipart/form-data">
                         <input type="hidden" asp-for="UsersId" />
+                        <input type="hidden" name="lastName"
+                            value="@User.FindFirst(System.Security.Claims.ClaimTypes.Surname)?.Value" />
 
                         <p class="text-gray-600 mb-2">Provide a clear picture of the front and back of your driver's
                             license. Ensure the details are legible.</p>

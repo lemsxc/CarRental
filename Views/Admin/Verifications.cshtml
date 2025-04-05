@@ -17,10 +17,12 @@
                             </div>
 
                             <div class="flex gap-2.5 items-start text-sm text-teal-950 ml-auto">
-                                <div class="relative flex items-center px-5 bg-white rounded-lg min-h-10 min-w-60 w-[260px]">
-                                    <svg class="absolute left-3 w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
+                                <div
+                                    class="relative flex items-center px-5 bg-white rounded-lg min-h-10 min-w-60 w-[260px]">
+                                    <svg class="absolute left-3 w-5 h-5 text-gray-500"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
                                         <circle cx="11" cy="11" r="8"></circle>
                                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                     </svg>
@@ -33,7 +35,8 @@
                     </div>
                 </div>
 
-                <section class="flex flex-col justify-center pb-5 mt-10 w-full text-sm bg-white rounded-lg text-teal-950 max-md:max-w-full">
+                <section
+                    class="flex flex-col justify-center pb-5 mt-10 w-full text-sm bg-white rounded-lg text-teal-950 max-md:max-w-full">
                     <table class="w-full text-left">
                         <thead class="font-semibold border-b border-slate-200">
                             <tr>
@@ -43,7 +46,6 @@
                                 <th class="py-3 px-4">License Front</th>
                                 <th class="py-3 px-4">License Back</th>
                                 <th class="py-3 px-4">Status</th>
-                                <th class="py-3 px-4">Admin Remarks</th>
                                 <th class="py-3 px-4">Submitted At</th>
                                 <th class="py-3 px-4">Last Updated</th>
                                 <th class="py-3 px-4">Actions</th>
@@ -58,16 +60,16 @@
                                     <td class="py-3 px-4">@verification.User.Email</td>
 
                                     <td class="py-3 px-4">
-                                        <a href="@verification.LicenseFrontPath" target="_blank" class="text-blue-500">View Front</a>
+                                        <a href="@verification.LicenseFrontPath" target="_blank" class="text-blue-500">View
+                                            Front</a>
                                     </td>
 
                                     <td class="py-3 px-4">
-                                        <a href="@verification.LicenseBackPath" target="_blank" class="text-blue-500">View Back</a>
+                                        <a href="@verification.LicenseBackPath" target="_blank" class="text-blue-500">View
+                                            Back</a>
                                     </td>
 
                                     <td class="py-3 px-4 font-medium">@verification.Status</td>
-
-                                    <td class="py-3 px-4">@verification.AdminRemarks ?? "-" </td>
 
                                     <td class="py-3 px-4">@verification.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
 
@@ -76,15 +78,18 @@
                                     <td class="py-3 px-4 space-y-1">
                                         <form asp-action="UpdateVerification" method="post">
                                             <input type="hidden" name="id" value="@verification.Id" />
-                                            <input type="hidden" name="status" value="Approved" />
-                                            <button type="submit" class="bg-green-500 text-white px-3 py-1 rounded">Approve</button>
-                                        </form>
-                                        <form asp-action="UpdateVerification" method="post" class="mt-1">
-                                            <input type="hidden" name="id" value="@verification.Id" />
-                                            <input type="hidden" name="status" value="Rejected" />
-                                            <input type="text" name="adminRemarks" placeholder="Remarks (optional)"
-                                                class="text-xs mt-1 px-2 py-1 border rounded w-full" />
-                                            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded mt-1">Reject</button>
+
+                                            <!-- Only show the buttons if the status is not "Approved" -->
+                                            @if (verification.Status != "Approved")
+                                            {
+                                                <!-- Approve button -->
+                                                <button type="submit" name="status" value="Approved"
+                                                    class="bg-green-500 text-white px-3 py-1 rounded">Approve</button>
+
+                                                <!-- Reject button -->
+                                                <button type="submit" name="status" value="Rejected"
+                                                    class="bg-red-500 text-white px-3 py-1 rounded mt-1">Reject</button>
+                                            }
                                         </form>
                                     </td>
                                 </tr>
