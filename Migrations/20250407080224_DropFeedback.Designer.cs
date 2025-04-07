@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRental.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250405090056_FixDate")]
-    partial class FixDate
+    [Migration("20250407080224_DropFeedback")]
+    partial class DropFeedback
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,37 +137,37 @@ namespace CarRental.Migrations
                     b.ToTable("Drivers");
                 });
 
-            modelBuilder.Entity("CarRental.Models.Feedback", b =>
+            modelBuilder.Entity("CarRental.Models.Logs", b =>
                 {
-                    b.Property<int>("FeedbackId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedbackId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CarId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateReview")
+                    b.Property<DateTime>("ActionDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Review")
+                    b.Property<string>("ActionType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UsersId")
+                    b.Property<int>("AdminId")
                         .HasColumnType("int");
 
-                    b.HasKey("FeedbackId");
+                    b.Property<string>("AdminName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("CarId");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("UsersId");
+                    b.HasKey("Id");
 
-                    b.ToTable("Feedbacks");
+                    b.HasIndex("AdminId");
+
+                    b.ToTable("Logs");
                 });
 
             modelBuilder.Entity("CarRental.Models.Payment", b =>
@@ -329,21 +329,13 @@ namespace CarRental.Migrations
                     b.ToTable("Verifications");
                 });
 
-            modelBuilder.Entity("CarRental.Models.Feedback", b =>
+            modelBuilder.Entity("CarRental.Models.Logs", b =>
                 {
-                    b.HasOne("CarRental.Models.Car", "Car")
-                        .WithMany("Feedbacks")
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CarRental.Models.User", "User")
-                        .WithMany("Feedbacks")
-                        .HasForeignKey("UsersId")
+                        .WithMany()
+                        .HasForeignKey("AdminId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Car");
 
                     b.Navigation("User");
                 });
@@ -397,8 +389,6 @@ namespace CarRental.Migrations
 
             modelBuilder.Entity("CarRental.Models.Car", b =>
                 {
-                    b.Navigation("Feedbacks");
-
                     b.Navigation("Reservations");
                 });
 
@@ -410,8 +400,6 @@ namespace CarRental.Migrations
 
             modelBuilder.Entity("CarRental.Models.User", b =>
                 {
-                    b.Navigation("Feedbacks");
-
                     b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618

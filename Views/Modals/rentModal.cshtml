@@ -19,7 +19,6 @@
             <p class="text-green-600 font-bold">Price: $<span id="car_price" x-text="carDetails.rent_price"></span>
                 / day</p>
 
-
             <!-- Reservation Inputs -->
             <div class="mt-2">
                 <label for="start_date" class="block text-sm font-medium text-gray-700">Start Date</label>
@@ -80,18 +79,18 @@
 
     async function fetchDrivers() {
         const driverDropdown = document.getElementById("driver_list");
-        driverDropdown.innerHTML = "<option>Loading drivers...</option>";
+        driverDropdown.innerHTML = "<option selected disabled>Loading drivers...</option>";
 
         try {
             const response = await fetch("/api/drivers");
             const drivers = await response.json();
 
-            driverDropdown.innerHTML = "<option value=''>Select a Driver</option>";
+            driverDropdown.innerHTML = "<option value='' disabled selected>Select a Driver</option>";
             drivers.forEach(driver => {
-                driverDropdown.innerHTML += `<option value="${driver.id}">${driver.name}</option>`;
+                driverDropdown.innerHTML += `<option value="${driver.driverId}">${driver.name}</option>`;
             });
         } catch (error) {
-            driverDropdown.innerHTML = "<option>Error loading drivers</option>";
+            driverDropdown.innerHTML = "<option disabled>Error loading drivers</option>";
             console.error("Failed to fetch drivers:", error);
         }
     }

@@ -18,6 +18,7 @@ namespace CarRental.Controllers
         {
             _context = context;
         }
+        
         [HttpPost]
         public IActionResult CreateCheckoutSession([FromBody] PaymentRequest request)
         {
@@ -43,10 +44,11 @@ namespace CarRental.Controllers
                 ReservedDate = DateTime.Now,
                 Status = "Pending",
                 TotalAmount = totalPrice,
+                DriverId = request.DriverId // ✅ Add this
             };
 
             _context.Reservations.Add(reservation);
-            _context.SaveChanges();  // Save to get ReservationId
+            _context.SaveChanges(); 
 
             var payment = new Payment
             {
@@ -81,7 +83,7 @@ namespace CarRental.Controllers
                 },
                 Mode = "payment",
                 SuccessUrl = $"http://localhost:5124/Payment/Success?reservationId={reservation.ReservationId}",
-                CancelUrl = "http://localhost:5124/Reservation/List"
+                CancelUrl = "http://localhost:5124/Payment/Cancel"
             };
 
             var service = new SessionService();

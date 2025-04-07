@@ -6,18 +6,23 @@ using CarRental.Models;
 using CarRental.Services;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace CarRental.Controllers
 {
     public class CarController : Controller
     {
         private readonly ICarService _carService;
+        private readonly ILogsService _logsService;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly ApplicationDbContext _context;
 
-        public CarController(ICarService carService, IWebHostEnvironment webHostEnvironment)
+        public CarController(ICarService carService, IWebHostEnvironment webHostEnvironment, ILogsService logsService, ApplicationDbContext context)
         {
             _carService = carService;
             _webHostEnvironment = webHostEnvironment;
+            _logsService = logsService;
+            _context = context;
         }
 
         // POST: Add Car
@@ -74,11 +79,23 @@ namespace CarRental.Controllers
             // ✅ Insert into Database
             await _carService.AddCarAsync(car);
 
+            // ✅ Admin Logging
+            int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int adminId);
+
+            var admin = await _context.Users.FindAsync(adminId); // Assumes _context injected
+            if (admin != null)
+            {
+                string fullName = $"{admin.FirstName} {admin.LastName}";
+                string description = $"Added a new car: {Brand} {Model} ({Category})";
+                await _logsService.LogAsync("Add Car", description, fullName, admin.UsersId);
+            }
+
             // ✅ Redirect to Car List after successful insertion
             return RedirectToAction("Vehicles", "Admin");
         }
 
-        public async Task<IActionResult> Edit(int id)
+        // Update Car (instead of Edit)
+        public async Task<IActionResult> Update(int id)
         {
             var car = await _carService.GetCarByIdAsync(id);
             if (car == null)
@@ -89,7 +106,8 @@ namespace CarRental.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, Car updatedCar, IFormFile ImageFile)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int id, Car updatedCar, IFormFile ImageFile)
         {
             if (id != updatedCar.CarId)
             {
@@ -122,6 +140,7 @@ namespace CarRental.Controllers
                         await ImageFile.CopyToAsync(fileStream);
                     }
 
+                    // Delete old image if exists
                     if (!string.IsNullOrEmpty(existingCar.Image))
                     {
                         string oldFilePath = Path.Combine(_webHostEnvironment.WebRootPath, existingCar.Image);
@@ -138,14 +157,26 @@ namespace CarRental.Controllers
                     updatedCar.Image = existingCar.Image;
                 }
 
+                // Update Car details
                 await _carService.UpdateCarAsync(updatedCar);
 
-                return RedirectToAction("Index");
+                // ✅ Admin Logging for Update
+                int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int adminId);
+
+                var admin = await _context.Users.FindAsync(adminId);
+                if (admin != null)
+                {
+                    string fullName = $"{admin.FirstName} {admin.LastName}";
+                    string description = $"Updated car details: {updatedCar.Brand} {updatedCar.Model}, Plate: {updatedCar.PlateNumber}";
+                    await _logsService.LogAsync("Update Car", description, fullName, admin.UsersId);
+                }
+
+                return RedirectToAction("Vehicles", "Admin");
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", $"Error: {ex.Message}");
-                return View("EditCar", updatedCar);
+                return RedirectToAction("Vehicles", "Admin");
             }
         }
     }

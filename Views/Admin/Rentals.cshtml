@@ -43,7 +43,7 @@
                 <!-- Transactions Table -->
                 <section
                     class="flex flex-col justify-center pb-5 mt-10 w-full text-sm bg-white rounded-lg text-teal-950 max-md:max-w-full">
-                    <table class="min-w-full divide-y divide-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200 text-center">
                         <!-- Table Header -->
                         <thead class="font-semibold border-b border-slate-200">
                             <tr>
@@ -53,6 +53,7 @@
                                 <th class="py-3 px-4 text-center">Model</th>
                                 <th class="py-3 px-4 text-center">Plate Number</th>
                                 <th class="py-3 px-4 text-center">Total amount</th>
+                                <th class="py-3 px-4 text-center">Driver</th>
                                 <th class="py-3 px-4 text-center">Start Date</th>
                                 <th class="py-3 px-4 text-center">End Date</th>
                                 <th class="py-3 px-4 text-center">Status</th>
@@ -71,17 +72,21 @@
                                     <td class="py-3 px-4 text-center">@reservation.Car.Model</td>
                                     <td class="py-3 px-4 text-center">@reservation.Car.PlateNumber</td>
                                     <td class="py-3 px-4 text-center">@reservation.TotalAmount</td>
-                                    <td class="py-3 px-4 text-center">@reservation.StartDate.ToString("dd-MM-yyyy")</td>
-                                    <td class="py-3 px-4 text-center">@reservation.EndDate.ToString("dd-MM-yyyy")</td>
-                                    <td class="py-3 px-4 text-center">@reservation.Status?.ToUpper()</td>
-                                    <td class="px-8 py-4 text-center">
-                                        <button
-                                            class="text-sm font-medium text-white bg-indigo-600 rounded-lg py-1 px-4 transition-all duration-200 ease-in-out hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
-                                            View
-                                        </button>
+                                    <td class="py-3 px-4 text-center">
+                                        @(reservation.Driver != null ? 
+                                        $"{reservation.Driver.FirstName} {reservation.Driver.LastName}": "No Driver")
                                     </td>
-                                </tr>
-                            }
+                                <td class="py-3 px-4 text-center">@reservation.StartDate.ToString("dd-MM-yyyy")</td>
+                                <td class="py-3 px-4 text-center">@reservation.EndDate.ToString("dd-MM-yyyy")</td>
+                                <td class="py-3 px-4 text-center">@reservation.Status</td>
+                                <td class="px-8 py-4 text-center">
+                                    <button
+                                        class="text-sm font-medium text-white bg-indigo-600 rounded-lg py-1 px-4 transition-all duration-200 ease-in-out hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+                                        View
+                                    </button>
+                                </td>
+                            </tr>
+                                                        }
                         </tbody>
                     </table>
                 </section>

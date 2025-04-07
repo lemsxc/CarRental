@@ -4,6 +4,7 @@ using CarRental.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRental.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250407041845_AdminLogs")]
+    partial class AdminLogs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,6 +135,39 @@ namespace CarRental.Migrations
                     b.HasKey("DriverId");
 
                     b.ToTable("Drivers");
+                });
+
+            modelBuilder.Entity("CarRental.Models.Feedback", b =>
+                {
+                    b.Property<int>("FeedbackId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedbackId"));
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateReview")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Review")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FeedbackId");
+
+                    b.HasIndex("CarId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("Feedbacks");
                 });
 
             modelBuilder.Entity("CarRental.Models.Logs", b =>
@@ -326,6 +362,25 @@ namespace CarRental.Migrations
                     b.ToTable("Verifications");
                 });
 
+            modelBuilder.Entity("CarRental.Models.Feedback", b =>
+                {
+                    b.HasOne("CarRental.Models.Car", "Car")
+                        .WithMany("Feedbacks")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CarRental.Models.User", "User")
+                        .WithMany("Feedbacks")
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("CarRental.Models.Logs", b =>
                 {
                     b.HasOne("CarRental.Models.User", "User")
@@ -386,6 +441,8 @@ namespace CarRental.Migrations
 
             modelBuilder.Entity("CarRental.Models.Car", b =>
                 {
+                    b.Navigation("Feedbacks");
+
                     b.Navigation("Reservations");
                 });
 
@@ -397,6 +454,8 @@ namespace CarRental.Migrations
 
             modelBuilder.Entity("CarRental.Models.User", b =>
                 {
+                    b.Navigation("Feedbacks");
+
                     b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618

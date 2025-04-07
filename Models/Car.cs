@@ -45,6 +45,5 @@ namespace CarRental.Models
         public string Status { get; set; } // E.g., Available & Unavailable
 
         public ICollection<Reservation> Reservations { get; set; }
-        public ICollection<Feedback> Feedbacks { get; set; }
     }
 }

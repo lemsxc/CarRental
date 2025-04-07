@@ -28,7 +28,6 @@ namespace CarRental.Models
         public bool IsVerified { get; set; }
 
         public ICollection<Reservation> Reservations { get; set; }
-        public ICollection<Feedback> Feedbacks { get; set; }
     }
 
 }

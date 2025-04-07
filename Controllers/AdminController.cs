@@ -13,10 +13,12 @@ namespace CarRental.Controllers
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogsService _logsService;
 
-        public AdminController(ApplicationDbContext context)
+        public AdminController(ApplicationDbContext context, ILogsService logsService)
         {
             _context = context;
+            _logsService = logsService;
         }
 
         [HttpGet("Admin/GetRevenue")]
@@ -86,7 +88,11 @@ namespace CarRental.Controllers
         [Authorize(Policy = "Admin")]
         public IActionResult Rentals()
         {
-            var reservations = _context.Reservations.Include(r => r.Car).ToList();
+            var reservations = _context.Reservations
+                .Include(r => r.Car)
+                .Include(r => r.Driver) // 👈 Include driver data
+                .ToList();
+
             return View(reservations);
         }
 
@@ -126,6 +132,16 @@ namespace CarRental.Controllers
                 .ToList();
 
             return View(verifications);
+        }
+
+        [Authorize(Policy = "Admin")]
+        public IActionResult Logs()
+        {
+            var logs = _context.Logs
+                .Include(r => r.User)
+                .ToList();
+
+            return View(logs);
         }
     }
 }
