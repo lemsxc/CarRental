@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "MXQp87KgStk=",
+  "dgSpecHash": "7/gk7bS/bzs=",
   "success": true,
   "projectFilePath": "C:\\Users\\lemma\\source\\repos\\CarRental\\CarRental.csproj",
   "expectedPackageFiles": [
@@ -57,6 +57,7 @@
     "C:\\Users\\lemma\\.nuget\\packages\\humanizer.core.zh-cn\\2.14.1\\humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "C:\\Users\\lemma\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\lemma\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "C:\\Users\\lemma\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\8.0.13\\microsoft.aspnetcore.authentication.google.8.0.13.nupkg.sha512",
     "C:\\Users\\lemma\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\8.0.13\\microsoft.aspnetcore.diagnostics.entityframeworkcore.8.0.13.nupkg.sha512",
     "C:\\Users\\lemma\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.24\\microsoft.aspnetcore.razor.language.6.0.24.nupkg.sha512",
     "C:\\Users\\lemma\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",

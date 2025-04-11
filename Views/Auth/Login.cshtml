@@ -56,6 +56,14 @@
                 </div>
             </form>
         </section>
+        <div class="mt-4">
+            <a href="@Url.Action("GoogleLogin", "Auth")"
+                class="flex items-center justify-center w-full py-2 px-4 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 transition">
+                <img src="https://developers.google.com/identity/images/g-logo.png" class="w-5 h-5 mr-2"
+                    alt="Google logo" />
+                <span class="text-gray-700 font-medium">Continue with Google</span>
+            </a>
+        </div>
         <!-- Additional Links -->
         <div class="mt-4 text-center space-y-2">
             <p><a href="@Url.Action("ForgotPassword", "Account")" class="text-blue-600 hover:underline">Forgot
@@ -68,6 +76,7 @@
                 <a asp-controller="Auth" asp-action="Register" class="text-indigo-600 hover:underline">Register</a>
             </p>
         </div>
+
     </div>
 </div>
 

@@ -128,7 +128,6 @@ namespace CarRental.Controllers
         {
             var verifications = _context.Verifications
                 .Include(v => v.User) // Load user details
-                .Where(v => v.Status == "Pending") // Show only pending verifications
                 .ToList();
 
             return View(verifications);

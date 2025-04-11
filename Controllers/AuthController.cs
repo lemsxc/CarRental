@@ -4,6 +4,7 @@ using CarRental.Models;
 using CarRental.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -105,6 +106,81 @@ namespace CarRental.Controllers
 
             return RedirectToAction("Login");
         }
+
+        public async Task GoogleLogin()
+        {
+            await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme,
+                new AuthenticationProperties
+                {
+                    RedirectUri = Url.Action("GoogleResponse")
+                });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GoogleResponse()
+        {
+            var authResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            if (!authResult.Succeeded)
+            {
+                TempData["ToastMessage"] = "Google login failed.";
+                TempData["ToastType"] = "error";
+                return RedirectToAction("Login");
+            }
+
+            var email = authResult.Principal.FindFirst(ClaimTypes.Email)?.Value;
+            var firstName = authResult.Principal.FindFirst(ClaimTypes.GivenName)?.Value ?? "Unknown";
+            var lastName = authResult.Principal.FindFirst(ClaimTypes.Surname)?.Value ?? "Unknown";
+
+            if (string.IsNullOrEmpty(email))
+            {
+                TempData["ToastMessage"] = "Google login failed: Email missing.";
+                TempData["ToastType"] = "error";
+                return RedirectToAction("Login");
+            }
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+
+            if (user == null)
+            {
+                // Only set password if user is new
+                string password = firstName + lastName;
+
+                user = new User
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    Password = HashPassword(password), // Only set this if user is new
+                    Role = "User",
+                    IsVerified = true
+                };
+
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+            }
+
+            // Create claims for login
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.UsersId.ToString()),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.GivenName, user.FirstName),
+                new Claim(ClaimTypes.Surname, user.LastName),
+                new Claim(ClaimTypes.Role, user.Role)
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var authProperties = new AuthenticationProperties { IsPersistent = true };
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
+            TempData["ToastMessage"] = "Logged in with Google successfully!";
+            TempData["ToastType"] = "success";
+
+            return user.Role == "Admin" ? RedirectToAction("Dashboard", "Admin") : RedirectToAction("Home", "Home");
+        }
+
+
 
         // ✅ Logout User (Clear Auth Cookie)
         public async Task<IActionResult> Logout()

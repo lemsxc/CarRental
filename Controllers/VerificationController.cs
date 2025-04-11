@@ -92,6 +92,16 @@ public class VerificationController : Controller
         verification.Status = status;
         verification.UpdatedAt = DateTime.Now;
 
+        // Update the user's IsVerified status if approved
+        if (status == "Approved")
+        {
+            var user = _context.Users.FirstOrDefault(u => u.UsersId == verification.UserId);
+            if (user != null)
+            {
+                user.IsVerified = true;
+            }
+        }
+
         _context.SaveChanges();
         return RedirectToAction("Verifications", "Admin");
     }
