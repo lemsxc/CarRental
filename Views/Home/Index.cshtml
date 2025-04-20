@@ -5,83 +5,64 @@
 <div class="bg-gradient-to-r from-green-200 to-blue-200 min-h-screen">
     <!-- Hero Section -->
     <div class="container mx-auto px-6 py-16 text-center">
-        <h1 class="text-5xl font-extrabold leading-tight">
+        <h1 class="text-5xl font-extrabold leading-tight text-gray-900">
             Drive Your Dream Car Today
         </h1>
-        <p class="mt-4 text-lg text-gray-300">
+        <p class="mt-4 text-lg text-gray-700">
             Rent top-quality vehicles at unbeatable prices, anytime, anywhere.
         </p>
-        <a href="/Cars"
+        <a href="@Url.Action("Login", "Auth")"
             class="mt-6 inline-block bg-yellow-500 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-600 transition">
-            Browse Cars
+            Login
         </a>
     </div>
 
     <!-- Featured Cars Section -->
     <div class="container mx-auto px-6 py-16">
-        <h2 class="text-3xl font-bold text-center">Featured Cars</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+        <h2 class="text-3xl font-bold text-center text-gray-900">Featured Cars</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+
+            <!-- Sports Car -->
             <div class="bg-white text-black p-6 rounded-lg shadow-lg">
-                <img src="/images/sportscar.jpg" class="w-full rounded-lg" alt="Sports Car">
+                <img src="https://cdn.pixabay.com/photo/2021/08/31/19/02/luxury-car-6589869_1280.jpg" class="w-full rounded-lg" alt="Sports Car">
                 <h3 class="text-xl font-semibold mt-4">Luxury Sports Car</h3>
                 <p class="text-gray-600 mt-2">Experience the thrill of speed and luxury.</p>
             </div>
+
+            <!-- SUV -->
             <div class="bg-white text-black p-6 rounded-lg shadow-lg">
-                <img src="/images/suv.jpg" class="w-full rounded-lg" alt="SUV">
+                <img src="https://cdn.pixabay.com/photo/2020/08/21/10/48/hyundai-5505817_1280.jpg" class="w-full rounded-lg" alt="SUV">
                 <h3 class="text-xl font-semibold mt-4">Spacious SUV</h3>
                 <p class="text-gray-600 mt-2">Perfect for family trips and off-road adventures.</p>
             </div>
+
+            <!-- Sedan -->
             <div class="bg-white text-black p-6 rounded-lg shadow-lg">
-                <img src="/images/electric.jpg" class="w-full rounded-lg" alt="Electric Car">
-                <h3 class="text-xl font-semibold mt-4">Eco-Friendly Electric</h3>
-                <p class="text-gray-600 mt-2">Go green with zero emissions and maximum efficiency.</p>
+                <img src="https://cdn.pixabay.com/photo/2022/01/11/15/07/mercedes-benz-6930824_1280.jpg" class="w-full rounded-lg" alt="Sedan">
+                <h3 class="text-xl font-semibold mt-4">Elegant Sedan</h3>
+                <p class="text-gray-600 mt-2">Comfort and style for your daily drives and business trips.</p>
+            </div>
+
+            <!-- Electric Car -->
+            <div class="bg-white text-black p-6 rounded-lg shadow-lg">
+                <img src="https://cdn.pixabay.com/photo/2020/10/04/16/40/tesla-5623971_1280.jpg" class="w-full rounded-lg" alt="Electric Car">
+                <h3 class="text-xl font-semibold mt-4">Eco-friendly Electric</h3>
+                <p class="text-gray-600 mt-2">Drive the future with our electric car collection.</p>
+            </div>
+
+            <!-- Convertible -->
+            <div class="bg-white text-black p-6 rounded-lg shadow-lg">
+                <img src="https://cdn.pixabay.com/photo/2017/03/27/13/42/auto-2179232_1280.jpg" class="w-full rounded-lg" alt="Convertible">
+                <h3 class="text-xl font-semibold mt-4">Stylish Convertible</h3>
+                <p class="text-gray-600 mt-2">Enjoy the sunshine and the open road.</p>
+            </div>
+
+            <!-- Classic Car -->
+            <div class="bg-white text-black p-6 rounded-lg shadow-lg">
+                <img src="https://cdn.pixabay.com/photo/2016/11/29/09/32/automobile-1868726_1280.jpg" class="w-full rounded-lg" alt="Classic Car">
+                <h3 class="text-xl font-semibold mt-4">Vintage Classic</h3>
+                <p class="text-gray-600 mt-2">Timeless design for special occasions.</p>
             </div>
         </div>
     </div>
-
-    <!-- Why Choose Us Section -->
-    <div class="container mx-auto px-6 py-16 text-black">
-        <h2 class="text-3xl font-bold text-center">Why Choose UrbanDrive?</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-                <img src="https://cdn-icons-png.flaticon.com/512/2554/2554965.png" class="mx-auto w-16" alt="24/7 Service">
-                <h3 class="text-xl font-semibold mt-4">24/7 Availability</h3>
-                <p class="mt-2 text-gray-600">Book and drive anytime, with round-the-clock service.</p>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-                <img src="https://cdn-icons-png.flaticon.com/512/2620/2620262.png" class="mx-auto w-16" alt="Affordable">
-                <h3 class="text-xl font-semibold mt-4">Affordable Pricing</h3>
-                <p class="mt-2 text-gray-600">Competitive rates with no hidden fees.</p>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-                <img src="https://cdn-icons-png.flaticon.com/512/2383/2383584.png" class="mx-auto w-16" alt="Customer Support">
-                <h3 class="text-xl font-semibold mt-4">Top-Notch Support</h3>
-                <p class="mt-2 text-gray-600">Our team is ready to assist you at any time.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Testimonials Section -->
-    <div class="container mx-auto px-6 py-16">
-        <h2 class="text-3xl font-bold text-center">What Our Customers Say</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-            <div class="bg-gray-300 p-6 rounded-lg shadow-lg">
-                <p class="text-lg">"Amazing service and well-maintained cars. Highly recommend!"</p>
-                <h4 class="mt-4 font-semibold">- Alex D.</h4>
-            </div>
-            <div class="bg-gray-300 p-6 rounded-lg shadow-lg">
-                <p class="text-lg">"Best rental experience ever! Smooth booking process."</p>
-                <h4 class="mt-4 font-semibold">- Sarah K.</h4>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-6 text-center">
-        <p>© 2025 SpeedRent. All Rights Reserved.</p>
-        <div class="mt-2">
-            <a href="#" class="text-blue-400 hover:underline mx-2">Privacy Policy</a>
-            <a href="#" class="text-blue-400 hover:underline mx-2">Terms of Service</a>
-        </div>
-    </footer>
 </div>

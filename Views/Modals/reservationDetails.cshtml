@@ -1,0 +1,191 @@
+<div x-cloak x-show="reservationDetails"
+    class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 p-4"
+    x-on:keydown.escape.window="reservationDetails = false">
+    <div class="bg-white rounded-lg p-6 max-w-3xl w-full max-h-screen overflow-y-auto">
+        <!-- Header Section -->
+        <div class="flex justify-between items-center border-b pb-3">
+            <h2 class="text-xl font-bold" x-text="selectedReservation.brand + ' ' + selectedReservation.model"></h2>
+            <button x-on:click="reservationDetails = false" class="text-gray-500 hover:text-gray-800">&times;</button>
+        </div>
+
+        <!-- Car Image -->
+        <img x-bind:src="selectedReservation.image" class="rounded-lg mx-auto w-11/12 h-72 object-cover"
+            alt="Car Image">
+
+        <!-- Technical Specifications -->
+        <div class="mt-6">
+            <h3 class="font-bold text-lg">Technical Specifications</h3>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
+                <!-- Category -->
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="font-semibold flex items-center gap-2">
+                        <!-- Category Icon -->
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M4 4h6v6H4V4zm0 10h6v6H4v-6zm10-10h6v6h-6V4zm0 10h6v6h-6v-6z" />
+                        </svg>
+                        Category
+                    </p>
+                    <p class="text-gray-600" x-text="selectedReservation.category"></p>
+                </div>
+
+                <!-- Transmission -->
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="font-semibold flex items-center gap-2">
+                        <!-- Gear Icon -->
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 8a4 4 0 100 8 4 4 0 000-8zm0-6a1 1 0 01.993.883L13 3v1.07a7.001 7.001 0 013.75 1.95l.759-.759a1 1 0 011.497 1.32l-.083.094-.759.76A7.001 7.001 0 0120.93 11H22a1 1 0 01.117 1.993L22 13h-1.07a7.001 7.001 0 01-1.95 3.75l.759.759a1 1 0 01-1.32 1.497l-.094-.083-.76-.759A7.001 7.001 0 0113 20.93V22a1 1 0 01-1.993.117L11 22v-1.07a7.001 7.001 0 01-3.75-1.95l-.759.759a1 1 0 01-1.497-1.32l.083-.094.759-.76A7.001 7.001 0 013.07 13H2a1 1 0 01-.117-1.993L2 11h1.07a7.001 7.001 0 011.95-3.75l-.759-.759a1 1 0 011.32-1.497l.094.083.76.759A7.001 7.001 0 0111 3.07V2a1 1 0 011-1z" />
+                        </svg>
+                        Transmission
+                    </p>
+                    <p class="text-gray-600" x-text="selectedReservation.transmission"></p>
+                </div>
+
+                <!-- Fuel -->
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="font-semibold flex items-center gap-2">
+                        <!-- Gas Pump Icon -->
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M16 3a1 1 0 00-1 1v16a1 1 0 102 0v-5h1a1 1 0 001-1V7.414a1 1 0 00-.293-.707l-3-3A1 1 0 0016 3zm1 2.414L18.586 7H17V5.414zM5 2a1 1 0 00-1 1v18a1 1 0 001 1h8a1 1 0 001-1V3a1 1 0 00-1-1H5z" />
+                        </svg>
+                        Fuel
+                    </p>
+                    <p class="text-gray-600" x-text="selectedReservation.fuel_type"></p>
+                </div>
+
+                <!-- Fuel Level -->
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="font-semibold flex items-center gap-2">
+                        <!-- Tachometer Icon -->
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2a10 10 0 11-7.07 17.07A10 10 0 0112 2zm0 2a8 8 0 100 16 8 8 0 000-16zm.5 4v4.59l3.3 3.3a1 1 0 01-1.42 1.42l-3.58-3.59A1 1 0 0110 13V8a1 1 0 012 0z" />
+                        </svg>
+                        Fuel Level
+                    </p>
+                    <p class="text-gray-600" x-text="selectedReservation.fuel_level"></p>
+                </div>
+
+                <!-- Rent Price -->
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="font-semibold flex items-center gap-2">
+                        <!-- Dollar Icon -->
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 1a1 1 0 011 1v1.07a5 5 0 010 9.86v5.2a1 1 0 11-2 0v-5.2a5 5 0 010-9.86V2a1 1 0 011-1z" />
+                        </svg>
+                        Rent Price
+                    </p>
+                    <p class="text-gray-600" x-text=" '₱' +selectedReservation.price"></p>
+                </div>
+
+                <!-- Plate Number -->
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="font-semibold flex items-center gap-2">
+                        <!-- ID Card Icon -->
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zM4 8h16v2H4V8zm0 4h6v6H4v-6zm8 0h8v2h-8v-2zm0 4h8v2h-8v-2z" />
+                        </svg>
+                        Plate Number
+                    </p>
+                    <p class="text-gray-600" x-text="selectedReservation.plateNum"></p>
+                </div>
+
+                <!-- Mileage -->
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="font-semibold flex items-center gap-2">
+                        <!-- Road Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000"
+                            viewBox="0 0 256 256">
+                            <path
+                                d="M235.92,199A8,8,0,0,1,225,195.92L155.32,72H136v8a8,8,0,0,1-16,0V72H100.68L31,195.92A8,8,0,0,1,17,188.08L82.32,72H24a8,8,0,0,1,0-16H232a8,8,0,0,1,0,16H173.68L239,188.08A8,8,0,0,1,235.92,199ZM128,112a8,8,0,0,0-8,8v16a8,8,0,0,0,16,0V120A8,8,0,0,0,128,112Zm0,56a8,8,0,0,0-8,8v16a8,8,0,0,0,16,0V176A8,8,0,0,0,128,168Z">
+                            </path>
+                        </svg>
+                        Mileage
+                    </p>
+                    <p class="text-gray-600" x-text="selectedReservation.mileage + ' km'"></p>
+                </div>
+
+                <!-- Condition -->
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="font-semibold flex items-center gap-2">
+                        <!-- Wrench Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000"
+                            viewBox="0 0 256 256">
+                            <path
+                                d="M226.76,69a8,8,0,0,0-12.84-2.88l-40.3,37.19-17.23-3.7-3.7-17.23,37.19-40.3A8,8,0,0,0,187,29.24,72,72,0,0,0,88,96,72.34,72.34,0,0,0,94,124.94L33.79,177c-.15.12-.29.26-.43.39a32,32,0,0,0,45.26,45.26c.13-.13.27-.28.39-.42L131.06,162A72,72,0,0,0,232,96,71.56,71.56,0,0,0,226.76,69ZM160,152a56.14,56.14,0,0,1-27.07-7,8,8,0,0,0-9.92,1.77L67.11,211.51a16,16,0,0,1-22.62-22.62L109.18,133a8,8,0,0,0,1.77-9.93,56,56,0,0,1,58.36-82.31l-31.2,33.81a8,8,0,0,0-1.94,7.1L141.83,108a8,8,0,0,0,6.14,6.14l26.35,5.66a8,8,0,0,0,7.1-1.94l33.81-31.2A56.06,56.06,0,0,1,160,152Z">
+                            </path>
+                        </svg>
+                        Condition
+                    </p>
+                    <p class="text-gray-600" x-text="selectedReservation.condition"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reservation Dates -->
+        <div class="mt-6">
+            <h3 class="font-bold text-lg">Reservation Details</h3>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
+                <!-- Start Date -->
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="font-semibold flex items-center gap-2">
+                        <!-- Calendar Icon -->
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zM5 20V9h14v11H5z" />
+                        </svg>
+                        Start Date
+                    </p>
+                    <p class="text-gray-600" x-text="selectedReservation.start"></p>
+                </div>
+
+                <!-- End Date -->
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="font-semibold flex items-center gap-2">
+                        <!-- Calendar Check Icon -->
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 11l3 3L22 4l-1.41-1.41L12 12.17 10.41 10.6 9 12z" />
+                        </svg>
+                        End Date
+                    </p>
+                    <p class="text-gray-600" x-text="selectedReservation.end"></p>
+                </div>
+
+                <!-- Amount -->
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="font-semibold flex items-center gap-2">
+                        <!-- Dollar Circle Icon -->
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-1h2a2 2 0 000-4h-2a2 2 0 010-4h2v1h-2a1 1 0 000 2h2a2 2 0 010 4h-2v1h2a1 1 0 000-2h-2v-1z" />
+                        </svg>
+                        Amount
+                    </p>
+                    <p class="text-gray-600" x-text="selectedReservation.amount"></p>
+                </div>
+
+                <!-- Status -->
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="font-semibold flex items-center gap-2">
+                        <!-- Check Circle Icon -->
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2a10 10 0 1010 10A10.011 10.011 0 0012 2zm-1 15l-5-5 1.41-1.41L11 14.17l6.59-6.59L19 9z" />
+                        </svg>
+                        Status
+                    </p>
+                    <p class="text-gray-600" x-text="selectedReservation.status"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Close Button -->
+        <div class="flex justify-center mt-6">
+            <button x-on:click="reservationDetails = false"
+                class="bg-gray-600 text-white px-6 py-2 rounded-lg">Close</button>
+        </div>
+    </div>
+</div>

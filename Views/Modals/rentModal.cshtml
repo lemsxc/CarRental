@@ -10,52 +10,86 @@
 
             <!-- Car Details -->
             <p class="font-semibold hidden">Id <span id="car_id" x-text="carDetails.id"></span></p>
-            <p class="font-semibold">Car Name: <span id="car_name"
-                    x-text="carDetails.brand + ' ' + carDetails.model"></span></p>
-            <p class="text-gray-600">Transmission: <span id="car_transmission" x-text="carDetails.transmission"></span>
+            <p class="font-semibold text-gray-600 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" viewBox="0 0 256 256">
+                    <path
+                        d="M128,152a12,12,0,1,1,12-12A12,12,0,0,1,128,152Zm104-24A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128ZM40,128v.33a135.93,135.93,0,0,1,176,0V128a88,88,0,0,0-176,0Zm67.5,85.58L90.45,168H49.63A88.35,88.35,0,0,0,107.5,213.58ZM128,216c.83,0,1.66,0,2.49,0l20.07-53.57a16.07,16.07,0,0,1,15-10.39h47.12c.38-1.31.72-2.64,1-4a120,120,0,0,0-171.4,0c.31,1.34.65,2.67,1,4H90.45a16.08,16.08,0,0,1,15,10.4l20,53.56C126.31,216,127.15,216,128,216Zm78.37-48H165.55l-17.09,45.59A88.34,88.34,0,0,0,206.37,168Z">
+                    </path>
+                </svg>
+                Car Name: <span id="car_name" x-text="carDetails.brand + ' ' + carDetails.model"></span>
             </p>
-            <p class="text-gray-600">Fuel Type: <span id="car_fuel" x-text="carDetails.fuel_type"></span></p>
-            <p class="text-gray-600">Mileage: <span id="car_mileage" x-text="carDetails.mileage"></span></p>
-            <p class="text-green-600 font-bold">Price: $<span id="car_price" x-text="carDetails.rent_price"></span>
-                / day</p>
+            <p class="text-gray-600">
+                <i class="ph ph-cpu mr-1"></i>
+                Transmission:
+                <span id="car_transmission" x-text="carDetails.transmission"></span>
+            </p>
+            <p class="text-gray-600">
+                <i class="ph ph-gas-pump mr-1"></i>
+                Fuel Type:
+                <span id="car_fuel" x-text="carDetails.fuel_type"></span>
+            </p>
+            <p class="text-gray-600 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600" fill="currentColor"
+                    viewBox="0 0 256 256">
+                    <path
+                        d="M235.92,199A8,8,0,0,1,225,195.92L155.32,72H136v8a8,8,0,0,1-16,0V72H100.68L31,195.92A8,8,0,0,1,17,188.08L82.32,72H24a8,8,0,0,1,0-16H232a8,8,0,0,1,0,16H173.68L239,188.08A8,8,0,0,1,235.92,199ZM128,112a8,8,0,0,0-8,8v16a8,8,0,0,0,16,0V120A8,8,0,0,0,128,112Zm0,56a8,8,0,0,0-8,8v16a8,8,0,0,0,16,0V176A8,8,0,0,0,128,168Z">
+                    </path>
+                </svg>
+                Mileage: <span id="car_mileage" x-text="carDetails.mileage"></span>
+            </p>
+            <p class="text-green-600 font-bold">
+                <i class="ph ph-currency-dollar mr-1"></i>
+                Price: $<span id="car_price" x-text="carDetails.rent_price"></span> / day
+            </p>
 
-            <!-- Reservation Inputs -->
-            <div class="mt-2">
-                <label for="start_date" class="block text-sm font-medium text-gray-700">Start Date</label>
-                <input type="date" id="start_date" class="w-full p-2 border rounded-md" required>
+            <div class="grid grid-cols-2 gap-5">
+                <!-- Reservation Inputs -->
+                <div class="mt-3">
+                    <label for="start_date" class="block text-sm font-medium text-gray-700 flex items-center gap-1">
+                        <i class="ph ph-calendar"></i> Start Date
+                    </label>
+                    <input type="date" id="start_date" class="w-full p-2 border rounded-md" required>
+                </div>
+
+                <div class="mt-3">
+                    <label for="end_date" class="block text-sm font-medium text-gray-700 flex items-center gap-1">
+                        <i class="ph ph-calendar-check"></i> End Date
+                    </label>
+                    <input type="date" id="end_date" class="w-full p-2 border rounded-md" required>
+                </div>
             </div>
-
-            <div class="mt-2">
-                <label for="end_date" class="block text-sm font-medium text-gray-700">End Date</label>
-                <input type="date" id="end_date" class="w-full p-2 border rounded-md" required>
-            </div>
-
 
             <!-- Need Driver Checkbox -->
-            <div class="mt-3">
+            <div class="mt-4">
                 <label class="flex items-center space-x-2">
                     <input type="checkbox" id="need_driver" class="w-4 h-4 text-blue-500"
                         x-on:change="toggleDriverList">
-                    <span class="text-gray-700 font-medium">Need a Driver?</span>
+                    <span class="text-gray-700 font-medium flex items-center gap-1">
+                        <i class="ph ph-user"></i> Need a Driver?
+                    </span>
                 </label>
             </div>
 
             <!-- Driver Selection Dropdown (Initially Hidden) -->
             <div id="driverSelection" class="mt-3 hidden">
-                <label for="driver_list" class="block text-sm font-medium text-gray-700">Select a Driver</label>
+                <label for="driver_list" class="block text-sm font-medium text-gray-700 flex items-center gap-1">
+                    <i class="ph ph-users"></i> Select a Driver
+                </label>
                 <select id="driver_list" class="w-full p-2 border rounded-md">
                     <option value="" selected disabled>Loading drivers...</option>
                 </select>
             </div>
 
             <!-- Pay with Stripe Button -->
-            <button id="checkoutButton" class="bg-green-500 text-white px-4 py-2 rounded-lg mt-4 w-full">
-                Pay with Stripe
+            <button id="checkoutButton"
+                class="bg-green-500 text-white px-4 py-2 rounded-lg mt-4 w-full flex items-center justify-center gap-2">
+                <i class="ph ph-credit-card text-xl"></i> Pay with Stripe
             </button>
 
             <!-- Cancel Button -->
-            <button x-on:click="rentModal = false" class="bg-gray-400 text-white px-4 py-2 rounded-lg mt-3 w-full">
-                Cancel
+            <button x-on:click="rentModal = false"
+                class="bg-gray-400 text-white px-4 py-2 rounded-lg mt-3 w-full flex items-center justify-center gap-2">
+                <i class="ph ph-x-circle text-xl"></i> Cancel
             </button>
         </div>
     </div>

@@ -37,7 +37,7 @@
                     </button>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
                     @foreach (var cars in Model)
                     {
                         <div x-show="selectedCategory === 'All' || selectedCategory === '@cars.Category'"

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "g1xKnBAQGJmR+p64U/eYColJG6q9DBZ5UP8MPdEDlZU=",
+  "Hash": "POacleANqg/zxj8qBCPD+b2WN91phFG3K1BOpS39uTg=",
   "Source": "CarRental",
   "BasePath": "_content/CarRental",
   "Mode": "Default",
@@ -157,8 +157,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "xyyyhq6w8o",
-      "Integrity": "iZ6rmddAAfdRhYAZ5cIvTE6/RWFgcyvzjlhhvpuAMDs=",
+      "Fingerprint": "4i21h2ifcu",
+      "Integrity": "FGT9jwW2Rbmo76a+cSqDYN6k6vS2HdLliBWHFsHyxNA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\output.css"
@@ -2158,6 +2158,51 @@
       ]
     },
     {
+      "Route": "css/output.4i21h2ifcu.css",
+      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\output.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "50802"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FGT9jwW2Rbmo76a+cSqDYN6k6vS2HdLliBWHFsHyxNA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Apr 2025 09:43:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4i21h2ifcu"
+        },
+        {
+          "Name": "label",
+          "Value": "css/output.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-FGT9jwW2Rbmo76a+cSqDYN6k6vS2HdLliBWHFsHyxNA="
+        }
+      ]
+    },
+    {
       "Route": "css/output.css",
       "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\output.css",
       "Selectors": [],
@@ -2168,7 +2213,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "49095"
+          "Value": "50802"
         },
         {
           "Name": "Content-Type",
@@ -2176,11 +2221,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"iZ6rmddAAfdRhYAZ5cIvTE6/RWFgcyvzjlhhvpuAMDs=\""
+          "Value": "\"FGT9jwW2Rbmo76a+cSqDYN6k6vS2HdLliBWHFsHyxNA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 08:51:08 GMT"
+          "Value": "Sun, 20 Apr 2025 09:43:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2190,52 +2235,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-iZ6rmddAAfdRhYAZ5cIvTE6/RWFgcyvzjlhhvpuAMDs="
-        }
-      ]
-    },
-    {
-      "Route": "css/output.xyyyhq6w8o.css",
-      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\output.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "49095"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"iZ6rmddAAfdRhYAZ5cIvTE6/RWFgcyvzjlhhvpuAMDs=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 08:51:08 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "xyyyhq6w8o"
-        },
-        {
-          "Name": "label",
-          "Value": "css/output.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-iZ6rmddAAfdRhYAZ5cIvTE6/RWFgcyvzjlhhvpuAMDs="
+          "Value": "sha256-FGT9jwW2Rbmo76a+cSqDYN6k6vS2HdLliBWHFsHyxNA="
         }
       ]
     },

@@ -2,97 +2,83 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using CarRental.Services;
 using CarRental.Models;
+using CarRental.Services;
 using System.Diagnostics;
+using System.Linq;
 
-namespace CarRental.Controllers;
 
-public class HomeController : Controller
+namespace CarRental.Controllers
 {
-    private readonly ApplicationDbContext _context;
-
-    public HomeController(ApplicationDbContext context)
+    public class HomeController : Controller
     {
-        _context = context;
-    }
+        private readonly ApplicationDbContext _context;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    public IActionResult Home()
-    {
-        if (!User.Identity.IsAuthenticated)
+        public HomeController(ApplicationDbContext context)
         {
-            return RedirectToAction("Login", "Auth");
+            _context = context;
         }
 
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        var role = User.FindFirstValue(ClaimTypes.Role);
-
-        if (userId == null || role != "User")
+        public IActionResult Index()
         {
-            return RedirectToAction("AccessDenied", "Account");
+            return View();
         }
 
-        var cars = _context.Cars.ToList();
-        return View(cars);
-    }
-
-    public IActionResult Cars()
-    {
-        if (!User.Identity.IsAuthenticated)
+        public IActionResult Privacy()
         {
-            return RedirectToAction("Login", "Auth");
+            return View();
         }
 
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        var role = User.FindFirstValue(ClaimTypes.Role);
-
-        if (userId == null || role != "User")
+        [Authorize(Policy = "User")]
+        public IActionResult Home()
         {
-            return RedirectToAction("AccessDenied", "Account");
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account"); // Or however your login route is set
+            }
+
+            var cars = _context.Cars.ToList();
+            return View(cars);
         }
 
-        var cars = _context.Cars.ToList();
-        return View(cars);
-    }
-
-    public IActionResult Reservations()
-    {
-        var reservations = _context.Reservations.Include(r => r.Car).ToList();
-        return View(reservations);
-    }
-
-    public IActionResult Settings()
-    {
-        var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        if (!int.TryParse(userIdString, out int userId))
+        [Authorize(Policy = "User")]
+        public IActionResult Cars()
         {
-            return NotFound("Invalid user ID.");
+            var cars = _context.Cars.ToList();
+            return View(cars);
         }
 
-        var user = _context.Users.FirstOrDefault(u => u.UsersId == userId);
-
-        if (user == null)
+        [Authorize(Policy = "User")]
+        public IActionResult Reservations()
         {
-            return NotFound("User not found.");
+            var reservations = _context.Reservations.Include(r => r.Car).ToList();
+            return View(reservations);
         }
 
-        return View(user);
-    }
+        [Authorize(Policy = "User")]
+        public IActionResult Settings()
+        {
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (!int.TryParse(userIdString, out int userId))
+            {
+                return NotFound("Invalid user ID.");
+            }
+
+            var user = _context.Users.FirstOrDefault(u => u.UsersId == userId);
+
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+
+            return View(user);
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }

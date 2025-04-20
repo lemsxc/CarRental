@@ -8,7 +8,7 @@
     <div class="flex overflow-hidden flex-col w-full bg-white max-w-[1440px] max-md:p-5">
         <partial name="~/Views/Home/_User-nav.cshtml"></partial>
 
-        <div class="w-11/12 mx-auto p-5">
+        <div class="w-2/3 mx-auto p-3">
             <div class="bg-white shadow-lg rounded-lg p-6">
                 <div class="p-10 my-5 bg-indigo-600 rounded-[40px] max-md:px-5 max-md:py-10 max-md:m-0">
                     <h1 class="text-4xl font-bold text-white">Settings</h1>
@@ -18,89 +18,98 @@
                 <!-- Tabs -->
                 <div class="flex border-b">
                     <button id="tabPersonal"
-                        class="tab-button px-6 py-2 font-medium text-lg border-b-2 border-transparent focus:border-amber-500">Personal
+                        class="tab-button px-6 py-2 font-medium text-lg border-b-2 border-transparent focus:border-amber-500 w-full text-center">Personal
                         Information</button>
                     <button id="tabVerify"
-                        class="tab-button px-6 py-2 font-medium text-lg border-b-2 border-transparent focus:border-amber-500">Verify
+                        class="tab-button px-6 py-2 font-medium text-lg border-b-2 border-transparent focus:border-amber-500 w-full text-center">Verify
                         Account</button>
                 </div>
 
-                <!-- Personal Information Tab -->
-                <div id="personalInfo" class="tab-content p-4">
-                    <form asp-action="UpdateProfile" method="post">
-                        <div class="grid grid-cols-2 gap-5">
+                <!-- Tab Content Container -->
+                <div class="tab-content-container relative">
+                    <!-- Personal Information Tab -->
+                    <div id="personalInfo" class="tab-content p-4 w-full min-h-[300px]">
+                        <form asp-action="UpdateProfile" method="post">
+                            <div class="grid grid-cols-2 gap-4">
+                                <input type="hidden" asp-for="UsersId" />
+
+                                <div>
+                                    <label class="block text-lg font-medium">First Name</label>
+                                    <input type="text" asp-for="FirstName" class="w-full p-2 border rounded-lg mb-4">
+                                </div>
+
+                                <div>
+                                    <label class="block text-lg font-medium">Last Name</label>
+                                    <input type="text" asp-for="LastName" class="w-full p-2 border rounded-lg mb-4">
+                                </div>
+
+                                <div>
+                                    <label class="block text-lg font-medium">Email</label>
+                                    <input type="email" asp-for="Email" class="w-full p-2 border rounded-lg mb-4"
+                                        readonly>
+                                </div>
+
+                                <div>
+                                    <label class="block text-lg font-medium">Phone Number</label>
+                                    <input type="text" asp-for="ContactNumber" class="w-full p-2 border rounded-lg mb-4"
+                                        required>
+                                </div>
+
+                                <div>
+                                    <label class="block text-lg font-medium">Address</label>
+                                    <input type="text" asp-for="Address" class="w-full p-2 border rounded-lg mb-4"
+                                        required>
+                                </div>
+
+                            </div>
+
+                            <button type="submit" class="bg-amber-500 text-white px-6 py-2 rounded-lg">Save
+                                Changes</button>
+                        </form>
+                    </div>
+
+                    <!-- Verify Account Tab -->
+                    <div id="verifyAccount" class="tab-content p-4 hidden w-full min-h-[300px]">
+                        <h3 class="text-xl font-semibold mb-4">Upload Verification Documents</h3>
+
+                        <form asp-action="SubmitVerification" asp-controller="Verification" method="post"
+                            enctype="multipart/form-data">
                             <input type="hidden" asp-for="UsersId" />
+                            <input type="hidden" name="lastName"
+                                value="@User.FindFirst(System.Security.Claims.ClaimTypes.Surname)?.Value" />
 
-                            <div>
-                                <label class="block text-lg font-medium">First Name</label>
-                                <input type="text" asp-for="FirstName" class="w-full p-2 border rounded-lg mb-4">
+                            <div class="bg-yellow-100 rounded-[20px] p-2 my-5 ">
+                                <p class="p-2 font-semibold text-lg mb-2">Provide a clear picture of the front and back of your
+                                    driver's
+                                    license. Ensure the details are legible.</p>
                             </div>
 
-                            <div>
-                                <label class="block text-lg font-medium">Last Name</label>
-                                <input type="text" asp-for="LastName" class="w-full p-2 border rounded-lg mb-4">
+                            <div class="grid grid-cols-2 gap-5">
+                                <div>
+                                    <!-- Front License Upload -->
+                                    <label class="block text-lg font-medium">Driver's License (Front)</label>
+                                    <input type="file" name="DriversLicenseFrontFile" id="frontFile"
+                                        class="w-full border p-2 rounded-lg mb-2" accept="image/*"
+                                        onchange="previewImage(event, 'frontPreview')">
+                                    <img id="frontPreview" class="w-96 h-96 object-cover border rounded-lg hidden mb-4"
+                                        alt="Front Preview">
+                                </div>
+
+                                <div>
+                                    <!-- Back License Upload -->
+                                    <label class="block text-lg font-medium">Driver's License (Back)</label>
+                                    <input type="file" name="DriversLicenseBackFile" id="backFile"
+                                        class="w-full border p-2 rounded-lg mb-2" accept="image/*"
+                                        onchange="previewImage(event, 'backPreview')">
+                                    <img id="backPreview" class="w-96 h-96 object-cover border rounded-lg hidden mb-4"
+                                        alt="Back Preview">
+                                </div>
                             </div>
 
-                            <div>
-                                <label class="block text-lg font-medium">Email</label>
-                                <input type="email" asp-for="Email" class="w-full p-2 border rounded-lg mb-4" readonly>
-                            </div>
-
-                            <div>
-                                <label class="block text-lg font-medium">Phone Number</label>
-                                <input type="text" asp-for="ContactNumber" class="w-full p-2 border rounded-lg mb-4"
-                                    required>
-                            </div>
-
-                            <div>
-                                <label class="block text-lg font-medium">Address</label>
-                                <input type="text" asp-for="Address" class="w-full p-2 border rounded-lg mb-4" required>
-                            </div>
-
-                        </div>
-
-                        <button type="submit" class="bg-amber-500 text-white px-6 py-2 rounded-lg">Save Changes</button>
-                    </form>
-                </div>
-
-                <!-- Verify Account Tab -->
-                <div id="verifyAccount" class="tab-content p-4 hidden">
-                    <h3 class="text-xl font-semibold mb-4">Upload Verification Documents</h3>
-
-                    <form asp-action="SubmitVerification" asp-controller="Verification" method="post"
-                        enctype="multipart/form-data">
-                        <input type="hidden" asp-for="UsersId" />
-                        <input type="hidden" name="lastName"
-                            value="@User.FindFirst(System.Security.Claims.ClaimTypes.Surname)?.Value" />
-
-                        <p class="text-gray-600 mb-2">Provide a clear picture of the front and back of your driver's
-                            license. Ensure the details are legible.</p>
-
-                        <div class="grid grid-cols-2 gap-5">
-                            <div>
-                                <!-- Front License Upload -->
-                                <label class="block text-lg font-medium">Driver's License (Front)</label>
-                                <input type="file" name="DriversLicenseFrontFile" id="frontFile"
-                                    class="w-full border p-2 rounded-lg mb-2" accept="image/*"
-                                    onchange="previewImage(event, 'frontPreview')">
-                                <img id="frontPreview" class="w-96 h-96 object-cover border rounded-lg hidden mb-4"
-                                    alt="Front Preview">
-                            </div>
-
-                            <div>
-                                <!-- Back License Upload -->
-                                <label class="block text-lg font-medium">Driver's License (Back)</label>
-                                <input type="file" name="DriversLicenseBackFile" id="backFile"
-                                    class="w-full border p-2 rounded-lg mb-2" accept="image/*"
-                                    onchange="previewImage(event, 'backPreview')">
-                                <img id="backPreview" class="w-96 h-96 object-cover border rounded-lg hidden mb-4"
-                                    alt="Back Preview">
-                            </div>
-                        </div>
-
-                        <button type="submit" class="bg-amber-500 text-white px-6 py-2 rounded-lg">Submit for
-                            Verification</button>
-                    </form>
+                            <button type="submit" class="bg-amber-500 text-white mt-5 px-6 py-2 rounded-lg">Submit for
+                                Verification</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

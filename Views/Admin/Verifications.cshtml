@@ -69,7 +69,10 @@
                                             Back</a>
                                     </td>
 
-                                    <td class="py-3 px-4 font-medium">@verification.Status</td>
+                                    <td
+                                        class="py-3 px-4 rounded font-medium @(verification.Status == "Approved" ? "bg-green-200" : verification.Status == "Rejected" ? "bg-yellow-200" : "")">
+                                        @verification.Status
+                                    </td>
 
                                     <td class="py-3 px-4">@verification.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
 

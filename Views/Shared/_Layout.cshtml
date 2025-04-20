@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" x-data>
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -9,33 +9,17 @@
     <!-- Tailwind CSS -->
     <link href="~/css/output.css" rel="stylesheet" asp-append-version="true" />
     <link href="~/UrbanDrive.styles.css" rel="stylesheet" asp-append-version="true" />
+
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <!-- Alpine.js -->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 </head>
 
 <body class="font-inter bg-white text-gray-800">
-    <!-- 🔔 Toast Notification -->
-    <div x-data="{ show: false, message: '', type: 'success' }" x-show="show" x-transition x-cloak
-        class="fixed top-5 right-5 z-50 px-5 py-3 rounded-xl text-white shadow-lg flex items-center space-x-2" :class="{
-            'bg-green-500': type === 'success',
-            'bg-red-500': type === 'error',
-            'bg-yellow-500': type === 'warning',
-            'bg-blue-500': type === 'info'
-        }">
-        <template x-if="type === 'success'"><span>✅</span></template>
-        <template x-if="type === 'error'"><span>❌</span></template>
-        <template x-if="type === 'warning'"><span>⚠️</span></template>
-        <template x-if="type === 'info'"><span>ℹ️</span></template>
-        <span x-text="message" class="whitespace-pre-line"></span>
-        <button x-on:click="show = false" class="ml-3 text-white font-bold">×</button>
-    </div>
-
     <div class="min-h-screen flex flex-col">
-        <!-- Header (optional slot) -->
+        <!-- Header -->
         <header>
             @* Add header or navbar here if needed *@
         </header>
@@ -45,33 +29,67 @@
             @RenderBody()
         </main>
 
-        <!-- Footer (optional slot) -->
+        <!-- Footer -->
         <footer class="bg-gray-100 text-center py-4 text-sm text-gray-500">
             &copy; @DateTime.Now.Year UrbanDrive Car Rental. All rights reserved.
         </footer>
     </div>
 
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Custom SweetAlert Trigger Script -->
     <script>
-        function showToast(message, type = 'success', duration = 3000) {
-            let toast = document.querySelector('[x-data]');
-            if (toast && toast.__x) {
-                toast.__x.$data.message = message;
-                toast.__x.$data.type = type;
-                toast.__x.$data.show = true;
-                setTimeout(() => toast.__x.$data.show = false, duration);
-            }
+        function showAlert(message, type = 'success') {
+            Swal.fire({
+                title: type === 'success' ? 'Success!' :
+                    type === 'error' ? 'Error!' :
+                        type === 'warning' ? 'Warning!' : 'Info',
+                text: message,
+                icon: type,
+                confirmButtonColor: '#3b82f6'
+            });
         }
 
+        // ⚠️ Confirmation alert
+        function confirmAction({
+            title = "Are you sure?",
+            text = "This action cannot be undone.",
+            confirmButtonText = "Yes, proceed",
+            cancelButtonText = "Cancel",
+            icon = "warning",
+            onConfirm = null
+        } = {}) {
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: icon,
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: confirmButtonText,
+                cancelButtonText: cancelButtonText
+            }).then((result) => {
+                if (result.isConfirmed && typeof onConfirm === "function") {
+                    onConfirm();
+                }
+            });
+        }
+
+        // 🚀 Trigger alert if TempData is present
         document.addEventListener('DOMContentLoaded', () => {
-            @if (TempData["ToastMessage"] != null)
-            {
-                <text> 
-                    showToast("@Html.Raw(TempData["ToastMessage"])", "@TempData["ToastType"]");
-                </text>
+            @if (TempData["AlertMessage"] != null && TempData["AlertType"] != null)
+                {
+                    var message = TempData["AlertMessage"].ToString().Replace("\"", "\\\"");
+                    var type = TempData["AlertType"].ToString().ToLower();
+                    <text>
+                        showAlert("@Html.Raw(message)", "@type");
+                    </text>
             }
         });
     </script>
 
+    <!-- App & Libraries -->
     <script src="~/dist/app.bundle.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/phosphor-icons@1.4.2/src/index.min.js"></script>

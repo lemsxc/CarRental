@@ -18,6 +18,10 @@
                     <div class="flex flex-col mt-8 w-full max-md:mt-10 max-md:max-w-full">
                         <div class="container mx-auto p-6">
                             <h1 class="text-3xl font-bold">Dashboard</h1>
+                            <p class="mt-2 text-gray-700 text-base">
+                                Welcome to your admin dashboard! Here you can monitor your total revenue,
+                                track bookings, and manage active rentals with ease.
+                            </p>
 
                             <!-- Summary Cards -->
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
@@ -52,15 +56,16 @@
         </div>
     </div>
 </div>
+
 <script>
     const ctx = document.getElementById('revenueChart').getContext('2d');
     const revenueChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: @Html.Raw(Json.Serialize(ViewBag.Dates)), // Example: ["Mar 1", "Mar 2", ...]
+            labels: @Html.Raw(Json.Serialize(ViewBag.Dates)),
             datasets: [{
                 label: 'Revenue',
-                data: @Html.Raw(Json.Serialize(ViewBag.RevenueData)), // Example: [100, 200, 150, ...]
+                data: @Html.Raw(Json.Serialize(ViewBag.RevenueData)),
                 backgroundColor: 'rgba(59, 130, 246, 0.2)',
                 borderColor: 'rgba(59, 130, 246, 1)',
                 borderWidth: 2,

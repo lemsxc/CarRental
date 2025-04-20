@@ -6,42 +6,60 @@
             <button x-on:click="carModal = false" class="text-gray-500 hover:text-gray-800">&times;</button>
         </div>
 
-       <img x-bind:src="selectedCar.image" class="rounded-lg mx-auto w-11/12 h-72" alt="Car Image">
+        <img x-bind:src="selectedCar.image" class="rounded-lg mx-auto w-11/12 h-72" alt="Car Image">
 
         <!-- Technical Specifications -->
         <div class="mt-6">
-            <h3 class="font-bold text-lg">Technical Specification</h3>
-            <div class="grid grid-cols-4 gap-4 mt-2">
+            <h3 class="font-bold text-lg mb-2 flex items-center gap-2">
+                <i class="ph ph-gear text-gray-700"></i> Technical Specification
+            </h3>
+            <div class="grid grid-cols-3 gap-4">
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Category</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <i class="ph ph-tag"></i> Category
+                    </p>
                     <p class="text-gray-600" x-text="selectedCar.category"></p>
                 </div>
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Transmission</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <i class="ph ph-cpu"></i> Transmission
+                    </p>
                     <p class="text-gray-600" x-text="selectedCar.transmission"></p>
                 </div>
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Fuel</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <i class="ph ph-gas-pump"></i> Fuel
+                    </p>
                     <p class="text-gray-600" x-text="selectedCar.fuel_type"></p>
                 </div>
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Fuel Level</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <i class="ph ph-battery-full"></i> Fuel Level
+                    </p>
                     <p class="text-gray-600" x-text="selectedCar.fuel_level"></p>
                 </div>
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Rent Price</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <i class="ph ph-currency-dollar"></i> Rent Price
+                    </p>
                     <p class="text-gray-600" x-text="selectedCar.price"></p>
                 </div>
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Plate Number</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <i class="ph ph-identification-card"></i> Plate Number
+                    </p>
                     <p class="text-gray-600" x-text="selectedCar.plateNum"></p>
                 </div>
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Mileage</p>
-                    <p class="text-gray-600" x-text="selectedCar.mileage">km</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <i class="ph ph-road-horizon"></i> Mileage
+                    </p>
+                    <p class="text-gray-600" x-text="selectedCar.mileage"></p>
                 </div>
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Condition</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <i class="ph ph-check-circle"></i> Condition
+                    </p>
                     <p class="text-gray-600" x-text="selectedCar.condition"></p>
                 </div>
             </div>

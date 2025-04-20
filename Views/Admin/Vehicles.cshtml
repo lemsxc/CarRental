@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div x-data="{ addCarModal: false, CarsModals: false, imagePreview: null  }"
+<div x-data="{ addCarModal: false, CarsModals: false, imagePreview: null, selectedCars: {}, }"
     class="flex overflow-hidden flex-col bg-[#D0CAEA]">
     <partial name="~/Views/Admin/Partials/_AdminTopNav.cshtml"></partial>
     <div class="z-10 -mt-4 w-full max-w-[1400px] max-md:max-w-full">

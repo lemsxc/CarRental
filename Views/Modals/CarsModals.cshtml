@@ -1,6 +1,7 @@
+<!-- Make sure Heroicons is available or included in your project -->
+<!-- Example using inline SVGs for icons -->
 <div x-show="CarsModals" x-cloak class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-    <div class="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full relative z-50"
-        x-on:click.away="CarsModals = false">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full relative z-50" x-on:click.away="CarsModals = false">
         <button x-on:click="CarsModals = false" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
             &times;
         </button>
@@ -9,42 +10,108 @@
             <button x-on:click="CarsModals = false" class="text-gray-500 hover:text-gray-800">&times;</button>
         </div>
 
-        <img x-bind:src="selectedCars.image" class="rounded-lg mx-auto w-11/12 h-72" alt="Car Image">
+        <img x-bind:src="selectedCars.image" class="rounded-lg mx-auto w-3/4 h-72" alt="Car Image">
 
         <!-- Technical Specifications -->
         <div class="mt-6">
             <h3 class="font-bold text-lg">Technical Specification</h3>
             <div class="grid grid-cols-4 gap-4 mt-2">
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Category</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <!-- Category Icon -->
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="1.5"
+                            viewBox="0 0 24 24">
+                            <path d="M3 16.5V19a1 1 0 001 1h1.5a1 1 0 001-1v-2.5"></path>
+                            <path d="M6 16.5h12M18 16.5V19a1 1 0 001 1H20.5a1 1 0 001-1v-2.5"></path>
+                            <path d="M4.5 10h15L20 14H4l.5-4z"></path>
+                        </svg>
+                        Category
+                    </p>
                     <p class="text-gray-600" x-text="selectedCars.category"></p>
                 </div>
+
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Transmission</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <!-- Transmission Icon -->
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="1.5"
+                            viewBox="0 0 24 24">
+                            <path d="M9 6h6M9 12h6M9 18h6"></path>
+                        </svg>
+                        Transmission
+                    </p>
                     <p class="text-gray-600" x-text="selectedCars.transmission"></p>
                 </div>
+
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Fuel</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <!-- Fuel Icon -->
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="1.5"
+                            viewBox="0 0 24 24">
+                            <path d="M9 4h6v16H9z"></path>
+                        </svg>
+                        Fuel
+                    </p>
                     <p class="text-gray-600" x-text="selectedCars.fuel_type"></p>
                 </div>
+
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Fuel Level</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <!-- Fuel Level Icon -->
+                        <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M11 2a1 1 0 00-2 0v1H8.5A1.5 1.5 0 007 4.5V5h6v-.5A1.5 1.5 0 0011.5 3H11V2z" />
+                            <path fill-rule="evenodd" d="M5 6h10v10a2 2 0 01-2 2H7a2 2 0 01-2-2V6zm7 5a1 1 0 10-2 0 1 1 0 002 0z" clip-rule="evenodd" />
+                        </svg>
+                        Fuel Level
+                    </p>
                     <p class="text-gray-600" x-text="selectedCars.fuel_level"></p>
                 </div>
+
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Rent Price</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <!-- Price Icon -->
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="1.5"
+                            viewBox="0 0 24 24">
+                            <path d="M12 8v8m0 0h3m-3 0H9"></path>
+                        </svg>
+                        Rent Price
+                    </p>
                     <p class="text-gray-600" x-text="selectedCars.price"></p>
                 </div>
+
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Plate Number</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <!-- Plate Icon -->
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="1.5"
+                            viewBox="0 0 24 24">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        Plate Number
+                    </p>
                     <p class="text-gray-600" x-text="selectedCars.plateNum"></p>
                 </div>
+
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Mileage</p>
-                    <p class="text-gray-600" x-text="selectedCars.mileage">km</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <!-- Mileage Icon -->
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="1.5"
+                            viewBox="0 0 24 24">
+                            <path d="M12 6v6l4 2"></path>
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                        Mileage
+                    </p>
+                    <p class="text-gray-600" x-text="selectedCars.mileage + ' km'"></p>
                 </div>
+
                 <div class="bg-gray-100 p-3 rounded-lg">
-                    <p class="font-semibold">Condition</p>
+                    <p class="font-semibold flex items-center gap-1">
+                        <!-- Condition Icon -->
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="1.5"
+                            viewBox="0 0 24 24">
+                            <path d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Condition
+                    </p>
                     <p class="text-gray-600" x-text="selectedCars.condition"></p>
                 </div>
             </div>

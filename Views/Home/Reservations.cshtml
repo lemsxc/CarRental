@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Reservations";
 }
-<div x-data="{ reservationModal: false, selectedReservation: {} }" class="flex flex-col items-center bg-white">
+<div x-data="{ reservationDetails: false, selectedReservation: {}, }" class="flex flex-col items-center bg-white">
     <div class="flex overflow-hidden flex-col w-full bg-white max-w-[1440px] max-md:p-5">
         <partial name="~/Views/Home/_User-nav.cshtml"></partial>
         <div class="p-10 mx-20 my-5 bg-indigo-600 rounded-[40px] max-md:px-5 max-md:py-10 max-md:m-0">
@@ -23,32 +23,65 @@
                         <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-200">
                             <!-- Car Image -->
                             <div class="bg-gray-200 rounded-lg flex justify-center items-center">
-                                <img src="@Url.Content("~/" + reservation.Car.Image)" class="rounded-lg object-contain" alt="Car Image">
+                                <img src="@Url.Content("~/" + reservation.Car.Image)" class="rounded-lg object-contain"
+                                    alt="Car Image">
                             </div>
-                            <div class="flex justify-between items-center">
-                                <h2 class="text-lg font-bold text-gray-900">@reservation.Car.Brand @reservation.Car.Model</h2>
+
+                            <div class="flex justify-between items-center mt-5">
+                                <!-- Left: Icon + Car Name -->
+                                <div class="flex items-center gap-2">
+                                    <i class="ph ph-car text-gray-600 text-xl"></i>
+                                    <h2 class="text-lg font-bold text-gray-900">
+                                        @reservation.Car.Brand @reservation.Car.Model
+                                    </h2>
+                                </div>
+
+                                <!-- Right: Total Amount -->
                                 <p class="text-purple-600 font-bold text-lg">
                                     $@reservation.TotalAmount
                                 </p>
                             </div>
-                            <p class="text-gray-500 text-sm">@reservation.Car.Brand @reservation.Car.Model</p>
-                            <p class="text-gray-500 text-sm">Pickup: @reservation.StartDate.ToShortDateString()</p>
-                            <p class="text-gray-500 text-sm">Return: @reservation.EndDate.ToShortDateString()</p>
-                            <p class="text-gray-500 text-sm">Status: <span class="font-bold">@reservation.Status</span></p>
-                            <button class="mt-4 w-full bg-indigo-600 text-white py-2 rounded-lg text-sm font-medium" x-on:click="reservationModal = true; selectedReservation = {
-                                    brand: '@reservation.Car.Brand',
-                                    model: '@reservation.Car.Model',
-                                    start: '@reservation.StartDate.ToShortDateString()',
-                                    end: '@reservation.EndDate.ToShortDateString()',
-                                    amount: '@reservation.TotalAmount',
-                                    status: '@reservation.Status'
-                                }">
+
+                            <p class="text-gray-500 text-sm flex items-center gap-2 mt-1">
+                                <i class="ph ph-calendar-blank text-gray-600"></i>
+                                Pickup: @reservation.StartDate.ToShortDateString()
+                            </p>
+
+                            <p class="text-gray-500 text-sm flex items-center gap-2 mt-1">
+                                <i class="ph ph-calendar-check text-gray-600"></i>
+                                Return: @reservation.EndDate.ToShortDateString()
+                            </p>
+
+                            <p class="text-gray-500 text-sm flex items-center gap-2 mt-1">
+                                <i class="ph ph-check-circle text-gray-600"></i>
+                                Status: <span class="font-bold">@reservation.Status</span>
+                            </p>
+
+                            <button class="mt-4 w-full bg-indigo-600 text-white py-2 rounded-lg text-sm font-medium" x-on:click="reservationDetails = true; selectedReservation = {
+                                            image: '@Url.Content("~/" + reservation.Car.Image)',
+                                            brand: '@reservation.Car.Brand',
+                                            model: '@reservation.Car.Model',
+                                            transmission: '@reservation.Car.Transmission',
+                                            fuel_type: '@reservation.Car.FuelType',
+                                            fuel_level: '@reservation.Car.FuelLevel',
+                                            price: '@reservation.Car.RentPrice',
+                                            category: '@reservation.Car.Category',
+                                            plateNum: '@reservation.Car.PlateNumber',
+                                            mileage: '@reservation.Car.Mileage',
+                                            condition: '@reservation.Car.Condition',
+                                            start: '@reservation.StartDate.ToShortDateString()',
+                                            end: '@reservation.EndDate.ToShortDateString()',
+                                            amount: '@reservation.TotalAmount',
+                                            status: '@reservation.Status'
+                                        }">
                                 View Details
                             </button>
                         </div>
                     }
                 </div>
+
             }
         </div>
     </div>
+    @await Html.PartialAsync("~/Views/Modals/reservationDetails.cshtml")
 </div>

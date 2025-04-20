@@ -32,16 +32,16 @@ namespace CarRental.Controllers
         {
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
-                TempData["ToastMessage"] = "Invalid email or password.";
-                TempData["ToastType"] = "error";
+                TempData["AlertMessage"] = "Invalid email or password.";
+                TempData["AlertType"] = "error";
                 return View();
             }
 
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (user == null || !VerifyPassword(password, user.Password))
             {
-                TempData["ToastMessage"] = "Invalid email or password.";
-                TempData["ToastType"] = "error";
+                TempData["AlertMessage"] = "Invalid email or password.";
+                TempData["AlertType"] = "error";
                 return View();
             }
 
@@ -66,13 +66,14 @@ namespace CarRental.Controllers
 
             if (user.Role == "Admin")
             {
-                // ✅ Success Toast Message
-                TempData["ToastMessage"] = "Login successful! Welcome back.";
-                TempData["ToastType"] = "success";
+                TempData["AlertMessage"] = "Login successful! Welcome back.";
+                TempData["AlertType"] = "success";
                 return RedirectToAction("Dashboard", "Admin");
             }
             else
             {
+                TempData["AlertMessage"] = "Login successful!";
+                TempData["AlertType"] = "success";
                 return RedirectToAction("Home", "Home");
             }
         }
@@ -88,7 +89,8 @@ namespace CarRental.Controllers
         {
             if (await _context.Users.AnyAsync(u => u.Email == email))
             {
-                ViewBag.Error = "This email is already registered.";
+                TempData["AlertMessage"] = "This email is already registered.";
+                TempData["AlertType"] = "info";
                 return View();
             }
 
@@ -122,8 +124,8 @@ namespace CarRental.Controllers
             var authResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             if (!authResult.Succeeded)
             {
-                TempData["ToastMessage"] = "Google login failed.";
-                TempData["ToastType"] = "error";
+                TempData["AlertMessage"] = "Google login failed.";
+                TempData["AlertType"] = "error";
                 return RedirectToAction("Login");
             }
 
@@ -133,8 +135,8 @@ namespace CarRental.Controllers
 
             if (string.IsNullOrEmpty(email))
             {
-                TempData["ToastMessage"] = "Google login failed: Email missing.";
-                TempData["ToastType"] = "error";
+                TempData["AlertMessage"] = "Google login failed: Email missing.";
+                TempData["AlertType"] = "error";
                 return RedirectToAction("Login");
             }
 
@@ -174,8 +176,8 @@ namespace CarRental.Controllers
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
-            TempData["ToastMessage"] = "Logged in with Google successfully!";
-            TempData["ToastType"] = "success";
+            TempData["AlertMessage"] = "Logged in with Google successfully!";
+            TempData["AlertType"] = "success";
 
             return user.Role == "Admin" ? RedirectToAction("Dashboard", "Admin") : RedirectToAction("Home", "Home");
         }
