@@ -10,7 +10,7 @@ namespace CarRental.Models
         public decimal CarPrice { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-
+        public bool NeedDriver { get; set; }
         public int? DriverId { get; set; } // ✅ Add this line
     }
 }

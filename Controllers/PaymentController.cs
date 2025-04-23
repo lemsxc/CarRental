@@ -18,7 +18,7 @@ namespace CarRental.Controllers
         {
             _context = context;
         }
-        
+
         [HttpPost]
         public IActionResult CreateCheckoutSession([FromBody] PaymentRequest request)
         {
@@ -30,11 +30,22 @@ namespace CarRental.Controllers
 
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
 
-            // Calculate total price based on car rent price and number of days
+            // Calculate the number of rental days
             int numberOfDays = (request.EndDate - request.StartDate).Days;
-            float totalPrice = car.RentPrice * numberOfDays;
+            if (numberOfDays <= 0)
+            {
+                return BadRequest("End date must be after start date.");
+            }
 
-            // Create and save Reservation first
+            // Define the driver's fee per day
+            float driverFeePerDay = 30.0f;
+
+            // Calculate the total price
+            float basePrice = car.RentPrice * numberOfDays;
+            float driverFee = (request.NeedDriver && request.DriverId.HasValue) ? driverFeePerDay * numberOfDays : 0;
+            float totalPrice = basePrice + driverFee;
+
+            // Create and save the reservation
             var reservation = new Reservation
             {
                 UsersId = userId,
@@ -44,46 +55,48 @@ namespace CarRental.Controllers
                 ReservedDate = DateTime.Now,
                 Status = "Pending",
                 TotalAmount = totalPrice,
-                DriverId = request.DriverId // ✅ Add this
+                DriverId = request.NeedDriver ? request.DriverId : null
             };
 
             _context.Reservations.Add(reservation);
-            _context.SaveChanges(); 
+            _context.SaveChanges();
 
+            // Create and save the payment
             var payment = new Payment
             {
                 ReservationId = reservation.ReservationId,
-                Amount = car.RentPrice * (request.EndDate - request.StartDate).Days,
+                Amount = totalPrice,
                 PaymentMethod = "Stripe",
                 PaymentDate = DateTime.Now,
                 Status = "Pending"
             };
 
             _context.Payments.Add(payment);
-            _context.SaveChanges(); // Save Payment
+            _context.SaveChanges();
 
+            // Create the Stripe checkout session
             var options = new SessionCreateOptions
             {
                 PaymentMethodTypes = new List<string> { "card" },
                 LineItems = new List<SessionLineItemOptions>
+        {
+            new SessionLineItemOptions
+            {
+                PriceData = new SessionLineItemPriceDataOptions
                 {
-                    new SessionLineItemOptions
+                    Currency = "php",
+                    UnitAmount = (long)(payment.Amount * 100),
+                    ProductData = new SessionLineItemPriceDataProductDataOptions
                     {
-                        PriceData = new SessionLineItemPriceDataOptions
-                        {
-                            Currency = "php",
-                            UnitAmount = (long)(payment.Amount * 100),
-                            ProductData = new SessionLineItemPriceDataProductDataOptions
-                            {
-                                Name = $"{car.Brand} {car.Model}"
-                            }
-                        },
-                        Quantity = 1
+                        Name = $"{car.Brand} {car.Model}"
                     }
                 },
+                Quantity = 1
+            }
+        },
                 Mode = "payment",
                 SuccessUrl = $"http://localhost:5124/Payment/Success?reservationId={reservation.ReservationId}",
-                CancelUrl = "http://localhost:5124/Payment/Cancel"
+                CancelUrl = $"http://localhost:5124/Payment/Cancel?reservationId={reservation.ReservationId}"
             };
 
             var service = new SessionService();

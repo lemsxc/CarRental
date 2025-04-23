@@ -9,10 +9,12 @@ using Microsoft.AspNetCore.Http;
 public class VerificationController : Controller
 {
     private readonly ApplicationDbContext _context;
+    private readonly LogsService _logsService;
 
-    public VerificationController(ApplicationDbContext context)
+    public VerificationController(ApplicationDbContext context, LogsService logsService)
     {
         _context = context;
+        _logsService = logsService;
     }
 
     // Submit verification request
@@ -67,23 +69,16 @@ public class VerificationController : Controller
         _context.Verifications.Add(verification);
         _context.SaveChanges();
 
+        TempData["AlertMessage"] = "Verification request submitted successfully.";
+        TempData["AlertType"] = "success";
+
         return RedirectToAction("Settings", "Home");
     }
 
-    // Admin review page
-    [HttpGet]
-    public IActionResult ReviewVerifications()
-    {
-        var verifications = _context.Verifications
-            .Where(v => v.Status == "Pending")
-            .ToList();
-
-        return View(verifications);
-    }
-
+    // Approve or Reject Verification
     // Approve or Reject Verification
     [HttpPost]
-    public IActionResult UpdateVerification(int id, string status, string? adminRemarks)
+    public async Task<IActionResult> UpdateVerification(int id, string status, string? adminRemarks)
     {
         var verification = _context.Verifications.Find(id);
         if (verification == null)
@@ -92,7 +87,20 @@ public class VerificationController : Controller
         verification.Status = status;
         verification.UpdatedAt = DateTime.Now;
 
-        // Update the user's IsVerified status if approved
+        string? adminName = null;
+        int? adminId = null;
+
+        // Get admin info for logging
+        if (HttpContext.Session.GetInt32("AdminId") is int sessionAdminId)
+        {
+            var admin = _context.Users.Find(sessionAdminId);
+            if (admin != null)
+            {
+                adminName = $"{admin.FirstName} {admin.LastName}";
+                adminId = admin.UsersId;
+            }
+        }
+
         if (status == "Approved")
         {
             var user = _context.Users.FirstOrDefault(u => u.UsersId == verification.UserId);
@@ -100,9 +108,19 @@ public class VerificationController : Controller
             {
                 user.IsVerified = true;
             }
+
+            // 📝 Log the approval
+            if (adminName != null)
+            {
+                string description = $"Approved license verification for user ID {verification.UserId}.";
+                await _logsService.LogAsync("License Approval", description, adminName, adminId);
+            }
         }
 
         _context.SaveChanges();
+
+        TempData["AlertMessage"] = "Verification request has been processed.";
+        TempData["AlertType"] = "success";
         return RedirectToAction("Verifications", "Admin");
     }
 }

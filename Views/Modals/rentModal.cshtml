@@ -1,94 +1,76 @@
 <div x-cloak x-show="rentModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
     x-on:keydown.escape.window="rentModal = false">
-    <div class="bg-white p-6 rounded-lg w-1/4">
-        <h2 class="text-xl font-bold mb-2">Car Details</h2>
+    <div class="bg-white p-6 rounded-lg w-full max-w-md">
+        <h2 class="text-xl font-bold mb-4">Car Details</h2>
 
         <div>
             <!-- Car Image -->
             <img id="car_image" x-bind:src="carDetails.image" alt="Car Image"
-                class="w-full h-40 object-cover rounded-md mb-3">
+                class="w-full h-40 object-cover rounded-md mb-4" />
 
             <!-- Car Details -->
-            <p class="font-semibold hidden">Id <span id="car_id" x-text="carDetails.id"></span></p>
-            <p class="font-semibold text-gray-600 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" viewBox="0 0 256 256">
-                    <path
-                        d="M128,152a12,12,0,1,1,12-12A12,12,0,0,1,128,152Zm104-24A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128ZM40,128v.33a135.93,135.93,0,0,1,176,0V128a88,88,0,0,0-176,0Zm67.5,85.58L90.45,168H49.63A88.35,88.35,0,0,0,107.5,213.58ZM128,216c.83,0,1.66,0,2.49,0l20.07-53.57a16.07,16.07,0,0,1,15-10.39h47.12c.38-1.31.72-2.64,1-4a120,120,0,0,0-171.4,0c.31,1.34.65,2.67,1,4H90.45a16.08,16.08,0,0,1,15,10.4l20,53.56C126.31,216,127.15,216,128,216Zm78.37-48H165.55l-17.09,45.59A88.34,88.34,0,0,0,206.37,168Z">
-                    </path>
-                </svg>
-                Car Name: <span id="car_name" x-text="carDetails.brand + ' ' + carDetails.model"></span>
+            <p class="font-semibold hidden">ID: <span id="car_id" x-text="carDetails.id"></span></p>
+            <p class="text-gray-700 font-semibold mb-1">
+                🚗 Car Name: <span id="car_name" x-text="carDetails.brand + ' ' + carDetails.model"></span>
             </p>
-            <p class="text-gray-600">
-                <i class="ph ph-cpu mr-1"></i>
-                Transmission:
-                <span id="car_transmission" x-text="carDetails.transmission"></span>
+            <p class="text-gray-600 mb-1">
+                ⚙️ Transmission: <span id="car_transmission" x-text="carDetails.transmission"></span>
             </p>
-            <p class="text-gray-600">
-                <i class="ph ph-gas-pump mr-1"></i>
-                Fuel Type:
-                <span id="car_fuel" x-text="carDetails.fuel_type"></span>
+            <p class="text-gray-600 mb-1">
+                ⛽ Fuel Type: <span id="car_fuel" x-text="carDetails.fuel_type"></span>
             </p>
-            <p class="text-gray-600 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600" fill="currentColor"
-                    viewBox="0 0 256 256">
-                    <path
-                        d="M235.92,199A8,8,0,0,1,225,195.92L155.32,72H136v8a8,8,0,0,1-16,0V72H100.68L31,195.92A8,8,0,0,1,17,188.08L82.32,72H24a8,8,0,0,1,0-16H232a8,8,0,0,1,0,16H173.68L239,188.08A8,8,0,0,1,235.92,199ZM128,112a8,8,0,0,0-8,8v16a8,8,0,0,0,16,0V120A8,8,0,0,0,128,112Zm0,56a8,8,0,0,0-8,8v16a8,8,0,0,0,16,0V176A8,8,0,0,0,128,168Z">
-                    </path>
-                </svg>
-                Mileage: <span id="car_mileage" x-text="carDetails.mileage"></span>
-            </p>
-            <p class="text-green-600 font-bold">
-                <i class="ph ph-currency-dollar mr-1"></i>
-                Price: $<span id="car_price" x-text="carDetails.rent_price"></span> / day
+            <p class="text-gray-600 mb-1">
+                🛣️ Mileage: <span id="car_mileage" x-text="carDetails.mileage"></span>
             </p>
 
-            <div class="grid grid-cols-2 gap-5">
-                <!-- Reservation Inputs -->
-                <div class="mt-3">
-                    <label for="start_date" class="block text-sm font-medium text-gray-700 flex items-center gap-1">
-                        <i class="ph ph-calendar"></i> Start Date
-                    </label>
-                    <input type="date" id="start_date" class="w-full p-2 border rounded-md" required>
+            <!-- Price Info -->
+            <div class="mt-3">
+                <p class="text-green-600 font-bold">
+                    💲 Base Price: $<span id="base_price" x-text="carDetails.rent_price"></span> / day
+                </p>
+                <p id="driver_fee_display" class="text-yellow-600 font-medium hidden">
+                    ➕ Driver Fee: $<span id="driver_fee_value">30</span> / day
+                </p>
+                <p class="text-blue-600 font-bold">
+                    🧾 Total: $<span id="car_price" x-text="carDetails.rent_price"></span> / day
+                </p>
+            </div>
+
+            <!-- Reservation Dates -->
+            <div class="grid grid-cols-2 gap-4 mt-4">
+                <div>
+                    <label for="start_date" class="text-sm text-gray-700 font-medium">Start Date</label>
+                    <input type="date" id="start_date" class="w-full p-2 border rounded-md" required />
                 </div>
-
-                <div class="mt-3">
-                    <label for="end_date" class="block text-sm font-medium text-gray-700 flex items-center gap-1">
-                        <i class="ph ph-calendar-check"></i> End Date
-                    </label>
-                    <input type="date" id="end_date" class="w-full p-2 border rounded-md" required>
+                <div>
+                    <label for="end_date" class="text-sm text-gray-700 font-medium">End Date</label>
+                    <input type="date" id="end_date" class="w-full p-2 border rounded-md" required />
                 </div>
             </div>
 
-            <!-- Need Driver Checkbox -->
+            <!-- Need Driver? -->
             <div class="mt-4">
                 <label class="flex items-center space-x-2">
-                    <input type="checkbox" id="need_driver" class="w-4 h-4 text-blue-500"
-                        x-on:change="toggleDriverList">
-                    <span class="text-gray-700 font-medium flex items-center gap-1">
-                        <i class="ph ph-user"></i> Need a Driver?
-                    </span>
+                    <input type="checkbox" id="need_driver" class="w-4 h-4 text-blue-500">
+                    <span class="text-gray-700 font-medium">Need a Driver?</span>
                 </label>
             </div>
 
-            <!-- Driver Selection Dropdown (Initially Hidden) -->
+            <!-- Driver Dropdown -->
             <div id="driverSelection" class="mt-3 hidden">
-                <label for="driver_list" class="block text-sm font-medium text-gray-700 flex items-center gap-1">
-                    <i class="ph ph-users"></i> Select a Driver
-                </label>
+                <label for="driver_list" class="block text-sm font-medium text-gray-700">Select a Driver</label>
                 <select id="driver_list" class="w-full p-2 border rounded-md">
                     <option value="" selected disabled>Loading drivers...</option>
                 </select>
             </div>
 
-            <!-- Pay with Stripe Button -->
+            <!-- Buttons -->
             <button id="checkoutButton"
-                class="bg-green-500 text-white px-4 py-2 rounded-lg mt-4 w-full flex items-center justify-center gap-2">
+                class="bg-green-600 text-white px-4 py-2 rounded-lg mt-5 w-full font-semibold flex items-center justify-center gap-2">
                 <i class="ph ph-credit-card text-xl"></i> Pay with Stripe
             </button>
-
-            <!-- Cancel Button -->
             <button x-on:click="rentModal = false"
-                class="bg-gray-400 text-white px-4 py-2 rounded-lg mt-3 w-full flex items-center justify-center gap-2">
+                class="bg-gray-400 text-white px-4 py-2 rounded-lg mt-2 w-full flex items-center justify-center gap-2">
                 <i class="ph ph-x-circle text-xl"></i> Cancel
             </button>
         </div>
@@ -96,19 +78,57 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    const DRIVER_FEE = 30;
+    let basePrice = 0;
+
+    document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("checkoutButton").addEventListener("click", checkout);
-        document.getElementById("need_driver").addEventListener("change", toggleDriverList);
+        document.getElementById("need_driver").addEventListener("change", handleDriverToggle);
+        document.getElementById("driver_list").addEventListener("change", handleDriverSelected);
+
+        // Capture base price once when rentModal opens
+        const basePriceObserver = new MutationObserver(() => {
+            const raw = parseFloat(document.getElementById("base_price").textContent);
+            basePrice = isNaN(raw) ? 0 : raw;
+            updatePrice();
+        });
+        basePriceObserver.observe(document.getElementById("base_price"), { childList: true });
     });
 
-    function toggleDriverList() {
+    function handleDriverToggle() {
+        const needDriver = document.getElementById("need_driver").checked;
         const driverSelection = document.getElementById("driverSelection");
-        if (document.getElementById("need_driver").checked) {
+        document.getElementById("driver_fee_display").classList.add("hidden");
+
+        if (needDriver) {
             driverSelection.classList.remove("hidden");
             fetchDrivers();
         } else {
             driverSelection.classList.add("hidden");
+            document.getElementById("driver_list").value = '';
+            updatePrice();
         }
+    }
+
+    function handleDriverSelected() {
+        const driverId = document.getElementById("driver_list").value;
+        const feeDisplay = document.getElementById("driver_fee_display");
+
+        if (driverId) {
+            feeDisplay.classList.remove("hidden");
+        } else {
+            feeDisplay.classList.add("hidden");
+        }
+
+        updatePrice();
+    }
+
+    function updatePrice() {
+        const needDriver = document.getElementById("need_driver").checked;
+        const driverSelected = !!document.getElementById("driver_list").value;
+        const finalPrice = (needDriver && driverSelected) ? basePrice + DRIVER_FEE : basePrice;
+
+        document.getElementById("car_price").textContent = finalPrice.toFixed(2);
     }
 
     async function fetchDrivers() {
@@ -132,7 +152,6 @@
     async function checkout() {
         const carId = document.getElementById("car_id").textContent;
         const carName = document.getElementById("car_name").textContent;
-        const carPrice = document.getElementById("car_price").textContent;
         const carImage = document.getElementById("car_image").src;
         const startDate = document.getElementById("start_date").value;
         const endDate = document.getElementById("end_date").value;
@@ -144,11 +163,15 @@
             return;
         }
 
+        const finalPrice = parseFloat(document.getElementById("car_price").textContent);
+
         const response = await fetch("/Payment/CreateCheckoutSession", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                carId, carName, carImage, carPrice, startDate, endDate, needDriver, driverId
+                carId, carName, carImage,
+                carPrice: finalPrice,
+                startDate, endDate, needDriver, driverId
             })
         });
 

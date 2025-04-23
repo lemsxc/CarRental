@@ -40,6 +40,9 @@ namespace CarRental.Controllers
                 await _logsService.LogAsync("Add Driver", description, fullName, admin.UsersId);
             }
 
+            TempData["AlertMessage"] = "Successfully Added";
+            TempData["AlertType"] = "success";
+
             return RedirectToAction("Drivers", "Admin");
         }
 
@@ -65,6 +68,9 @@ namespace CarRental.Controllers
                 // Log the update action with relevant details
                 await _logsService.LogAsync("Update Driver", description, fullName, admin.UsersId);
             }
+
+            TempData["AlertMessage"] = "Successfully Updated";
+            TempData["AlertType"] = "success";
 
             return RedirectToAction("Drivers", "Admin");
         }
