@@ -1,8 +1,8 @@
 @model List<CarRental.Models.Reservation>
 @{
-
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="flex overflow-hidden flex-col bg-[#D0CAEA]">
+<div x-data="{ summaryModal: false, reservationSummary: {} }" class="flex overflow-hidden flex-col bg-[#D0CAEA]">
     <partial name="~/Views/Admin/Partials/_AdminTopNav.cshtml"></partial>
     <div class="z-10 -mt-4 w-full max-w-[1400px] max-md:max-w-full">
         <div class="flex gap-5 max-md:flex-col">
@@ -41,23 +41,22 @@
                 </div>
 
                 <!-- Transactions Table -->
-                <section
-                    class="flex flex-col justify-center pb-5 mt-5 w-full text-sm bg-white rounded-lg text-teal-950 max-md:max-w-full">
+                <section class="flex flex-col justify-center pb-5 mt-5 w-full text-sm bg-white rounded-lg text-teal-950 max-md:max-w-full">
                     <table class="min-w-full divide-y divide-gray-200 text-center">
                         <!-- Table Header -->
                         <thead class="font-semibold border-b border-slate-200">
                             <tr>
-                                <th class="py-3 px-4 text-center">Trip ID</th>
-                                <th class="py-3 px-4 text-center">Vehicle Type</th>
-                                <th class="py-3 px-4 text-center">Brand</th>
-                                <th class="py-3 px-4 text-center">Model</th>
-                                <th class="py-3 px-4 text-center">Plate Number</th>
-                                <th class="py-3 px-4 text-center">Total amount</th>
-                                <th class="py-3 px-4 text-center">Driver</th>
-                                <th class="py-3 px-4 text-center">Start Date</th>
-                                <th class="py-3 px-4 text-center">End Date</th>
-                                <th class="py-3 px-4 text-center">Status</th>
-                                <th class="py-3 px-4 text-center">Action</th>
+                                <th class="py-3 px-4 text-sm text-center">ID</th>
+                                <th class="py-3 px-4 text-sm text-center">Vehicle Type</th>
+                                <th class="py-3 px-4 text-sm text-center">Brand</th>
+                                <th class="py-3 px-4 text-sm text-center">Model</th>
+                                <th class="py-3 px-4 text-sm text-center">Plate Number</th>
+                                <th class="py-3 px-4 text-sm text-center">Total amount</th>
+                                <th class="py-3 px-4 text-sm text-center">Driver</th>
+                                <th class="py-3 px-4 text-sm text-center">Start Date</th>
+                                <th class="py-3 px-4 text-sm text-center">End Date</th>
+                                <th class="py-3 px-4 text-sm text-center">Status</th>
+                                <th class="py-3 px-4 text-sm text-center">Action</th>
                             </tr>
                         </thead>
 
@@ -65,42 +64,48 @@
                         <tbody id="transactionTableBody">
                             @foreach (var reservation in Model)
                             {
-                                <tr class="border-b border-slate-300 transaction-item">
-                                    <td class="py-3 px-4 text-center">@reservation.ReservationId</td>
-                                    <td class="py-3 px-4 text-center">@reservation.Car.Category</td>
-                                    <td class="py-3 px-4 text-center">@reservation.Car.Brand</td>
-                                    <td class="py-3 px-4 text-center">@reservation.Car.Model</td>
-                                    <td class="py-3 px-4 text-center">@reservation.Car.PlateNumber</td>
-                                    <td class="py-3 px-4 text-center">@reservation.TotalAmount</td>
-                                    <td class="py-3 px-4 text-center">
-                                        @(reservation.Driver != null ? 
-                                        $"{reservation.Driver.FirstName} {reservation.Driver.LastName}": "No Driver")
-                                    </td>
-                                <td class="py-3 px-4 text-center">@reservation.StartDate.ToString("dd-MM-yyyy")</td>
-                                <td class="py-3 px-4 text-center">@reservation.EndDate.ToString("dd-MM-yyyy")</td>
-                                <td class="py-3 px-4 text-center">@reservation.Status</td>
-                                <td class="px-8 py-4 text-center">
-                                    <button
-                                        class="text-sm font-medium text-white bg-indigo-600 rounded-lg py-1 px-4 transition-all duration-200 ease-in-out hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+                            <tr class="border-b border-slate-300 transaction-item">
+                                <td class="py-3 px-4 text-sm text-center">@reservation.ReservationId</td>
+                                <td class="py-3 px-4 text-sm text-center">@reservation.Car.Category</td>
+                                <td class="py-3 px-4 text-sm text-center">@reservation.Car.Brand</td>
+                                <td class="py-3 px-4 text-sm text-center">@reservation.Car.Model</td>
+                                <td class="py-3 px-4 text-sm text-center">@reservation.Car.PlateNumber</td>
+                                <td class="py-3 px-4 text-sm text-center">@reservation.TotalAmount</td>
+                                <td class="py-3 px-4 text-sm text-center">@(reservation.Driver != null ? $"{reservation.Driver.FirstName} {reservation.Driver.LastName}" : "No Driver")</td>
+                                <td class="py-3 px-4 text-sm text-center">@reservation.StartDate.ToString("MMMM dd, yyyy h:mm tt")</td>
+                                <td class="py-3 px-4 text-sm text-center">@reservation.EndDate.ToString("MMMM dd, yyyy h:mm tt")</td>
+                                <td class="py-3 px-4 text-sm text-center">@reservation.Status</td>
+                                <td class="px-8 py-4 text-sm text-center">
+                                    <button x-on:click="summaryModal = true; reservationSummary = {
+                                            image: '@Url.Content("~/" + reservation.Car.Image)',
+                                            name: '@reservation.User.FirstName @reservation.User.LastName',
+                                            email: '@reservation.User.Email',
+                                            carModel: '@reservation.Car.Brand @reservation.Car.Model',
+                                            totalAmount: '@reservation.TotalAmount',
+                                            payment: '@reservation.Payment.PaymentMethod',
+                                            startDate: '@reservation.StartDate.ToString("MMMM dd, yyyy")',
+                                            endDate: '@reservation.EndDate.ToString("MMMM dd, yyyy")',
+                                            status: '@reservation.Status'
+                                        }" class="text-sm font-medium text-white bg-indigo-600 rounded-lg py-1 px-4 transition-all duration-200 ease-in-out hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
                                         View
                                     </button>
                                 </td>
                             </tr>
-                                                        }
+                            }
                         </tbody>
                     </table>
                 </section>
             </div>
         </div>
     </div>
+    @await Html.PartialAsync("~/Views/Modals/summaryModal.cshtml")
 </div>
 
 <script>
     function filterTransactions() {
         let input = document.getElementById('searchInput').value.toLowerCase();
-        let rows = document.querySelectorAll('.transaction-item'); // Select each row (transaction item)
+        let rows = document.querySelectorAll('.transaction-item'); 
 
-        // Loop through all rows to find the match
         rows.forEach(row => {
             let text = row.textContent.toLowerCase();
             row.style.display = text.includes(input) ? "" : "none";

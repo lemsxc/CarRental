@@ -37,15 +37,21 @@ namespace CarRental.Controllers
                 return RedirectToAction("Login", "Account"); // Or however your login route is set
             }
 
-            var cars = _context.Cars.ToList();
-            return View(cars);
+            var availableCars = _context.Cars
+                .Where(c => c.Status == "Available")
+                .ToList();
+
+            return View(availableCars);
         }
 
         [Authorize(Policy = "User")]
         public IActionResult Cars()
         {
-            var cars = _context.Cars.ToList();
-            return View(cars);
+            var availableCars = _context.Cars
+                .Where(c => c.Status == "Available")
+                .ToList();
+                
+            return View(availableCars);
         }
 
         [Authorize(Policy = "User")]

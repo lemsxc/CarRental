@@ -84,7 +84,7 @@
                                         <td class="py-3 px-4">@car.Status</td>
                                         <td class="py-3 px-4">
                                             <button
-                                                class="text-xs font-medium text-center text-white bg-indigo-600 rounded-sm py-1 px-2"
+                                                class="text-sm font-medium text-white bg-indigo-600 rounded-lg py-1 px-4 transition-all duration-200 ease-in-out hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
                                                 x-on:click="CarsModals = true; selectedCars = {
                                                     image: '@Url.Content("~/" + car.Image)',
                                                     brand: '@car.Brand',

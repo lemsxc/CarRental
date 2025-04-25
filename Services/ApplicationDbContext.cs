@@ -17,5 +17,15 @@ namespace CarRental.Services
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Verification> Verifications { get; set; }
         public DbSet<Logs> Logs { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Reservation>()
+                .HasOne(r => r.Payment)
+                .WithOne(p => p.Reservation)
+                .HasForeignKey<Payment>(p => p.ReservationId);
+        }
     }
 }

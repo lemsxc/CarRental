@@ -15,22 +15,22 @@
 
                 <!-- Vehicle Filter Buttons -->
                 <div class="flex justify-center space-x-3 mb-6">
-                    <button on:click="selectedCategory = 'All'"
+                    <button x-on:click="selectedCategory = 'All'"
                         :class="selectedCategory === 'All' ? 'bg-purple-600 text-white' : 'bg-gray-200'"
                         class="px-4 py-2 rounded-lg">
                         All vehicles
                     </button>
-                    <button on:click="selectedCategory = 'Sedan'"
+                    <button x-on:click="selectedCategory = 'Sedan'"
                         :class="selectedCategory === 'Sedan' ? 'bg-purple-600 text-white' : 'bg-gray-200'"
                         class="px-4 py-2 rounded-lg flex items-center">
                         <span class="mr-2">🚗</span> Sedan
                     </button>
-                    <button on:click="selectedCategory = 'Sport'"
+                    <button x-on:click="selectedCategory = 'Sport'"
                         :class="selectedCategory === 'Sport' ? 'bg-purple-600 text-white' : 'bg-gray-200'"
                         class="px-4 py-2 rounded-lg flex items-center">
                         <span class="mr-2">🏎️</span> Sport
                     </button>
-                    <button on:click="selectedCategory = 'SUV'"
+                    <button x-on:click="selectedCategory = 'SUV'"
                         :class="selectedCategory === 'SUV' ? 'bg-purple-600 text-white' : 'bg-gray-200'"
                         class="px-4 py-2 rounded-lg flex items-center">
                         <span class="mr-2">🚙</span> SUV

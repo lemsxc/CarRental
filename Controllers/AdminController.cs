@@ -90,7 +90,9 @@ namespace CarRental.Controllers
         {
             var reservations = _context.Reservations
                 .Include(r => r.Car)
-                .Include(r => r.Driver) // 👈 Include driver data
+                .Include(r => r.Driver)
+                .Include(r => r.User)
+                .Include(r => r.Payment)
                 .ToList();
 
             return View(reservations);

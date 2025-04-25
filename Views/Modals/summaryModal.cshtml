@@ -1,0 +1,127 @@
+<div x-cloak x-show="summaryModal"
+    class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 p-4"
+    x-on:keydown.escape.window="summaryModal = false">
+    <div class="bg-white rounded-lg p-6 max-w-2xl w-full max-h-screen overflow-y-auto">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b pb-3">
+            <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                <!-- Clipboard Icon -->
+                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 2a1 1 0 00-1 1v1H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-3V3a1 1 0 00-1-1H9zm1 2h4v1h-4V4z" />
+                </svg>
+                Reservation Summary
+            </h2>
+            <button x-on:click="summaryModal = false" class="text-gray-500 hover:text-red-600 text-xl font-bold">&times;</button>
+        </div>
+
+        <!-- Car Image -->
+        <img x-bind:src="reservationSummary.image" class="rounded-lg mx-auto w-11/12 h-72 object-cover" alt="Car Image">
+
+        <!-- Content Section -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+            <!-- Full Name -->
+            <div>
+                <label class="font-semibold text-gray-700 flex items-center gap-2">
+                    <!-- User Icon -->
+                    <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z" />
+                    </svg>
+                    Full Name
+                </label>
+                <p class="text-gray-600" x-text="reservationSummary.name"></p>
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label class="font-semibold text-gray-700 flex items-center gap-2">
+                    <!-- Mail Icon -->
+                    <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M4 4h16v2l-8 5-8-5V4zm0 4l8 5 8-5v10H4V8z" />
+                    </svg>
+                    Email
+                </label>
+                <p class="text-gray-600" x-text="reservationSummary.email"></p>
+            </div>
+
+            <!-- Car Reserved -->
+            <div>
+                <label class="font-semibold text-gray-700 flex items-center gap-2">
+                    <!-- Car Icon -->
+                    <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M5 11l1.5-4.5h11L19 11H5zm0 2h14v5H5v-5zm4.5 1a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 019.5 14zm5 0a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 0114.5 14z" />
+                    </svg>
+                    Car Reserved
+                </label>
+                <p class="text-gray-600" x-text="reservationSummary.carModel"></p>
+            </div>
+
+            <!-- Total Price -->
+            <div>
+                <label class="font-semibold text-gray-700 flex items-center gap-2">
+                    <!-- Tag Icon -->
+                    <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.59 13.41L12 4.83 3.41 13.41a2 2 0 002.83 2.83L12 10.17l5.76 5.76a2 2 0 002.83-2.83z" />
+                    </svg>
+                    Total Price
+                </label>
+                <p class="text-gray-600" x-text="'₱' + reservationSummary.totalAmount"></p>
+            </div>
+
+            <!-- Payment Method -->
+            <div>
+                <label class="font-semibold text-gray-700 flex items-center gap-2">
+                    <!-- Credit Card Icon -->
+                    <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M2 4h20v2H2V4zm0 4h20v12H2V8zm2 2v2h4v-2H4z" />
+                    </svg>
+                    Payment Method
+                </label>
+                <p class="text-gray-600" x-text="reservationSummary.payment"></p>
+            </div>
+
+            <!-- Return Date -->
+            <div>
+                <label class="font-semibold text-gray-700 flex items-center gap-2">
+                    <!-- Calendar Icon -->
+                    <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 10h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zm3-6V2h-2v2H8V2H6v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-1zM5 20V8h14v12H5z" />
+                    </svg>
+                Start Date
+                </label>
+                <p class="text-gray-600" x-text="reservationSummary.startDate"></p>
+            </div>
+
+            <!-- Return Date -->
+            <div>
+                <label class="font-semibold text-gray-700 flex items-center gap-2">
+                    <!-- Calendar Icon -->
+                    <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 10h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zm3-6V2h-2v2H8V2H6v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-1zM5 20V8h14v12H5z" />
+                    </svg>
+                    End Date
+                </label>
+                <p class="text-gray-600" x-text="reservationSummary.endDate"></p>
+            </div>
+
+            <!-- Reservation Status -->
+            <div>
+                <label class="font-semibold text-gray-700 flex items-center gap-2">
+                    <!-- Status Icon -->
+                    <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0C5.372 0 0 5.373 0 12c0 6.627 5.372 12 12 12s12-5.373 12-12c0-6.627-5.372-12-12-12zM11 17.93c-2.94-.49-5.21-3.02-5.21-6.03 0-.55.45-1 1-1s1 .45 1 1c0 2.21 1.79 4 4 4 .55 0 1 .45 1 1s-.45 1-1 1zm1-6.93h-2V7h2v4z" />
+                    </svg>
+                    Status
+                </label>
+                <p class="text-gray-600" x-text="reservationSummary.status"></p>
+            </div>
+        </div>
+
+        <!-- Footer Buttons -->
+        <div class="mt-6 flex justify-end gap-2 border-t pt-4">
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-2 px-4 rounded"
+                x-on:click="summaryModal = false">
+                Close
+            </button>
+        </div>
+    </div>
+</div>

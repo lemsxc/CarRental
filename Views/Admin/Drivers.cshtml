@@ -75,14 +75,14 @@
                                     <td class="py-3 px-4">@driver.LastName</td>
                                     <td class="py-3 px-4">@driver.ContactNumber</td>
                                     <td class="py-3 px-4">@driver.LicenseNumber</td>
-                                    <td class="py-3 px-4">@driver.LicenseExpiry.ToString("yyyy-MM-dd")</td>
+                                    <td class="py-3 px-4">@driver.LicenseExpiry.ToString("MMMM dd, yyyy h:mm tt")</td>
                                     <td
                                         class="py-3 px-4 text-center text-@(driver.Status == "Hired" ? "red-600" : "green-600")">
                                         @driver.Status</td>
                                     <td class="py-3 px-4 flex space-x-2">
                                         <!-- Edit Button -->
                                         <a href="/Driver/Edit/@driver.DriverId"
-                                            class="text-xs font-medium text-white bg-blue-600 rounded-sm py-1 px-2">
+                                            class="text-sm font-medium text-white bg-indigo-600 rounded-lg py-1 px-4 transition-all duration-200 ease-in-out hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
                                             Edit
                                         </a>
 

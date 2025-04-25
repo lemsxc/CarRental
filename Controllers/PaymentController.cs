@@ -131,7 +131,7 @@ namespace CarRental.Controllers
 
             if (reservation.Car != null)
             {
-                reservation.Car.Status = "Unavailable";
+                reservation.Car.Status = "Reserved";
             }
             else
             {

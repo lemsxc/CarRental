@@ -74,9 +74,9 @@
                                         @verification.Status
                                     </td>
 
-                                    <td class="py-3 px-4">@verification.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                                    <td class="py-3 px-4">@verification.CreatedAt.ToString("MMMM dd, yyyy h:mm tt")</td>
 
-                                    <td class="py-3 px-4">@verification.UpdatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                                    <td class="py-3 px-4">@verification.UpdatedAt.ToString("MMMM dd, yyyy h:mm tt")</td>
 
                                     <td class="py-3 px-4 space-y-1">
                                         <form asp-action="UpdateVerification" asp-controller="Verification" method="post">
