@@ -1,3 +1,7 @@
+@{
+    bool isVerified = ViewBag.IsVerified != null && (bool)ViewBag.IsVerified;
+}
+
 <nav class="flex justify-between items-center self-center px-20 py-7 w-full text-lg font-medium text-black max-md:flex-wrap max-md:gap-5 max-md:p-5">
     <img src="@Url.Content("~/Images/Logo.png")" alt="Logo" />
 
@@ -27,7 +31,14 @@
         }
     </ul>
 
-    <a href="@Url.Action("Cars", "Home")" class="px-7 py-3 font-semibold text-black bg-amber-500 rounded-xl">Book Now</a>
+    @if (isVerified)
+    {
+        <a href="@Url.Action("Cars", "Home")" class="px-7 py-3 font-semibold text-black bg-amber-500 rounded-xl">Book Now</a>
+    }
+    else
+    {
+        <a href="@Url.Action("Settings", "Home")" class="px-7 py-3 font-semibold text-white bg-red-500 rounded-xl">Verify Now</a>
+    }
 </nav>
 
 <script>

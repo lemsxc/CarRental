@@ -2,7 +2,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div x-data="{ addDriverModal: false, }" class="flex overflow-hidden flex-col bg-[#D0CAEA]">
+<div x-data="{ addDriverModal: false, driverModal: false, selectedDriver: {}, }" class="flex overflow-hidden flex-col bg-[#D0CAEA]">
     <partial name="~/Views/Admin/Partials/_AdminTopNav.cshtml"></partial>
     <div class="z-10 -mt-4 w-full max-w-[1400px] max-md:max-w-full">
         <div class="flex gap-5 max-md:flex-col">
@@ -81,20 +81,20 @@
                                         @driver.Status</td>
                                     <td class="py-3 px-4 flex space-x-2">
                                         <!-- Edit Button -->
-                                        <a href="/Driver/Edit/@driver.DriverId"
-                                            class="text-sm font-medium text-white bg-indigo-600 rounded-lg py-1 px-4 transition-all duration-200 ease-in-out hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
-                                            Edit
-                                        </a>
-
-                                        <!-- Delete Button -->
-                                        <form method="post" action="/Driver/Delete"
-                                            onsubmit="return confirm('Are you sure?');">
-                                            <input type="hidden" name="id" value="@driver.DriverId" />
-                                            <button type="submit"
-                                                class="text-xs font-medium text-white bg-red-600 rounded-sm py-1 px-2">
-                                                Delete
-                                            </button>
-                                        </form>
+                                        <button
+                                            class="text-sm font-medium text-white bg-indigo-600 rounded-lg py-1 px-4 transition-all duration-200 ease-in-out hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+                                            x-on:click="driverModal = true; selectedDriver = {
+                                                    driverId: '@driver.DriverId',
+                                                    firstName: '@driver.FirstName',
+                                                    lastName: '@driver.LastName',
+                                                    contactNumber: '@driver.ContactNumber',
+                                                    licenseNumber: '@driver.LicenseNumber',
+                                                    licenseExpiry: '@driver.LicenseExpiry.ToString("yyyy-MM-dd")',
+                                                    address: '@driver.Address',
+                                                    status: '@driver.Status'
+                                                }">
+                                            View
+                                        </button>
                                     </td>
                                 </tr>
                             }
@@ -105,6 +105,7 @@
         </div>
     </div>
     @await Html.PartialAsync("~/Views/Modals/addDriverModal.cshtml")
+    @await Html.PartialAsync("~/Views/Modals/driverModal.cshtml")
     <script>
         function filterDrivers() {
             let input = document.getElementById('searchInput').value.toLowerCase();

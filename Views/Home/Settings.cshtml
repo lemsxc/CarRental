@@ -1,6 +1,7 @@
 @model CarRental.Models.User
 @{
     ViewData["Title"] = "Settings";
+    bool isVerified = ViewBag.IsVerified != null && (bool)ViewBag.IsVerified;
 }
 
 <div x-data="{ carModal: false, rentModal: false, showAll: false, selectedCar: {}, carDetails: [] }"
@@ -29,6 +30,11 @@
                 <div class="tab-content-container relative">
                     <!-- Personal Information Tab -->
                     <div id="personalInfo" class="tab-content p-4 w-full min-h-[300px]">
+
+                        <div class="bg-yellow-100 rounded-[20px] p-2 my-5 ">
+                            <p class="p-2 font-semibold text-lg mb-2">Please complete your personal information to
+                                proceed.</p>
+                        </div>
                         <form asp-action="UpdateProfile" method="post">
                             <div class="grid grid-cols-2 gap-4">
                                 <input type="hidden" asp-for="UsersId" />
@@ -70,19 +76,21 @@
 
                     <!-- Verify Account Tab -->
                     <div id="verifyAccount" class="tab-content p-4 hidden w-full min-h-[300px]">
-                        <h3 class="text-xl font-semibold mb-4">Upload Verification Documents</h3>
+                        <div class="bg-yellow-100 rounded-[20px] p-2 my-5 ">
+                            <p class="p-2 font-semibold text-lg mb-2">Provide a clear picture of the front and back of
+                                your
+                                driver's
+                                license. Ensure the details are legible.</p>
+                        </div>
 
+                        <h3 class="text-xl font-semibold mb-4">Upload Verification Documents</h3>
                         <form asp-action="SubmitVerification" asp-controller="Verification" method="post"
                             enctype="multipart/form-data">
                             <input type="hidden" asp-for="UsersId" />
                             <input type="hidden" name="lastName"
                                 value="@User.FindFirst(System.Security.Claims.ClaimTypes.Surname)?.Value" />
 
-                            <div class="bg-yellow-100 rounded-[20px] p-2 my-5 ">
-                                <p class="p-2 font-semibold text-lg mb-2">Provide a clear picture of the front and back of your
-                                    driver's
-                                    license. Ensure the details are legible.</p>
-                            </div>
+
 
                             <div class="grid grid-cols-2 gap-5">
                                 <div>

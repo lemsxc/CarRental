@@ -1,0 +1,72 @@
+<div x-show="driverModal" x-cloak class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full relative z-50" x-on:click.away="driverModal = false"
+        x-data="{ isEditing: false }">
+        <button x-on:click="driverModal = false" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+            &times;
+        </button>
+
+        <form method="post" class="space-y-4">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-5">
+                <h1 class="text-3xl font-semibold text-teal-950">Driver Details</h1>
+                <button type="button" class="text-sm text-white bg-indigo-600 rounded-lg py-1 px-4 hover:bg-indigo-700"
+                    x-show="!isEditing" x-on:click="isEditing = true">
+                    Edit
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
+                <input type="hidden" x-model="selectedDriver.driverId">
+                <div>
+                    <label class="text-sm font-semibold">First Name</label>
+                    <input type="text" name="FirstName" class="w-full p-2 border rounded-lg"
+                        x-model="selectedDriver.firstName" x-bind:readonly="!isEditing">
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">Last Name</label>
+                    <input type="text" name="LastName" class="w-full p-2 border rounded-lg"
+                        x-model="selectedDriver.lastName" x-bind:readonly="!isEditing">
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">Contact Number</label>
+                    <input type="text" name="ContactNumber" class="w-full p-2 border rounded-lg"
+                        x-model="selectedDriver.contactNumber" x-bind:readonly="!isEditing">
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">Address</label>
+                    <input type="text" name="Address" class="w-full p-2 border rounded-lg"
+                        x-model="selectedDriver.address" x-bind:readonly="!isEditing">
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">License Number</label>
+                    <input type="text" name="LicenseNumber" class="w-full p-2 border rounded-lg"
+                        x-model="selectedDriver.licenseNumber" x-bind:readonly="!isEditing">
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">License Expiry Date</label>
+                    <input type="date" name="LicenseExpiry" class="w-full p-2 border rounded-lg"
+                        x-model="selectedDriver.licenseExpiry" x-bind:readonly="!isEditing">
+                </div>
+                <div>
+                    <label class="text-sm font-semibold">Status</label>
+                    <select name="Status" class="w-full p-2 border rounded-lg" x-model="selectedDriver.status"
+                        x-bind:disabled="!isEditing">
+                        <option value="Available">Available</option>
+                        <option value="Hired">Hired</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="px-6 py-4 border-t flex justify-center space-x-3">
+                <button type="submit" x-show="isEditing"
+                    class="px-4 py-2 text-white bg-teal-700 rounded-lg hover:bg-teal-600 transition duration-300"> Save
+                    Changes </button>
+                <button x-on:click="driverModal = false"
+                    class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 text-gray-800">
+                    Close </button>
+            </div>
+        </form>
+    </div>
+</div>

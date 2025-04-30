@@ -106,6 +106,9 @@ namespace CarRental.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
+            TempData["AlertMessage"] = "Creating account successfully!";
+            TempData["AlertType"] = "success";
+
             return RedirectToAction("Login");
         }
 

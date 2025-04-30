@@ -1,7 +1,7 @@
-@model IEnumerable<CarRental.Models.Car>
+@model List<CarRental.Models.Car>
 @{
     ViewData["Title"] = "Home";
-    var returnUrl = ViewBag.ReturnUrl as string;
+    bool isVerified = ViewBag.IsVerified != null && (bool)ViewBag.IsVerified;
 }
 <div x-data="{ carModal: false, rentModal: false, showAll: false, selectedCar: {}, carDetails: [], }"
     class="flex flex-col items-center bg-white">
@@ -156,7 +156,8 @@
                     <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-200">
                         <!-- Car Image -->
                         <div class="rounded-lg flex justify-center h-48 w-full items-center">
-                            <img src="@Url.Content("~/" + cars.Image)" class="rounded-lg object-contain w-full h-full" alt="Car Image">
+                            <img src="@Url.Content("~/" + cars.Image)" class="rounded-lg object-contain w-full h-full"
+                                alt="Car Image">
                         </div>
 
                         <!-- Title & Price -->
@@ -185,37 +186,61 @@
                                 <span class="text-sm">Air Conditioner</span>
                             </div>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <button class="mt-4 w-full bg-purple-600 text-white py-2 rounded-lg text-sm font-medium"
-                                x-on:click="carModal = true; selectedCar = {
-                                    image: '@Url.Content("~/" + cars.Image)',
-                                    brand: '@cars.Brand',
-                                    model: '@cars.Model',
-                                    transmission: '@cars.Transmission',
-                                    fuel_type: '@cars.FuelType',
-                                    fuel_level: '@cars.FuelLevel',
-                                    price: '@cars.RentPrice',
-                                    category: '@cars.Category',
-                                    plateNum: '@cars.PlateNumber',
-                                    mileage: '@cars.Mileage',
-                                    condition: '@cars.Condition'
-                                }">
-                                View Details
-                            </button>
-                            <button class="mt-4 w-full bg-purple-600 text-white py-2 rounded-lg text-sm font-medium"
-                                x-on:click.prevent="rentModal = true; carDetails = {
-                                    id: '@cars.CarId', 
-                                    image: '@Url.Content("~/" + cars.Image)',
-                                    brand: '@cars.Brand',
-                                    model: '@cars.Model',
-                                    transmission: '@cars.Transmission',
-                                    fuel_type: '@cars.FuelType',
-                                    mileage: '@cars.Mileage',
-                                    rent_price: '@cars.RentPrice'
-                                }">
-                                Rent Car
-                            </button>
-                        </div>
+                        @if (isVerified)
+                        {
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <button class="mt-4 w-full bg-purple-600 text-white py-2 rounded-lg text-sm font-medium"
+                                    x-on:click="carModal = true; selectedCar = {
+                                        image: '@Url.Content("~/" + cars.Image)',
+                                        brand: '@cars.Brand',
+                                        model: '@cars.Model',
+                                        transmission: '@cars.Transmission',
+                                        fuel_type: '@cars.FuelType',
+                                        fuel_level: '@cars.FuelLevel',
+                                        price: '@cars.RentPrice',
+                                        category: '@cars.Category',
+                                        plateNum: '@cars.PlateNumber',
+                                        mileage: '@cars.Mileage',
+                                        condition: '@cars.Condition'
+                                    }">
+                                    View Details
+                                </button>
+                                <button class="mt-4 w-full bg-purple-600 text-white py-2 rounded-lg text-sm font-medium"
+                                    x-on:click.prevent="rentModal = true; carDetails = {
+                                        id: '@cars.CarId', 
+                                        image: '@Url.Content("~/" + cars.Image)',
+                                        brand: '@cars.Brand',
+                                        model: '@cars.Model',
+                                        transmission: '@cars.Transmission',
+                                        fuel_type: '@cars.FuelType',
+                                        mileage: '@cars.Mileage',
+                                        rent_price: '@cars.RentPrice'
+                                    }">
+                                    Rent Car
+                                </button>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="flex justify-center">
+                                <button class="mt-4 bg-purple-600 text-white py-2 px-8 rounded-lg text-sm font-medium"
+                                    x-on:click="carModal = true; selectedCar = {
+                                        image: '@Url.Content("~/" + cars.Image)',
+                                        brand: '@cars.Brand',
+                                        model: '@cars.Model',
+                                        transmission: '@cars.Transmission',
+                                        fuel_type: '@cars.FuelType',
+                                        fuel_level: '@cars.FuelLevel',
+                                        price: '@cars.RentPrice',
+                                        category: '@cars.Category',
+                                        plateNum: '@cars.PlateNumber',
+                                        mileage: '@cars.Mileage',
+                                        condition: '@cars.Condition'
+                                    }">
+                                    View Details
+                                </button>
+                            </div>
+                        }
                     </div>
                 }
             </div>

@@ -1,6 +1,8 @@
+@using System.Security.Claims
 @model List<CarRental.Models.Reservation>
 @{
     ViewData["Title"] = "Reservations";
+    bool isVerified = ViewBag.IsVerified != null && (bool)ViewBag.IsVerified;
 }
 <div x-data="{ reservationDetails: false, selectedReservation: {}, }" class="flex flex-col items-center bg-white">
     <div class="flex overflow-hidden flex-col w-full bg-white max-w-[1440px] max-md:p-5">
@@ -9,9 +11,14 @@
             <h1 class="text-4xl font-bold text-white">My Reservations</h1>
             <p class="text-white mt-2">Manage your booked vehicles easily.</p>
         </div>
-
         <div class="px-20 py-10 max-md:px-5 max-md:py-5">
-            @if (!Model.Any())
+            @if (User.Identity.IsAuthenticated && !isVerified)
+            {
+                <p class="text-center text-red-500 font-semibold">
+                    Your account is not verified. Please wait for verification to make reservations.
+                </p>
+            }
+            else if (!Model.Any())
             {
                 <p class="text-center text-gray-500">You have no reservations yet.</p>
             }
@@ -79,9 +86,9 @@
                         </div>
                     }
                 </div>
-
             }
         </div>
+
     </div>
     @await Html.PartialAsync("~/Views/Modals/reservationDetails.cshtml")
 </div>

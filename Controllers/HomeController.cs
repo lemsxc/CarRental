@@ -37,6 +37,11 @@ namespace CarRental.Controllers
                 return RedirectToAction("Login", "Account"); // Or however your login route is set
             }
 
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var user = _context.Users.FirstOrDefault(u => u.UsersId.ToString() == userId);
+            ViewBag.IsVerified = user != null && user.IsVerified;
+
             var availableCars = _context.Cars
                 .Where(c => c.Status == "Available")
                 .ToList();
@@ -47,17 +52,32 @@ namespace CarRental.Controllers
         [Authorize(Policy = "User")]
         public IActionResult Cars()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var user = _context.Users.FirstOrDefault(u => u.UsersId.ToString() == userId);
+            ViewBag.IsVerified = user != null && user.IsVerified;
+
             var availableCars = _context.Cars
                 .Where(c => c.Status == "Available")
                 .ToList();
-                
+
             return View(availableCars);
         }
 
         [Authorize(Policy = "User")]
         public IActionResult Reservations()
         {
-            var reservations = _context.Reservations.Include(r => r.Car).ToList();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var user = _context.Users.FirstOrDefault(u => u.UsersId.ToString() == userId);
+            ViewBag.IsVerified = user != null && user.IsVerified;
+
+            // 👇 Filter reservations to show only those made by the current user
+            var reservations = _context.Reservations
+                .Include(r => r.Car)
+                .Where(r => r.UsersId.ToString() == userId)
+                .ToList();
+
             return View(reservations);
         }
 
@@ -72,6 +92,7 @@ namespace CarRental.Controllers
             }
 
             var user = _context.Users.FirstOrDefault(u => u.UsersId == userId);
+            ViewBag.IsVerified = user != null && user.IsVerified;
 
             if (user == null)
             {
