@@ -1,4 +1,5 @@
 @model List<CarRental.Models.Reservation>
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -41,7 +42,7 @@
                 </div>
 
                 <!-- Transactions Table -->
-                <section class="flex flex-col justify-center pb-5 mt-5 w-full text-sm bg-white rounded-lg text-teal-950 max-md:max-w-full">
+                <section x-data="doneRentalHandler()" class="flex flex-col justify-center pb-5 mt-5 w-full text-sm bg-white rounded-lg text-teal-950 max-md:max-w-full">
                     <table class="min-w-full divide-y divide-gray-200 text-center">
                         <!-- Table Header -->
                         <thead class="font-semibold border-b border-slate-200">
@@ -70,7 +71,7 @@
                                 <td class="py-3 px-4 text-sm text-center">@reservation.Car.Brand</td>
                                 <td class="py-3 px-4 text-sm text-center">@reservation.Car.Model</td>
                                 <td class="py-3 px-4 text-sm text-center">@reservation.Car.PlateNumber</td>
-                                <td class="py-3 px-4 text-sm text-center">@reservation.TotalAmount</td>
+                                <td class="py-3 px-4 text-sm text-center">₱@reservation.TotalAmount</td>
                                 <td class="py-3 px-4 text-sm text-center">@(reservation.Driver != null ? $"{reservation.Driver.FirstName} {reservation.Driver.LastName}" : "No Driver")</td>
                                 <td class="py-3 px-4 text-sm text-center">@reservation.StartDate.ToString("MMMM dd, yyyy h:mm tt")</td>
                                 <td class="py-3 px-4 text-sm text-center">@reservation.EndDate.ToString("MMMM dd, yyyy h:mm tt")</td>
@@ -89,6 +90,14 @@
                                         }" class="text-sm font-medium text-white bg-indigo-600 rounded-lg py-1 px-4 transition-all duration-200 ease-in-out hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
                                         View
                                     </button>
+                                    <button type="button" x-on:click="confirmAndSubmit(@reservation.ReservationId)" 
+                                        class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+                                        Done
+                                    </button>
+                                   <form x-ref="form_@reservation.ReservationId" method="post" action="/Rental/MarkAsDone" style="display: none;">
+                                        <input type="hidden" name="__RequestVerificationToken" value="@Antiforgery.GetTokens(Context).RequestToken" />
+                                        <input type="hidden" name="reservationId" :value="@reservation.ReservationId" />
+                                    </form>
                                 </td>
                             </tr>
                             }
@@ -110,5 +119,31 @@
             let text = row.textContent.toLowerCase();
             row.style.display = text.includes(input) ? "" : "none";
         });
+    }
+
+    function doneRentalHandler() {
+        return {
+            confirmAndSubmit(id) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This will mark the reservation as done.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, mark as done!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Access the correct form using dynamic x-ref
+                        const form = this.$refs[`form_${id}`];
+                        if (form) {
+                            form.submit();
+                        } else {
+                            console.error("Form not found for reservation ID:", id);
+                        }
+                    }
+                });
+            }
+        }
     }
 </script>

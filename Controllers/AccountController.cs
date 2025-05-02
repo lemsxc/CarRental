@@ -42,34 +42,40 @@ namespace CarRental.Controllers
 
         // POST: /Account/UpdateProfile
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult UpdateProfile(User updatedUser)
+        public async Task<IActionResult> UpdateProfile(User updatedUser)
         {
-            if (!ModelState.IsValid)
-            {
-                TempData["AlertMessage"] = "Please fix the errors and try again.";
-                TempData["AlertType"] = "warning";
-                return View("Profile", updatedUser);
-            }
 
-            var user = _context.Users.FirstOrDefault(u => u.UsersId == updatedUser.UsersId);
-            if (user == null)
+            var existingUser = await _context.Users.FindAsync(updatedUser.UsersId);
+            if (existingUser == null)
             {
                 TempData["AlertMessage"] = "User not found.";
-                TempData["AlertType"] = "error";
-                return RedirectToAction("Login", "Auth");
+                TempData["AlertType"] = "danger";
+                return RedirectToAction("Settings", "Home");
             }
 
-            user.FirstName = updatedUser.FirstName;
-            user.LastName = updatedUser.LastName;
-            user.ContactNumber = updatedUser.ContactNumber;
-            user.Address = updatedUser.Address;
+            // Update only editable fields
+            existingUser.FirstName = updatedUser.FirstName;
+            existingUser.LastName = updatedUser.LastName;
+            existingUser.ContactNumber = updatedUser.ContactNumber;
+            existingUser.Address = updatedUser.Address;
 
-            _context.SaveChanges();
+            try
+            {
+                await _context.SaveChangesAsync();
 
-            TempData["AlertMessage"] = "Profile updated successfully!";
-            TempData["AlertType"] = "success";
-            return RedirectToAction("Profile");
+                TempData["AlertMessage"] = "Profile updated successfully.";
+                TempData["AlertType"] = "success";
+
+                return RedirectToAction("Settings", "Home");
+            }
+            catch (Exception)
+            {
+                TempData["AlertMessage"] = "An error occurred while updating the profile.";
+                TempData["AlertType"] = "danger";
+
+                return RedirectToAction("Settings", "Home", updatedUser);
+            }
         }
+
     }
 }

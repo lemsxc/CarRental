@@ -5,7 +5,7 @@
             &times;
         </button>
 
-        <form method="post" class="space-y-4">
+        <form asp-action="UpdateDriver" asp-controller="Driver" method="post" class="space-y-4">
             <!-- Header -->
             <div class="flex justify-between items-center mb-5">
                 <h1 class="text-3xl font-semibold text-teal-950">Driver Details</h1>
@@ -16,7 +16,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
-                <input type="hidden" x-model="selectedDriver.driverId">
+                <input type="hidden" name="DriverId" x-model="selectedDriver.driverId">
                 <div>
                     <label class="text-sm font-semibold">First Name</label>
                     <input type="text" name="FirstName" class="w-full p-2 border rounded-lg"
@@ -63,7 +63,7 @@
                 <button type="submit" x-show="isEditing"
                     class="px-4 py-2 text-white bg-teal-700 rounded-lg hover:bg-teal-600 transition duration-300"> Save
                     Changes </button>
-                <button x-on:click="driverModal = false"
+                <button type="button" x-on:click="driverModal = false"
                     class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 text-gray-800">
                     Close </button>
             </div>

@@ -1,7 +1,12 @@
-@using Newtonsoft.Json
-
 @{
     ViewData["Title"] = "Admin Dashboard";
+    var totalRevenue = ViewBag.TotalRevenue;
+    var totalBookings = ViewBag.TotalBookings;
+    var activeRentals = ViewBag.ActiveRentals;
+    var confirmedRentals = ViewBag.ConfirmedRentals ;
+    var cancelledRentals = ViewBag.CancelledRentals ;
+    var dates = ViewBag.Dates;
+    var revenueData = ViewBag.RevenueData;
 }
 
 <div class="flex overflow-hidden flex-col bg-[#D0CAEA] min-h-screen">
@@ -19,36 +24,36 @@
                 <div class="flex flex-col ml-5 w-4/5 max-md:ml-0 max-md:w-full">
                     <div class="flex flex-col mt-8 w-full max-md:mt-10 max-md:max-w-full">
                         <div class="container mx-auto p-6">
-                            <h1 class="text-3xl font-bold mb-5">Dashboard</h1>
+                            <h1 class="text-3xl font-bold">Dashboard</h1>
+                            <p class="mt-2 text-gray-700 text-base">
+                                Welcome to your admin dashboard! Here you can monitor your total revenue,
+                                track bookings, and manage active rentals with ease.
+                            </p>
 
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                                <div class="bg-white p-4 shadow rounded-lg">
+                                <div class="bg-white p-4 shadow rounded">
                                     <h3 class="text-lg font-medium">Total Revenue</h3>
-                                    <p class="text-2xl font-bold text-green-600">₱@ViewBag.TotalRevenue</p>
+                                    <p class="text-2xl font-bold text-green-600">₱@totalRevenue</p>
                                 </div>
-                                <div class="bg-white p-4 shadow rounded-lg">
+                                <div class="bg-white p-4 shadow rounded">
                                     <h3 class="text-lg font-medium">Total Bookings</h3>
-                                    <p class="text-2xl font-bold">@ViewBag.TotalBookings</p>
+                                    <p class="text-2xl font-bold">@totalBookings</p>
                                 </div>
-                                <div class="bg-white p-4 shadow rounded-lg">
+                                <div class="bg-white p-4 shadow rounded">
                                     <h3 class="text-lg font-medium">Active Rentals</h3>
-                                    <p class="text-2xl font-bold">@ViewBag.ActiveRentals</p>
+                                    <p class="text-2xl font-bold">@activeRentals</p>
                                 </div>
-                                <div class="bg-white p-4 shadow rounded-lg">
+                                <div class="bg-white p-4 shadow rounded">
                                     <h3 class="text-lg font-medium">Confirmed Rentals</h3>
-                                    <p class="text-2xl font-bold text-blue-600">@ViewBag.ConfirmedRentals</p>
+                                    <p class="text-2xl font-bold text-blue-600">@confirmedRentals</p>
                                 </div>
-                                <div class="bg-white p-4 shadow rounded-lg">
+                                <div class="bg-white p-4 shadow rounded">
                                     <h3 class="text-lg font-medium">Cancelled Rentals</h3>
-                                    <p class="text-2xl font-bold text-red-600">@ViewBag.CancelledRentals</p>
-                                </div>
-                                <div class="bg-white p-4 shadow rounded-lg">
-                                    <h3 class="text-lg font-medium">Done Rentals</h3>
-                                    <p class="text-2xl font-bold">@ViewBag.ActiveRentals</p>
+                                    <p class="text-2xl font-bold text-red-600">@cancelledRentals</p>
                                 </div>
                             </div>
 
-                            <form method="get" asp-action="Dashboard" class="p-4 shadow rounded">
+                            <form method="get" asp-action="Dashboard">
                                 <label for="filter" class="mr-2">View by:</label>
                                 <select name="filter" id="filter" onchange="this.form.submit()"
                                     class="border rounded px-2 py-1">
@@ -64,7 +69,7 @@
                                 </select>
                             </form>
 
-                            <div class="bg-white p-4 shadow rounded-lg">
+                            <div class="bg-white p-4 shadow rounded">
                                 <h3 class="text-lg font-medium mb-2">Revenue in the Last 30 Days</h3>
                                 <canvas id="revenueChart" width="400" height="150"></canvas>
                             </div>
@@ -84,10 +89,10 @@
         const revenueChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: @Html.Raw(JsonConvert.SerializeObject(ViewBag.Dates)),  // Dates for the x-axis
+                labels: @Html.Raw(Json.Serialize(ViewBag.Dates)),  // Dates for the x-axis
                 datasets: [{
                     label: 'Revenue',
-                    data: @Html.Raw(JsonConvert.SerializeObject(ViewBag.RevenueData)),  // Revenue data for the y-axis
+                    data: @Html.Raw(Json.Serialize(ViewBag.RevenueData)),  // Revenue data for the y-axis
                     backgroundColor: 'rgba(59, 130, 246, 0.2)',
                     borderColor: 'rgba(59, 130, 246, 1)',
                     borderWidth: 2,

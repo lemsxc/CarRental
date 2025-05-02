@@ -7,6 +7,7 @@ using System.Security.Claims;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace CarRental.Controllers
 {
@@ -52,28 +53,53 @@ namespace CarRental.Controllers
         }
 
         [Authorize(Policy = "Admin")]
-        public async Task<IActionResult> Dashboard()
+        public async Task<IActionResult> Dashboard(string filter = "daily")
         {
             DateTime startDate = DateTime.Now.AddDays(-30);
             DateTime endDate = DateTime.Now;
 
-            var payments = await _context.Payments
-                .Where(p => p.PaymentDate >= startDate && p.PaymentDate <= endDate)
-                .ToListAsync();
+            var payments = await _context.Payments.ToListAsync();
 
-            var totalRevenue = payments.Sum(p => p.Amount);
-            var totalBookings = await _context.Reservations.CountAsync(r => r.Payment.PaymentDate >= startDate && r.Payment.PaymentDate <= endDate);
-            var activeRentals = await _context.Reservations.CountAsync(r => r.Status == "Active");
+            var grouped = filter switch
+            {
+                "weekly" => payments.GroupBy(p => CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(
+                                p.PaymentDate, CalendarWeekRule.FirstDay, DayOfWeek.Monday))
+                                .Select(g => new
+                                {
+                                    Label = "Week " + g.Key,
+                                    Total = g.Sum(p => p.Amount)
+                                })
+                                .OrderBy(x => x.Label)
+                                .ToList(),
 
-            var revenueTrends = payments.GroupBy(p => p.PaymentDate.Date)
-                .Select(g => new { Date = g.Key, Total = g.Sum(p => p.Amount) })
-                .OrderBy(x => x.Date)
-                .ToList();
+                "monthly" => payments.GroupBy(p => p.PaymentDate.ToString("MMMM yyyy"))
+                                .Select(g => new
+                                {
+                                    Label = g.Key,
+                                    Total = g.Sum(p => p.Amount)
+                                })
+                                .OrderBy(x => x.Label)
+                                .ToList(),
 
-            ViewBag.TotalRevenue = totalRevenue;
-            ViewBag.TotalBookings = totalBookings;
-            ViewBag.ActiveRentals = activeRentals;
-            ViewBag.RevenueTrends = revenueTrends.Select(x => new { x.Date, x.Total }).ToList();
+                _ => payments.GroupBy(p => p.PaymentDate.ToString("yyyy-MM-dd"))
+                                .Select(g => new
+                                {
+                                    Label = g.Key,
+                                    Total = g.Sum(p => p.Amount)
+                                })
+                                .OrderBy(x => x.Label)
+                                .ToList()
+            };
+
+            ViewBag.TotalRevenue = payments.Sum(p => p.Amount);
+            ViewBag.TotalBookings = await _context.Reservations.Include(r => r.Payment).CountAsync(r => r.Payment != null);
+            ViewBag.ActiveRentals = await _context.Reservations.CountAsync(r => r.Status == "Active");
+            ViewBag.ConfirmedRentals = await _context.Reservations.CountAsync(r => r.Status == "Confirmed");
+            ViewBag.CancelledRentals = await _context.Reservations.CountAsync(r => r.Status == "Cancelled");
+            ViewBag.DoneRentals = await _context.Reservations.CountAsync(r => r.Status == "Done");
+            ViewBag.Dates = grouped.Select(x => x.Label).ToList();
+            ViewBag.RevenueData = grouped.Select(x => x.Total).ToList();
+            ViewBag.SelectedFilter = filter;
 
             return View();
         }

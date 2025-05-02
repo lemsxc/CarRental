@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ubv2gQ/3UIX07/aBYlfZS67Tar/b41ZAxx1nIZe46XE=",
+  "Hash": "zxrt+sZYHQL2XjFyaQjHYLQsr2vA8JVJNgyNnxlrmus=",
   "Source": "CarRental",
   "BasePath": "_content/CarRental",
   "Mode": "Default",
@@ -157,8 +157,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ikxucwxchf",
-      "Integrity": "jt64fw8MyD/ggFCWY1eiE2mN1sldbgJXquP4S9Vq5x4=",
+      "Fingerprint": "20yg6vtn7e",
+      "Integrity": "IkKbiGmBj5Avb4tpYiSFY3qek1Y33YedkhC0dLwAWts=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\output.css"
@@ -2158,6 +2158,51 @@
       ]
     },
     {
+      "Route": "css/output.20yg6vtn7e.css",
+      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\output.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "51065"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IkKbiGmBj5Avb4tpYiSFY3qek1Y33YedkhC0dLwAWts=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 01:16:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "20yg6vtn7e"
+        },
+        {
+          "Name": "label",
+          "Value": "css/output.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-IkKbiGmBj5Avb4tpYiSFY3qek1Y33YedkhC0dLwAWts="
+        }
+      ]
+    },
+    {
       "Route": "css/output.css",
       "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\output.css",
       "Selectors": [],
@@ -2168,7 +2213,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "51383"
+          "Value": "51065"
         },
         {
           "Name": "Content-Type",
@@ -2176,11 +2221,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"jt64fw8MyD/ggFCWY1eiE2mN1sldbgJXquP4S9Vq5x4=\""
+          "Value": "\"IkKbiGmBj5Avb4tpYiSFY3qek1Y33YedkhC0dLwAWts=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 13:44:06 GMT"
+          "Value": "Fri, 02 May 2025 01:16:05 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2190,52 +2235,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-jt64fw8MyD/ggFCWY1eiE2mN1sldbgJXquP4S9Vq5x4="
-        }
-      ]
-    },
-    {
-      "Route": "css/output.ikxucwxchf.css",
-      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\output.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "51383"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"jt64fw8MyD/ggFCWY1eiE2mN1sldbgJXquP4S9Vq5x4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 13:44:06 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "ikxucwxchf"
-        },
-        {
-          "Name": "label",
-          "Value": "css/output.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-jt64fw8MyD/ggFCWY1eiE2mN1sldbgJXquP4S9Vq5x4="
+          "Value": "sha256-IkKbiGmBj5Avb4tpYiSFY3qek1Y33YedkhC0dLwAWts="
         }
       ]
     },
