@@ -73,6 +73,10 @@ namespace CarRental.Migrations
                     b.Property<float>("RentPrice")
                         .HasColumnType("real");
 
+                    b.Property<int?>("Seats")
+                        .IsRequired()
+                        .HasColumnType("int");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(50)

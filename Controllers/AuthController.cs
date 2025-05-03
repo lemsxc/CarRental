@@ -157,7 +157,7 @@ namespace CarRental.Controllers
                     Email = email,
                     Password = HashPassword(password), // Only set this if user is new
                     Role = "User",
-                    IsVerified = true
+                    IsVerified = false
                 };
 
                 _context.Users.Add(user);

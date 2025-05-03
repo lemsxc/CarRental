@@ -81,6 +81,8 @@ namespace CarRental.Controllers
             return View(reservations);
         }
 
+
+
         [Authorize(Policy = "User")]
         public IActionResult Settings()
         {
@@ -92,12 +94,14 @@ namespace CarRental.Controllers
             }
 
             var user = _context.Users.FirstOrDefault(u => u.UsersId == userId);
-            ViewBag.IsVerified = user != null && user.IsVerified;
 
             if (user == null)
             {
                 return NotFound("User not found.");
             }
+
+            // Set the verification status in ViewBag after ensuring user is found
+            ViewBag.IsVerified = user.IsVerified;
 
             return View(user);
         }

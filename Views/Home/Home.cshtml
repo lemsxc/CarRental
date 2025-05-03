@@ -164,7 +164,7 @@
                         <div class="flex justify-between items-center mt-10">
                             <h2 class="text-lg font-bold text-gray-900"> @cars.Brand </h2>
                             <p class="text-purple-600 font-bold text-lg">
-                                $@cars.RentPrice<span class="text-gray-500 text-sm"> /day</span>
+                                ₱@cars.RentPrice<span class="text-gray-500 text-sm"> /day</span>
                             </p>
                         </div>
 
@@ -172,50 +172,54 @@
                         <p class="text-gray-500 text-left text-sm">@cars.Category</p>
 
                         <!-- Features -->
-                        <div class="flex items-center space-x-5 mt-3 text-gray-700">
-                            <div class="flex items-center space-x-1">
-                                <span class="text-lg">⚙️</span>
-                                <span class="text-sm">@cars.Transmission</span>
-                            </div>
-                            <div class="flex items-center space-x-1">
-                                <span class="text-lg">⛽</span>
-                                <span class="text-sm">@cars.FuelType</span>
-                            </div>
-                            <div class="flex items-center space-x-1">
-                                <span class="text-lg">❄️</span>
-                                <span class="text-sm">Air Conditioner</span>
+                        <div class="flex justify-center mt-3 text-gray-700">
+                            <div class="flex items-center space-x-5">
+                                <div class="flex items-center space-x-1">
+                                    <span class="text-lg">⚙️</span>
+                                    <span class="text-sm">@cars.Transmission</span>
+                                </div>
+                                <div class="flex items-center space-x-1">
+                                    <span class="text-lg">⛽</span>
+                                    <span class="text-sm">@cars.FuelType</span>
+                                </div>
+                                <div class="flex items-center space-x-1">
+                                    <span class="text-lg">🚗</span>
+                                    <span class="text-sm">@cars.Mileage</span>
+                                </div>
                             </div>
                         </div>
+
                         @if (isVerified)
                         {
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <button class="mt-4 w-full bg-purple-600 text-white py-2 rounded-lg text-sm font-medium"
                                     x-on:click="carModal = true; selectedCar = {
-                                        image: '@Url.Content("~/" + cars.Image)',
-                                        brand: '@cars.Brand',
-                                        model: '@cars.Model',
-                                        transmission: '@cars.Transmission',
-                                        fuel_type: '@cars.FuelType',
-                                        fuel_level: '@cars.FuelLevel',
-                                        price: '@cars.RentPrice',
-                                        category: '@cars.Category',
-                                        plateNum: '@cars.PlateNumber',
-                                        mileage: '@cars.Mileage',
-                                        condition: '@cars.Condition'
-                                    }">
+                                                image: '@Url.Content("~/" + cars.Image)',
+                                                brand: '@cars.Brand',
+                                                model: '@cars.Model',
+                                                seats: '@cars.Seats',
+                                                transmission: '@cars.Transmission',
+                                                fuel_type: '@cars.FuelType',
+                                                fuel_level: '@cars.FuelLevel',
+                                                price: '@cars.RentPrice',
+                                                category: '@cars.Category',
+                                                plateNum: '@cars.PlateNumber',
+                                                mileage: '@cars.Mileage',
+                                                condition: '@cars.Condition'
+                                            }">
                                     View Details
                                 </button>
                                 <button class="mt-4 w-full bg-purple-600 text-white py-2 rounded-lg text-sm font-medium"
                                     x-on:click.prevent="rentModal = true; carDetails = {
-                                        id: '@cars.CarId', 
-                                        image: '@Url.Content("~/" + cars.Image)',
-                                        brand: '@cars.Brand',
-                                        model: '@cars.Model',
-                                        transmission: '@cars.Transmission',
-                                        fuel_type: '@cars.FuelType',
-                                        mileage: '@cars.Mileage',
-                                        rent_price: '@cars.RentPrice'
-                                    }">
+                                                id: '@cars.CarId', 
+                                                image: '@Url.Content("~/" + cars.Image)',
+                                                brand: '@cars.Brand',
+                                                model: '@cars.Model',
+                                                transmission: '@cars.Transmission',
+                                                fuel_type: '@cars.FuelType',
+                                                mileage: '@cars.Mileage',
+                                                rent_price: '@cars.RentPrice'
+                                            }">
                                     Rent Car
                                 </button>
                             </div>
@@ -225,18 +229,18 @@
                             <div class="flex justify-center">
                                 <button class="mt-4 bg-purple-600 text-white py-2 px-8 rounded-lg text-sm font-medium"
                                     x-on:click="carModal = true; selectedCar = {
-                                        image: '@Url.Content("~/" + cars.Image)',
-                                        brand: '@cars.Brand',
-                                        model: '@cars.Model',
-                                        transmission: '@cars.Transmission',
-                                        fuel_type: '@cars.FuelType',
-                                        fuel_level: '@cars.FuelLevel',
-                                        price: '@cars.RentPrice',
-                                        category: '@cars.Category',
-                                        plateNum: '@cars.PlateNumber',
-                                        mileage: '@cars.Mileage',
-                                        condition: '@cars.Condition'
-                                    }">
+                                                image: '@Url.Content("~/" + cars.Image)',
+                                                brand: '@cars.Brand',
+                                                model: '@cars.Model',
+                                                transmission: '@cars.Transmission',
+                                                fuel_type: '@cars.FuelType',
+                                                fuel_level: '@cars.FuelLevel',
+                                                price: '@cars.RentPrice',
+                                                category: '@cars.Category',
+                                                plateNum: '@cars.PlateNumber',
+                                                mileage: '@cars.Mileage',
+                                                condition: '@cars.Condition'
+                                            }">
                                     View Details
                                 </button>
                             </div>

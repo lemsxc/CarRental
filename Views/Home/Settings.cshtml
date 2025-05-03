@@ -20,10 +20,16 @@
                 <div class="flex border-b">
                     <button id="tabPersonal"
                         class="tab-button px-6 py-2 font-medium text-lg border-b-2 border-transparent focus:border-amber-500 w-full text-center">Personal
-                        Information</button>
+                        Information
+                    </button>
                     <button id="tabVerify"
                         class="tab-button px-6 py-2 font-medium text-lg border-b-2 border-transparent focus:border-amber-500 w-full text-center">Verify
-                        Account</button>
+                        Account
+                    </button>
+                    <button id="tabPassword"
+                        class="tab-button px-6 py-2 font-medium text-lg border-b-2 border-transparent focus:border-amber-500 w-full text-center">
+                        Change Password
+                    </button>
                 </div>
 
                 <!-- Tab Content Container -->
@@ -78,46 +84,86 @@
 
                     <!-- Verify Account Tab -->
                     <div id="verifyAccount" class="tab-content p-4 hidden w-full min-h-[300px]">
-                        <div class="bg-yellow-100 rounded-[20px] p-2 my-5 ">
+                        <div class="bg-yellow-100 rounded-[20px] p-2 my-5">
                             <p class="p-2 font-semibold text-lg mb-2">Provide a clear picture of the front and back of
-                                your
-                                driver's
+                                your driver's
                                 license. Ensure the details are legible.</p>
                         </div>
 
                         <h3 class="text-xl font-semibold mb-4">Upload Verification Documents</h3>
-                        <form asp-action="SubmitVerification" asp-controller="Verification" method="post"
-                            enctype="multipart/form-data">
-                            <input type="hidden" asp-for="UsersId" />
-                            <input type="hidden" name="lastName"
-                                value="@User.FindFirst(System.Security.Claims.ClaimTypes.Surname)?.Value" />
+                        @if (ViewBag.IsVerified != null && ViewBag.IsVerified)
+                        {
+                            <div class="bg-green-100 text-green-700 p-2 rounded-lg mb-4">
+                                <p class="font-semibold">Your account is verified!</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <form asp-action="SubmitVerification" asp-controller="Verification" method="post"
+                                enctype="multipart/form-data">
+                                <input type="hidden" asp-for="UsersId" />
+                                <input type="hidden" name="lastName"
+                                    value="@User.FindFirst(System.Security.Claims.ClaimTypes.Surname)?.Value" />
 
+                                <div class="grid grid-cols-2 gap-5">
+                                    <div>
+                                        <!-- Front License Upload -->
+                                        <label class="block text-lg font-medium">Driver's License (Front)</label>
+                                        <input type="file" name="DriversLicenseFrontFile" id="frontFile"
+                                            class="w-full border p-2 rounded-lg mb-2" accept="image/*"
+                                            onchange="previewImage(event, 'frontPreview')">
+                                        <img id="frontPreview" class="w-96 h-96 object-cover border rounded-lg hidden mb-4"
+                                            alt="Front Preview">
+                                    </div>
 
-
-                            <div class="grid grid-cols-2 gap-5">
-                                <div>
-                                    <!-- Front License Upload -->
-                                    <label class="block text-lg font-medium">Driver's License (Front)</label>
-                                    <input type="file" name="DriversLicenseFrontFile" id="frontFile"
-                                        class="w-full border p-2 rounded-lg mb-2" accept="image/*"
-                                        onchange="previewImage(event, 'frontPreview')">
-                                    <img id="frontPreview" class="w-96 h-96 object-cover border rounded-lg hidden mb-4"
-                                        alt="Front Preview">
+                                    <div>
+                                        <!-- Back License Upload -->
+                                        <label class="block text-lg font-medium">Driver's License (Back)</label>
+                                        <input type="file" name="DriversLicenseBackFile" id="backFile"
+                                            class="w-full border p-2 rounded-lg mb-2" accept="image/*"
+                                            onchange="previewImage(event, 'backPreview')">
+                                        <img id="backPreview" class="w-96 h-96 object-cover border rounded-lg hidden mb-4"
+                                            alt="Back Preview">
+                                    </div>
                                 </div>
 
-                                <div>
-                                    <!-- Back License Upload -->
-                                    <label class="block text-lg font-medium">Driver's License (Back)</label>
-                                    <input type="file" name="DriversLicenseBackFile" id="backFile"
-                                        class="w-full border p-2 rounded-lg mb-2" accept="image/*"
-                                        onchange="previewImage(event, 'backPreview')">
-                                    <img id="backPreview" class="w-96 h-96 object-cover border rounded-lg hidden mb-4"
-                                        alt="Back Preview">
-                                </div>
+                                <button type="submit" class="bg-amber-500 text-white mt-5 px-6 py-2 rounded-lg">Submit for
+                                    Verification</button>
+                            </form>
+                        }
+                    </div>
+
+                    <!-- Change Password Tab -->
+                    <div id="changePassword" class="tab-content p-4 hidden w-full min-h-[300px]">
+                        <div class="bg-yellow-100 rounded-[20px] p-2 my-5">
+                            <p class="p-2 font-semibold text-lg mb-2">Please enter your current password and set a new
+                                one.</p>
+                        </div>
+
+                        <form asp-action="ChangePassword" asp-controller="Account" method="post">
+                            <input type="hidden" asp-for="UsersId" name="UsersId" />
+
+                            <div class="mb-4">
+                                <label class="block text-lg font-medium">Current Password</label>
+                                <input type="password" name="oldPassword" class="w-full p-2 border rounded-lg"
+                                    required />
                             </div>
 
-                            <button type="submit" class="bg-amber-500 text-white mt-5 px-6 py-2 rounded-lg">Submit for
-                                Verification</button>
+                            <div class="mb-4">
+                                <label class="block text-lg font-medium">New Password</label>
+                                <input type="password" name="newPassword" class="w-full p-2 border rounded-lg"
+                                    required />
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-lg font-medium">Confirm New Password</label>
+                                <input type="password" name="confirmPassword" class="w-full p-2 border rounded-lg"
+                                    required />
+                            </div>
+
+                            <button type="submit" class="bg-amber-500 text-white px-6 py-2 rounded-lg">
+                                Update Password
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -129,14 +175,20 @@
 <script>
     document.querySelectorAll(".tab-button").forEach(button => {
         button.addEventListener("click", function () {
+            // Hide all content and remove active tab classes
             document.querySelectorAll(".tab-content").forEach(tab => tab.classList.add("hidden"));
             document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("border-amber-500"));
 
+            // Show selected tab content
             if (this.id === "tabPersonal") {
                 document.getElementById("personalInfo").classList.remove("hidden");
-            } else {
+            } else if (this.id === "tabVerify") {
                 document.getElementById("verifyAccount").classList.remove("hidden");
+            } else if (this.id === "tabPassword") {
+                document.getElementById("changePassword").classList.remove("hidden");
             }
+
+            // Highlight the active tab
             this.classList.add("border-amber-500");
         });
     });

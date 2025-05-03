@@ -90,94 +90,73 @@ namespace CarRental.Controllers
                 await _logsService.LogAsync("Add Car", description, fullName, admin.UsersId);
             }
 
+            TempData["AlertMessage"] = "Car Added Successfully!";
+            TempData["AlertType"] = "success";
+
             // ✅ Redirect to Car List after successful insertion
             return RedirectToAction("Vehicles", "Admin");
         }
 
-        // Update Car (instead of Edit)
-        public async Task<IActionResult> Update(int id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateCar(Car car, IFormFile Image)
         {
-            var car = await _carService.GetCarByIdAsync(id);
-            if (car == null)
+
+            var existingCar = await _context.Cars.FindAsync(car.CarId);
+            if (existingCar == null)
             {
                 return NotFound();
             }
-            return View("EditCar", car);
-        }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int id, Car updatedCar, IFormFile ImageFile)
-        {
-            if (id != updatedCar.CarId)
-            {
-                return BadRequest();
-            }
+            // Update car fields
+            existingCar.Brand = car.Brand;
+            existingCar.Model = car.Model;
+            existingCar.Category = car.Category;
+            existingCar.Transmission = car.Transmission;
+            existingCar.FuelType = car.FuelType;
+            existingCar.FuelLevel = car.FuelLevel;
+            existingCar.Seats = car.Seats;
+            existingCar.PlateNumber = car.PlateNumber;
+            existingCar.Mileage = car.Mileage;
+            existingCar.RentPrice = car.RentPrice;
+            existingCar.Condition = car.Condition;
+            existingCar.Status = car.Status;
 
-            if (!ModelState.IsValid)
+            // Handle image upload
+            if (Image != null && Image.Length > 0)
             {
-                return View("EditCar", updatedCar);
-            }
+                var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "car_images");
+                Directory.CreateDirectory(uploadsFolder); // make sure folder exists
 
-            try
-            {
-                var existingCar = await _carService.GetCarByIdAsync(id);
-                if (existingCar == null)
+                var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(Image.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    return NotFound();
+                    await Image.CopyToAsync(fileStream);
                 }
 
-                if (ImageFile != null && ImageFile.Length > 0 && ImageFile.ContentType.Contains("image"))
-                {
-                    string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
-                    string uniqueFileName = $"{Guid.NewGuid()}{Path.GetExtension(ImageFile.FileName)}";
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    Directory.CreateDirectory(uploadsFolder);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await ImageFile.CopyToAsync(fileStream);
-                    }
-
-                    // Delete old image if exists
-                    if (!string.IsNullOrEmpty(existingCar.Image))
-                    {
-                        string oldFilePath = Path.Combine(_webHostEnvironment.WebRootPath, existingCar.Image);
-                        if (System.IO.File.Exists(oldFilePath))
-                        {
-                            System.IO.File.Delete(oldFilePath);
-                        }
-                    }
-
-                    updatedCar.Image = $"Images/{uniqueFileName}";
-                }
-                else
-                {
-                    updatedCar.Image = existingCar.Image;
-                }
-
-                // Update Car details
-                await _carService.UpdateCarAsync(updatedCar);
-
-                // ✅ Admin Logging for Update
-                int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int adminId);
-
-                var admin = await _context.Users.FindAsync(adminId);
-                if (admin != null)
-                {
-                    string fullName = $"{admin.FirstName} {admin.LastName}";
-                    string description = $"Updated car details: {updatedCar.Brand} {updatedCar.Model}, Plate: {updatedCar.PlateNumber}";
-                    await _logsService.LogAsync("Update Car", description, fullName, admin.UsersId);
-                }
-
-                return RedirectToAction("Vehicles", "Admin");
+                // Update image path in DB
+                existingCar.Image = "/car_images/" + uniqueFileName;
             }
-            catch (Exception ex)
+
+            _context.Update(existingCar);
+            await _context.SaveChangesAsync();
+
+            int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int adminId);
+
+            var admin = await _context.Users.FindAsync(adminId);
+            if (admin != null)
             {
-                ModelState.AddModelError("", $"Error: {ex.Message}");
-                return RedirectToAction("Vehicles", "Admin");
+                string fullName = $"{admin.FirstName} {admin.LastName}";
+                string description = $"Updated car: {car.Brand} {car.Model} ({car.Category}), Plate: {car.PlateNumber}";
+                await _logsService.LogAsync("Update Car", description, fullName, admin.UsersId);
             }
+
+            TempData["AlertMessage"] = "Car Updated Successfully!";
+            TempData["AlertType"] = "success";
+
+            return RedirectToAction("Vehicles", "Admin");
         }
     }
 }

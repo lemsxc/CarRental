@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\Users\lemma\source\repos\CarRental\obj\Release\net8.0\win-x86\PubTmp\Out\" />
+  <dbfullsql path="C:\Users\lemma\source\repos\CarRental\obj\Release\net8.0\win-x86\PubTmp\EFSQLScripts\CarRental.Services.ApplicationDbContext.sql" />
+</sitemanifest>

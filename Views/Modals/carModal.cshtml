@@ -28,6 +28,12 @@
                 </div>
                 <div class="bg-gray-100 p-3 rounded-lg">
                     <p class="font-semibold flex items-center gap-1">
+                        <i class="ph ph-seatbelt"></i> Seats
+                    </p>
+                    <p class="text-gray-600" x-text="selectedCar.seats"></p>
+                </div>
+                <div class="bg-gray-100 p-3 rounded-lg">
+                    <p class="font-semibold flex items-center gap-1">
                         <i class="ph ph-gas-pump"></i> Fuel
                     </p>
                     <p class="text-gray-600" x-text="selectedCar.fuel_type"></p>
@@ -71,6 +77,5 @@
                 <button x-on:click="carModal = false" class="bg-gray-600 text-white px-6 py-2 rounded-lg">Close</button>
             </div>
         </div>
-
     </div>
 </div>

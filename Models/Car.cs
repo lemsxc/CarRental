@@ -20,6 +20,9 @@ namespace CarRental.Models
         [Required]
         public float RentPrice { get; set; } // Changed to decimal for precision
 
+        [Required]
+        public int? Seats { get; set; } 
+
         [Required, StringLength(50)]
         public string Category { get; set; } // E.g., SUV, Sedan, Sports
 

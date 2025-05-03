@@ -73,6 +73,14 @@
       "PackagePath": "staticwebassets\\License\\Blazin-front.jpg"
     },
     {
+      "Id": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\License\\Blazins-back.jpg",
+      "PackagePath": "staticwebassets\\License\\Blazins-back.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\License\\Blazins-front.jpg",
+      "PackagePath": "staticwebassets\\License\\Blazins-front.jpg"
+    },
+    {
       "Id": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\output.css",
       "PackagePath": "staticwebassets\\css\\output.css"
     },

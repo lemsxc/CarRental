@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vmzvHLrgznMR8TUhGbO815rnhfjMMfD/yIPk8s6SDGk=",
+  "Hash": "ibX957XzUCp86/kX6EI/fUcgxNDaKtMx+AWPx3NtdyQ=",
   "Source": "CarRental",
   "BasePath": "_content/CarRental",
   "Mode": "Default",
@@ -157,8 +157,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "mx0x3nc2y1",
-      "Integrity": "Bp4/BL2AzhSrGabyvU7mgi08j1u8zjcso/nDGdZgTz4=",
+      "Fingerprint": "o0ag1zhevr",
+      "Integrity": "SMwjz1oTnECZP54hInjNUijQuPKGAd+YYG07iAnPnFw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\output.css"
@@ -1842,6 +1842,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\License\\Blazin-front.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\License\\Blazins-back.jpg",
+      "SourceId": "CarRental",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\",
+      "BasePath": "_content/CarRental",
+      "RelativePath": "License/Blazins-back#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "d80t9efcgq",
+      "Integrity": "bTfV/PRXpyRTei/C/ytXTi1a6rZ344YFcvxHQXRQHOg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\License\\Blazins-back.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\License\\Blazins-front.jpg",
+      "SourceId": "CarRental",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\",
+      "BasePath": "_content/CarRental",
+      "RelativePath": "License/Blazins-front#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "hts9y9musz",
+      "Integrity": "2//ypJ4yGPidTp394Q5OntcMAZM/oOvFYd4KqdNMckE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\License\\Blazins-front.jpg"
     }
   ],
   "Endpoints": [
@@ -2168,7 +2210,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "50968"
+          "Value": "50944"
         },
         {
           "Name": "Content-Type",
@@ -2176,11 +2218,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Bp4/BL2AzhSrGabyvU7mgi08j1u8zjcso/nDGdZgTz4=\""
+          "Value": "\"SMwjz1oTnECZP54hInjNUijQuPKGAd+YYG07iAnPnFw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 23 Apr 2025 12:57:22 GMT"
+          "Value": "Fri, 02 May 2025 13:48:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2190,12 +2232,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Bp4/BL2AzhSrGabyvU7mgi08j1u8zjcso/nDGdZgTz4="
+          "Value": "sha256-SMwjz1oTnECZP54hInjNUijQuPKGAd+YYG07iAnPnFw="
         }
       ]
     },
     {
-      "Route": "css/output.mx0x3nc2y1.css",
+      "Route": "css/output.o0ag1zhevr.css",
       "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\css\\output.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2205,7 +2247,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "50968"
+          "Value": "50944"
         },
         {
           "Name": "Content-Type",
@@ -2213,11 +2255,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Bp4/BL2AzhSrGabyvU7mgi08j1u8zjcso/nDGdZgTz4=\""
+          "Value": "\"SMwjz1oTnECZP54hInjNUijQuPKGAd+YYG07iAnPnFw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 23 Apr 2025 12:57:22 GMT"
+          "Value": "Fri, 02 May 2025 13:48:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2227,7 +2269,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "mx0x3nc2y1"
+          "Value": "o0ag1zhevr"
         },
         {
           "Name": "label",
@@ -2235,7 +2277,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-Bp4/BL2AzhSrGabyvU7mgi08j1u8zjcso/nDGdZgTz4="
+          "Value": "sha256-SMwjz1oTnECZP54hInjNUijQuPKGAd+YYG07iAnPnFw="
         }
       ]
     },
@@ -8796,6 +8838,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-cHh71HgqZxX3Q4kMLxkPMeIWXtpb0iQFbQiAAtGkf3A="
+        }
+      ]
+    },
+    {
+      "Route": "License/Blazins-back.d80t9efcgq.jpg",
+      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\License\\Blazins-back.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "43997"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bTfV/PRXpyRTei/C/ytXTi1a6rZ344YFcvxHQXRQHOg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 21:36:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "d80t9efcgq"
+        },
+        {
+          "Name": "label",
+          "Value": "License/Blazins-back.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-bTfV/PRXpyRTei/C/ytXTi1a6rZ344YFcvxHQXRQHOg="
+        }
+      ]
+    },
+    {
+      "Route": "License/Blazins-back.jpg",
+      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\License\\Blazins-back.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "43997"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bTfV/PRXpyRTei/C/ytXTi1a6rZ344YFcvxHQXRQHOg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 21:36:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-bTfV/PRXpyRTei/C/ytXTi1a6rZ344YFcvxHQXRQHOg="
+        }
+      ]
+    },
+    {
+      "Route": "License/Blazins-front.hts9y9musz.jpg",
+      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\License\\Blazins-front.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "311279"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2//ypJ4yGPidTp394Q5OntcMAZM/oOvFYd4KqdNMckE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 21:36:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hts9y9musz"
+        },
+        {
+          "Name": "label",
+          "Value": "License/Blazins-front.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-2//ypJ4yGPidTp394Q5OntcMAZM/oOvFYd4KqdNMckE="
+        }
+      ]
+    },
+    {
+      "Route": "License/Blazins-front.jpg",
+      "AssetFile": "C:\\Users\\lemma\\source\\repos\\CarRental\\wwwroot\\License\\Blazins-front.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "311279"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2//ypJ4yGPidTp394Q5OntcMAZM/oOvFYd4KqdNMckE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 21:36:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-2//ypJ4yGPidTp394Q5OntcMAZM/oOvFYd4KqdNMckE="
         }
       ]
     }

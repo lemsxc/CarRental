@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARBc1FN1ss0mjUAKggPEkEwAAAAACAAAAAAAQZgAAAAEAACAAAADoxSgE1E0l53GFA4Y18chqXZ2qaRIUuh50EOFvx48qDQAAAAAOgAAAAAIAACAAAAB9H4E4oo3Rvs8P5JhO+gG03ArjWjexta4xo4+pyxZjLSAAAAB1ioe0Hpd6kumQ1o4XjPAdq/TkbY3F+3bIio0QFHbCnkAAAADZmWMtNM+CT9YVcQtFqbPVQbhVzKG9SljaGoGUI1ETeMbGnlJQO3tUKA4j/XeNYyh4ews2jHWgK509Fjp5d3c2</EncryptedPassword>
+    <History>True|2025-05-03T00:27:57.6069893Z||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=db18595.public.databaseasp.net%3b Database=db18595%3b User Id=db18595%3b Password=4Gw=Q!7q5y%3fW%3b Encrypt=False%3b MultipleActiveResultSets=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="CarRental.Services.ApplicationDbContext">
+      <Value>Server=db18595.public.databaseasp.net%3b Database=db18595%3b User Id=db18595%3b Password=4Gw=Q!7q5y%3fW%3b Encrypt=False%3b MultipleActiveResultSets=True%3b</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

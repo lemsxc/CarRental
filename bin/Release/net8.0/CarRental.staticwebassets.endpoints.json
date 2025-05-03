@@ -1479,6 +1479,170 @@
       ]
     },
     {
+      "Route": "License/Blazins-back.d80t9efcgq.jpg",
+      "AssetFile": "License/Blazins-back.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "43997"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bTfV/PRXpyRTei/C/ytXTi1a6rZ344YFcvxHQXRQHOg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 21:36:29 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "d80t9efcgq"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-bTfV/PRXpyRTei/C/ytXTi1a6rZ344YFcvxHQXRQHOg="
+        },
+        {
+          "Name": "label",
+          "Value": "License/Blazins-back.jpg"
+        }
+      ]
+    },
+    {
+      "Route": "License/Blazins-back.jpg",
+      "AssetFile": "License/Blazins-back.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "43997"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bTfV/PRXpyRTei/C/ytXTi1a6rZ344YFcvxHQXRQHOg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 21:36:29 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-bTfV/PRXpyRTei/C/ytXTi1a6rZ344YFcvxHQXRQHOg="
+        }
+      ]
+    },
+    {
+      "Route": "License/Blazins-front.hts9y9musz.jpg",
+      "AssetFile": "License/Blazins-front.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "311279"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2//ypJ4yGPidTp394Q5OntcMAZM/oOvFYd4KqdNMckE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 21:36:29 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hts9y9musz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-2//ypJ4yGPidTp394Q5OntcMAZM/oOvFYd4KqdNMckE="
+        },
+        {
+          "Name": "label",
+          "Value": "License/Blazins-front.jpg"
+        }
+      ]
+    },
+    {
+      "Route": "License/Blazins-front.jpg",
+      "AssetFile": "License/Blazins-front.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "311279"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2//ypJ4yGPidTp394Q5OntcMAZM/oOvFYd4KqdNMckE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 21:36:29 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-2//ypJ4yGPidTp394Q5OntcMAZM/oOvFYd4KqdNMckE="
+        }
+      ]
+    },
+    {
       "Route": "_content/AspNetCoreHero.ToastNotification/notyf.min.css",
       "AssetFile": "_content/AspNetCoreHero.ToastNotification/notyf.min.css",
       "Selectors": [],
@@ -1641,7 +1805,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "50968"
+          "Value": "50944"
         },
         {
           "Name": "Content-Type",
@@ -1649,22 +1813,22 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Bp4/BL2AzhSrGabyvU7mgi08j1u8zjcso/nDGdZgTz4=\""
+          "Value": "\"SMwjz1oTnECZP54hInjNUijQuPKGAd+YYG07iAnPnFw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 23 Apr 2025 12:57:22 GMT"
+          "Value": "Fri, 02 May 2025 13:48:15 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Bp4/BL2AzhSrGabyvU7mgi08j1u8zjcso/nDGdZgTz4="
+          "Value": "sha256-SMwjz1oTnECZP54hInjNUijQuPKGAd+YYG07iAnPnFw="
         }
       ]
     },
     {
-      "Route": "css/output.mx0x3nc2y1.css",
+      "Route": "css/output.o0ag1zhevr.css",
       "AssetFile": "css/output.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1678,7 +1842,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "50968"
+          "Value": "50944"
         },
         {
           "Name": "Content-Type",
@@ -1686,21 +1850,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Bp4/BL2AzhSrGabyvU7mgi08j1u8zjcso/nDGdZgTz4=\""
+          "Value": "\"SMwjz1oTnECZP54hInjNUijQuPKGAd+YYG07iAnPnFw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 23 Apr 2025 12:57:22 GMT"
+          "Value": "Fri, 02 May 2025 13:48:15 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "mx0x3nc2y1"
+          "Value": "o0ag1zhevr"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-Bp4/BL2AzhSrGabyvU7mgi08j1u8zjcso/nDGdZgTz4="
+          "Value": "sha256-SMwjz1oTnECZP54hInjNUijQuPKGAd+YYG07iAnPnFw="
         },
         {
           "Name": "label",

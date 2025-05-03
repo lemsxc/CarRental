@@ -4,6 +4,14 @@ using CarRental.Models;
 using CarRental.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+
 
 namespace CarRental.Controllers
 {
@@ -77,5 +85,64 @@ namespace CarRental.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(string oldPassword, string newPassword, string confirmPassword)
+        {
+            if (string.IsNullOrWhiteSpace(oldPassword) || string.IsNullOrWhiteSpace(newPassword) || string.IsNullOrWhiteSpace(confirmPassword))
+            {
+                TempData["AlertMessage"] = "All fields are required.";
+                TempData["AlertType"] = "error";
+                return View();
+            }
+
+            if (newPassword != confirmPassword)
+            {
+                TempData["AlertMessage"] = "New password and confirmation do not match.";
+                TempData["AlertType"] = "error";
+                return View();
+            }
+
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            int userId = int.Parse(userIdClaim);
+            var user = await _context.Users.FindAsync(userId);
+
+            if (user == null || !VerifyPassword(oldPassword, user.Password))
+            {
+                TempData["AlertMessage"] = "Old password is incorrect.";
+                TempData["AlertType"] = "error";
+                return RedirectToAction("Settings", "Home");
+            }
+
+            user.Password = HashPassword(newPassword);
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            TempData["AlertMessage"] = "Password changed successfully!";
+            TempData["AlertType"] = "success";
+
+            return RedirectToAction("Settings", "Home");
+        }
+
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(bytes);
+            }
+        }
+
+        // ✅ Verify Password
+        private bool VerifyPassword(string enteredPassword, string storedHash)
+        {
+            return HashPassword(enteredPassword) == storedHash;
+        }
     }
 }

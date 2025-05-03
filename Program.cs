@@ -13,11 +13,20 @@ using AspNetCoreHero.ToastNotification.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Environment.EnvironmentName = Environments.Development;
+
 // ✅ Add Notyf Toast Notification
 builder.Services.AddNotyf(config => {
     config.DurationInSeconds = 4;
     config.IsDismissable = true;
     config.Position = NotyfPosition.TopRight;
+});
+
+// ✅ Cookie Policy for Google OAuth correlation fix
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+    options.Secure = CookieSecurePolicy.Always;
 });
 
 builder.Services.AddControllersWithViews();
@@ -85,6 +94,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+app.UseCookiePolicy();
 app.UseSession();
 app.UseNotyf();
 

@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div x-data="{ addCarModal: false, CarsModals: false, imagePreview: null, selectedCars: {}, }"
+<div x-data="{ addCarModal: false, CarsModals: false, editCarModal: false, imagePreview: null, selectedCars: {}, selectedEditCars: {}, }"
     class="flex overflow-hidden flex-col bg-[#D0CAEA]">
     <partial name="~/Views/Admin/Partials/_AdminTopNav.cshtml"></partial>
     <div class="z-10 -mt-4 w-full max-w-[1400px] max-md:max-w-full">
@@ -58,6 +58,7 @@
                                     <th class="py-3 px-4">ID</th>
                                     <th class="py-3 px-4">Brand</th>
                                     <th class="py-3 px-4">Model</th>
+                                    <th class="py-3 px-4">Seats</th>
                                     <th class="py-3 px-4">Category</th>
                                     <th class="py-3 px-4">Plate Number</th>
                                     <th class="py-3 px-4">Mileage</th>
@@ -75,30 +76,52 @@
                                         <td class="py-3 px-4">@car.CarId</td>
                                         <td class="py-3 px-4">@car.Brand</td>
                                         <td class="py-3 px-4">@car.Model</td>
+                                        <td class="py-3 px-4">@car.Seats</td>
                                         <td class="py-3 px-4">@car.Category</td>
                                         <td class="py-3 px-4">@car.PlateNumber</td>
                                         <td class="py-3 px-4">@car.Mileage</td>
-                                        <td class="py-3 px-4">@car.RentPrice</td>
+                                        <td class="py-3 px-4">₱@car.RentPrice</td>
                                         <td class="py-3 px-4">@car.FuelLevel</td>
                                         <td class="py-3 px-4">@car.Condition</td>
                                         <td class="py-3 px-4">@car.Status</td>
-                                        <td class="py-3 px-4">
+                                        <td class="py-3 px-4"> 
                                             <button
                                                 class="text-sm font-medium text-white bg-indigo-600 rounded-lg py-1 px-4 transition-all duration-200 ease-in-out hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
                                                 x-on:click="CarsModals = true; selectedCars = {
-                                                    image: '@Url.Content("~/" + car.Image)',
-                                                    brand: '@car.Brand',
-                                                    model: '@car.Model',
-                                                    transmission: '@car.Transmission',
-                                                    fuel_type: '@car.FuelType',
-                                                    fuel_level: '@car.FuelLevel',
-                                                    price: '@car.RentPrice',
-                                                    category: '@car.Category',
-                                                    plateNum: '@car.PlateNumber',
-                                                    mileage: '@car.Mileage',
-                                                    condition: '@car.Condition'
-                                                }">
-                                            View</button>
+                                                        image: '@Url.Content("~/" + car.Image)',
+                                                        brand: '@car.Brand',
+                                                        model: '@car.Model',
+                                                        seats: '@car.Seats',
+                                                        transmission: '@car.Transmission',
+                                                        fuel_type: '@car.FuelType',
+                                                        fuel_level: '@car.FuelLevel',
+                                                        price: '@car.RentPrice',
+                                                        category: '@car.Category',
+                                                        plateNum: '@car.PlateNumber',
+                                                        mileage: '@car.Mileage',
+                                                        condition: '@car.Condition'
+                                                    }">
+                                                View
+                                            </button>
+                                            <button
+                                                class="text-sm font-medium text-white bg-blue-500 rounded-lg py-1 px-4 transition-all duration-200 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" 
+                                                x-on:click="editCarModal = true; selectedEditCars = {
+                                                        id: '@car.CarId',
+                                                        image: '@Url.Content("~/" + car.Image)',
+                                                        brand: '@car.Brand',
+                                                        model: '@car.Model',
+                                                        seats: '@car.Seats',
+                                                        transmission: '@car.Transmission',
+                                                        fuel_type: '@car.FuelType',
+                                                        fuel_level: '@car.FuelLevel',
+                                                        price: '@car.RentPrice',
+                                                        category: '@car.Category',
+                                                        plateNum: '@car.PlateNumber',
+                                                        mileage: '@car.Mileage',
+                                                        condition: '@car.Condition'
+                                                    }">
+                                                Edit
+                                            </button>
                                         </td>
                                     </tr>
                                 }
@@ -111,6 +134,7 @@
     </div>
     @await Html.PartialAsync("~/Views/Modals/addCarModal.cshtml")
     @await Html.PartialAsync("~/Views/Modals/CarsModals.cshtml")
+    @await Html.PartialAsync("~/Views/Modals/editCarModal.cshtml")
 </div>
 
 <script>
@@ -125,7 +149,7 @@
             row.style.display = text.includes(input) ? "" : "none";
         });
     }
-
+ 
     // Preview image when file is selected
     function previewImage(event) {
         var file = event.target.files[0];
